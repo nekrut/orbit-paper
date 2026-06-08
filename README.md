@@ -26,7 +26,7 @@ Six of eight runs completed and reproduced the central finding (SCF1 = v3 `B9J08
 | gpt2 | Completed (after naive-ID trap) | reproduced | volcano + PDF | $23.46 | 11 |
 | gemini-2.5-pro | Completed; both contrasts | reproduced | text + PDF | $16.22 | 45 |
 | gemini-3.5-flash | Completed; both contrasts | reproduced | volcano + PDF | $17.31 | 15 |
-| deepseek | Completed; all steps | reproduced | notebook + HTML | $2.82 (compute) | 28 |
+| deepseek | Completed; all steps | reproduced | notebook + HTML | $2.82 | 28 |
 | haiku | Failed; aborted in ~3 min | — | none | — | 3 |
 
 The central scientific pitfall: the paper's v2 6-digit locus tags were **silently re-numbered** in v3, so the naive zero-strip guess (`B9J08_001458` → `B9J08_01458`) maps SCF1 to the wrong gene and yields a false negative. The correct bridge is protein reciprocal-best-hit (DIAMOND): `B9J08_001458` → `B9J08_03708`. See the [report](orbit_llm_reanalysis_report.md) for the full breakdown.
