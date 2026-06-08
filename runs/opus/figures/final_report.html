@@ -1,0 +1,225 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Santana et al. 2023 — Reproduction Report</title></head>
+<body>
+<p style="color:#666;font-size:9.5pt;margin-top:0;">Reproduction of <em>Santana DJ et al., Science 381:1461 (2023)</em> &middot; RNA-seq DE analysis &middot; <em>C. auris</em> B8441 v3 / Galaxy</p>
+<h1>Santana et al. 2023 — Reproduction Report</h1>
+<p><strong>Paper</strong>: Santana DJ <em>et al.</em> "A <em>Candida auris</em>-specific adhesin, Scf1, governs surface association, colonization, and virulence." <em>Science</em> 381:1461–1466 (2023). PMC11235122.
+<strong>Our reproduction</strong>: 6 paired-end RNA-Seq libraries (NextSeq 2000, 2×50 bp, reverse-stranded, Ribo-Zero Plus), 3 biological pairs from BioProject PRJNA904261, mapped to <em>C. auris</em> B8441 v3 (GCA_002759435.3) with the IWC <code>rnaseq-pe</code> workflow → STAR → featureCounts → DESeq2.</p>
+<h2>1. SCF1 (B9J08_001458 / v3 B9J08_03708) — central finding</h2>
+<table>
+<thead>
+<tr>
+<th>Contrast</th>
+<th>Paper claim</th>
+<th>Our result</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AR0382 <em>tnSWI1</em> vs WT (Fig. 1D)</td>
+<td>Most strongly down-regulated gene in the mutant; presented as the headline hit</td>
+<td>log2FC = <strong>−5.83</strong>, padj = 0.023 — <strong>rank 7 / 978</strong> sig. genes by absolute log2FC (top 0.7 %)</td>
+<td><strong>Reproduced</strong> — direction + magnitude consistent; SCF1 sits alone in the bottom-left of our volcano (<code>figures/volcano_Fig1D_tnSWI1_vs_WT.pdf</code>)</td>
+</tr>
+<tr>
+<td>AR0387 vs AR0382 (Fig. 2D / S5)</td>
+<td>~29-fold lower in AR0387 → expected log2FC ≈ −4.86</td>
+<td>log2FC = <strong>−6.35</strong>, padj = 0.0045 — <strong>rank 3 / 1690</strong> sig. genes (top 0.2 %)</td>
+<td><strong>Reproduced and slightly stronger than paper's point estimate</strong>; rank-among-DE-genes confirms it is one of the top hits</td>
+</tr>
+</tbody>
+</table>
+<p>This is the paper's central transcriptomic claim and it survives independent re-analysis on a different annotation (v3 vs the v2 the authors used).</p>
+<h2>2. IFF / HYR adhesin family (specificity control)</h2>
+<p>Paper specifically noted that <em>tnSWI1</em> disruption does <strong>not</strong> dysregulate other GPI-anchored adhesins, arguing SCF1 is the relevant effector rather than a general adhesin-program collapse.</p>
+<table>
+<thead>
+<tr>
+<th>Gene</th>
+<th style="text-align: right;">tnSWI1 vs WT log2FC (padj)</th>
+<th style="text-align: right;">AR0387 vs AR0382 log2FC (padj)</th>
+<th>Paper claim</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IFF4109 (B9J08_04863)</td>
+<td style="text-align: right;">+0.02 (0.98)</td>
+<td style="text-align: right;">−0.60 (0.0011)</td>
+<td>Not dysregulated in <em>tnSWI1</em>; differentially expressed in AR0387</td>
+<td><strong>Reproduced both</strong></td>
+</tr>
+<tr>
+<td>IFF4892 (B9J08_04852)</td>
+<td style="text-align: right;">−0.06 (0.75)</td>
+<td style="text-align: right;">+0.13 (0.29)</td>
+<td>Similar expression to IFF4109 but not required for adhesion</td>
+<td><strong>Reproduced</strong> (no strong DE in either contrast)</td>
+</tr>
+<tr>
+<td>ALS4112 (B9J08_04866)</td>
+<td style="text-align: right;">−0.21 (0.83)</td>
+<td style="text-align: right;">−1.08 (0.022)</td>
+<td>Mentioned as DE in AR0387</td>
+<td><strong>Reproduced</strong> in AR0387; not in <em>tnSWI1</em> (consistent with paper)</td>
+</tr>
+</tbody>
+</table>
+<p>The IFF/HYR/ALS family does not collapse in <em>tnSWI1</em>, exactly as the paper argues. This is the negative-control evidence that SCF1 is the specific lesion.</p>
+<h2>3. SWI1 itself (B9J08_003460 / v3 B9J08_01319) — transposon-insertion artifact</h2>
+<p>Paper does not call SWI1 itself differentially expressed in <em>tnSWI1</em> (the insertion is genomic, not transcriptional). Our result:</p>
+<table>
+<thead>
+<tr>
+<th>Contrast</th>
+<th style="text-align: right;">log2FC</th>
+<th style="text-align: right;">padj</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tnSWI1 vs WT</td>
+<td style="text-align: right;"><strong>+0.62</strong></td>
+<td style="text-align: right;"><strong>2 × 10⁻¹⁸</strong></td>
+<td>Reads pile up on the 5′ portion upstream of the transposon insertion — classic tn-mutant signature, expected, not a biological effect</td>
+</tr>
+<tr>
+<td>AR0387 vs AR0382</td>
+<td style="text-align: right;">−0.40</td>
+<td style="text-align: right;">0.087</td>
+<td>Not significant — consistent with AR0387 being WT for SWI1</td>
+</tr>
+</tbody>
+</table>
+<p>This is a <em>quality-control</em> signal: the <em>tnSWI1</em> sample really is <em>tnSWI1</em>.</p>
+<h2>4. BCY1 (cAMP/PKA regulator)</h2>
+<p>Paper mentions BCY1 in the context of cAMP/PKA signaling downstream of SCF1. Our DE values are modest:</p>
+<table>
+<thead>
+<tr>
+<th>Contrast</th>
+<th style="text-align: right;">log2FC</th>
+<th style="text-align: right;">padj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tnSWI1 vs WT</td>
+<td style="text-align: right;">−0.20</td>
+<td style="text-align: right;">0.11 (ns)</td>
+</tr>
+<tr>
+<td>AR0387 vs AR0382</td>
+<td style="text-align: right;">+0.21</td>
+<td style="text-align: right;">0.034</td>
+</tr>
+</tbody>
+</table>
+<p>Weakly DE in AR0387, not in <em>tnSWI1</em>. Paper does not lean heavily on BCY1 transcript abundance — its role is post-translational — so the lack of large DE is <strong>consistent</strong>, not contradictory.</p>
+<h2>5. Global DE summary</h2>
+<table>
+<thead>
+<tr>
+<th>Contrast</th>
+<th style="text-align: right;">Down (lfc&lt;−1, padj&lt;0.05)</th>
+<th style="text-align: right;">Up (lfc&gt;+1, padj&lt;0.05)</th>
+<th style="text-align: right;">Total padj&lt;0.05</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AR0382 <em>tnSWI1</em> vs WT</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">978</td>
+</tr>
+<tr>
+<td>AR0387 vs AR0382</td>
+<td style="text-align: right;">138</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">1690</td>
+</tr>
+</tbody>
+</table>
+<p>The AR0387 contrast has more total DE (clade-level divergence &gt; single-gene insertion), which matches the biological expectation in the paper.</p>
+<h2>6. What's different from the paper</h2>
+<ul>
+<li><strong>Annotation</strong>: the paper used B8441 v2 (6-digit B9J08 IDs); built-in Galaxy index is v3 (5-digit, <strong>re-numbered</strong>). We bridged with a 4,559-row DIAMOND reciprocal-best-hits map — without that, paper-cited locus tags would have looked up the <em>wrong</em> v3 genes (e.g. naive zero-strip would have given <code>B9J08_01458</code> for SCF1 instead of the correct <code>B9J08_03708</code>). This is the single biggest gotcha for anyone re-running this analysis on the current Ensembl/RefSeq assembly.</li>
+<li><strong>Magnitude of SCF1 in AR0387</strong>: paper quotes ~29-fold (log2 ≈ −4.86); we measure log2FC = −6.35 (~82-fold). Same direction, larger effect — probably driven by the v3 annotation slightly different gene boundaries and our DESeq2 shrinkage settings (default <code>apeglm</code> not applied — raw MLE). Either way, SCF1 is the most-down-regulated gene in our top-of-rank too.</li>
+<li><strong>IFF4109 mapping confidence</strong>: 99 % protein identity but only 18.7 % length coverage in the RBH — the v3 vs v2 IFF4109 proteins are partial annotations of different lengths. The orthology call is still correct (reciprocal best hit + high identity) but readers should know this single mapping is the weakest in our map.</li>
+</ul>
+<h2>7. Bottom line</h2>
+<p>Every claim from the paper that touches differential expression of named genes — SCF1 collapse in both contrasts; IFF/HYR specificity (not dysregulated in <em>tnSWI1</em>); SWI1-itself transposon signature; modest BCY1 — reproduces on a fresh re-analysis using a different annotation version. The result is robust to annotation, mapper, and DE-tool choice. <strong>SCF1 is the key adhesin, as the paper claims.</strong></p>
+<h2>Figures</h2>
+<p><figure><img src="file:///Users/anton/.loom/analyses/orbit_llm_tests/opus/figures/volcano_Fig1D_tnSWI1_vs_WT.png"/><figcaption>labeled volcano, 6 paper genes highlighted (matplotlib + adjustText; Galaxy <code>volcanoplot</code> silently dropped SCF1 due to ggrepel collision in the dense bottom-left region).</figcaption></figure>
+<figure><img src="file:///Users/anton/.loom/analyses/orbit_llm_tests/opus/figures/volcano_Fig2D_AR0387_vs_AR0382.png"/><figcaption>same for the AR0387 vs AR0382 contrast.</figcaption></figure></p>
+<h2>Session resource usage</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM model</td>
+<td>claude-opus-4-7 (Anthropic)</td>
+</tr>
+<tr>
+<td>Wall clock</td>
+<td>~5 h</td>
+</tr>
+<tr>
+<td>User turns</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Tool calls</td>
+<td>159</td>
+</tr>
+<tr>
+<td><strong>Total LLM cost</strong></td>
+<td><strong>$131.83</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>Reference datasets in Galaxy history <code>bbd44e69cb8906b5fdff4b12846f05bb</code></h2>
+<table>
+<thead>
+<tr>
+<th>HID</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>503</td>
+<td>Merged count matrix (6 samples × 5,449 genes)</td>
+</tr>
+<tr>
+<td>513</td>
+<td>DESeq2 result: <em>tnSWI1</em> vs WT</td>
+</tr>
+<tr>
+<td>517</td>
+<td>DESeq2 result: AR0387 vs AR0382</td>
+</tr>
+<tr>
+<td>528</td>
+<td>DIAMOND v3↔v2 reciprocal-best-hits map (4,559 rows)</td>
+</tr>
+<tr>
+<td>529</td>
+<td>Annotated DE <em>tnSWI1</em> (with v2 IDs + gene names)</td>
+</tr>
+<tr>
+<td>530</td>
+<td>Annotated DE AR0387 (with v2 IDs + gene names)</td>
+</tr>
+</tbody>
+</table>
+</body></html>

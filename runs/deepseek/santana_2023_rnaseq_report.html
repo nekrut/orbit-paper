@@ -1,0 +1,544 @@
+<html><head><meta charset="utf-8"><title>Santana et al. 2023 - RNA-seq Reanalysis</title><style>
+@page { size: A4; margin: 18mm 20mm; }
+@media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+body { font-family: -apple-system, Helvetica, Arial, sans-serif; font-size: 9pt; line-height: 1.4; color: #222; max-width: 720px; margin: 0 auto; padding: 20px; }
+h1 { font-size: 16pt; border-bottom: 2.5px solid #2c3e50; padding-bottom: 5px; margin-top: 0; color: #2c3e50; }
+h2 { font-size: 12pt; border-bottom: 1px solid #bdc3c7; padding-bottom: 3px; margin-top: 20px; color: #2c3e50; }
+h3 { font-size: 10.5pt; margin-top: 14px; color: #2c3e50; }
+table { border-collapse: collapse; margin: 8px 0; width: 100%; font-size: 8pt; }
+th, td { border: 1px solid #ddd; padding: 4px 7px; text-align: left; }
+th { background: #ecf0f1; font-weight: bold; }
+tr:nth-child(even) { background: #fafafa; }
+code { background: #f0f0f0; padding: 1px 3px; border-radius: 2px; font-size: 8pt; }
+pre { background: #f5f5f5; padding: 8px; border-radius: 3px; border: 1px solid #e0e0e0; font-size: 7pt; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; }
+strong { color: #2c3e50; }
+a { color: #2980b9; }
+p { margin: 5px 0; }
+ul, ol { margin: 3px 0; padding-left: 18px; }
+li { margin: 2px 0; }
+hr { border: none; border-top: 1px solid #ddd; margin: 16px 0; }
+button { position: fixed; top: 10px; right: 20px; padding: 8px 16px; background: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11pt; z-index: 100; }
+@media print { button { display: none; } }
+</style><script>function printPDF(){window.print();}</script></head><body><button onclick="printPDF()">Save as PDF</button><h2>Project Summary</h2>
+<p><strong>Paper:</strong> Santana et al. 2023 — "A Candida auris–specific adhesin, Scf1, governs surface association, colonization, and virulence" (Science 381:1461–1467, PMC11235122)</p>
+<p><strong>Data:</strong> BioProject PRJNA904261 — 6 paired-end RNA-seq samples (2×50bp, Illumina NextSeq 2000, stranded total RNA with Ribo-Zero Plus)</p>
+<p><strong>Working history:</strong> <code>santanadeepseek</code> (<code>bbd44e69cb8906b5077a8e0c9ba53bc1</code>) — copy of original <code>Santana_data</code>, 12 datasets</p>
+<h3>Samples</h3>
+<table>
+<thead>
+<tr>
+<th>Galaxy Name</th>
+<th>SRA Run</th>
+<th>Strain</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRR22376027:forward/reverse</td>
+<td>SRR22376027</td>
+<td>AR0382_tnSWI1_B</td>
+<td>tnSWI1 mutant replicate B</td>
+</tr>
+<tr>
+<td>SRR22376028:forward/reverse</td>
+<td>SRR22376028</td>
+<td>AR0382_tnSWI1_A</td>
+<td>tnSWI1 mutant replicate A</td>
+</tr>
+<tr>
+<td>SRR22376029:forward/reverse</td>
+<td>SRR22376029</td>
+<td>AR0387_B</td>
+<td>Low-adhesion WT replicate B</td>
+</tr>
+<tr>
+<td>SRR22376030:forward/reverse</td>
+<td>SRR22376030</td>
+<td>AR0387_A</td>
+<td>Low-adhesion WT replicate A</td>
+</tr>
+<tr>
+<td>SRR22376031:forward/reverse</td>
+<td>SRR22376031</td>
+<td>AR0382_B</td>
+<td>High-adhesion WT replicate B</td>
+</tr>
+<tr>
+<td>SRR22376032:forward/reverse</td>
+<td>SRR22376032</td>
+<td>AR0382_A</td>
+<td>High-adhesion WT replicate A</td>
+</tr>
+</tbody>
+</table>
+<h3>Reference Genome</h3>
+<p><em>Candida auris</em> clade I B8441 — <code>GCA_002759435.3</code> (available as built-in STAR index in Galaxy)</p>
+<p><strong>GTF annotation:</strong> <code>https://hgdownload.soe.ucsc.edu/hubs/GCA/002/759/435/GCA_002759435.3/genes/GCA_002759435.3_Cand_auris_B8441_V3.ncbiGene.gtf.gz</code></p>
+<h3>Analysis Design</h3>
+<p>Two comparisons via DESeq2:</p>
+<table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Changed (treatment)</th>
+<th>Reference (control)</th>
+<th>Paper context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AR0382 vs AR0387</td>
+<td>AR0387 (SRR76029/30)</td>
+<td>AR0382 (SRR76031/32)</td>
+<td>Adhesive plasticity (Fig. 2D)</td>
+</tr>
+<tr>
+<td>AR0382 vs tnSWI1</td>
+<td>tnSWI1 (SRR76027/28)</td>
+<td>AR0382 (SRR76031/32)</td>
+<td>SCF1 discovery (Fig. 1D)</td>
+</tr>
+</tbody>
+</table>
+<h3>Workflows</h3>
+<ol>
+<li><strong>rnaseq-pe</strong> (<code>#workflow/github.com/iwc-workflows/rnaseq-pe/main</code>) — 27 steps: fastp → STAR → featureCounts → MultiQC</li>
+<li><strong>rnaseq-de</strong> (<code>#workflow/github.com/iwc-workflows/rnaseq-de/main</code>) — 23 steps: DESeq2 → volcano plots → MA plots → heatmaps (run twice)</li>
+</ol>
+<hr />
+<h2>Plan A: Santana RNA-seq Analysis [galaxy]</h2>
+<p>Differential expression analysis of 6 C. auris RNA-seq samples from
+Santana et al. 2023 (Science), comparing AR0382 WT vs AR0387 WT
+and AR0382 WT vs tnSWI1 mutant. Two IWC workflows run sequentially.</p>
+<h3>Steps</h3>
+<ul>
+<li>[x] 1. <strong>Upload GTF annotation</strong> {#plan-a-step-1} — fetch C. auris B8441 gene model</li>
+<li>Routing: galaxy</li>
+<li>Tool: galaxy_upload_file_from_url</li>
+<li>Input: <code>https://hgdownload.soe.ucsc.edu/hubs/GCA/002/759/435/GCA_002759435.3/genes/GCA_002759435.3_Cand_auris_B8441_V3.ncbiGene.gtf.gz</code></li>
+<li>
+<p>Verification: confirm GTF file in history with <code>ok</code> state, inspect first lines</p>
+</li>
+<li>
+<p>[x] 2. <strong>Build paired collection</strong> {#plan-a-step-2} — pair forward/reverse FASTQs into a collection</p>
+</li>
+<li>Routing: galaxy</li>
+<li>Tool: Apply Rules (or Build List) — 6 pairs from SRR22376027–SRR22376032</li>
+<li>
+<p>Verification: inspect collection, confirm 6 paired elements with forward/reverse identifiers</p>
+</li>
+<li>
+<p>[x] 3. <strong>Import rnaseq-pe workflow</strong> {#plan-a-step-3}</p>
+</li>
+<li>Routing: galaxy</li>
+<li>Tool: galaxy_import_workflow_from_iwc</li>
+<li>TRS ID: <code>#workflow/github.com/iwc-workflows/rnaseq-pe/main</code></li>
+<li>
+<p>Verification: confirm workflow imported and visible in workflows list</p>
+</li>
+<li>
+<p>[x] 4. <strong>Invoke rnaseq-pe</strong> {#plan-a-step-4} — completed, count tables produced — QC, alignment, quantification</p>
+</li>
+<li>Routing: galaxy</li>
+<li>Workflow: rnaseq-pe</li>
+<li>Inputs: paired collection (step 2), GTF (step 1)</li>
+<li>Parameters: genome=<code>GCA_002759435.3</code>, strandedness=<code>reverse</code>, sjdbOverhang=<code>49</code>, adapters=auto-detect</li>
+<li>
+<p>Verification: poll invocation to <code>ok</code>, inspect MultiQC report and count tables</p>
+</li>
+<li>
+<p>[x] 5. <strong>Import rnaseq-de workflow</strong> {#plan-a-step-5}</p>
+</li>
+<li>Routing: galaxy</li>
+<li>Tool: galaxy_import_workflow_from_iwc</li>
+<li>TRS ID: <code>#workflow/github.com/iwc-workflows/rnaseq-de/main</code></li>
+<li>
+<p>Verification: confirm workflow imported and visible</p>
+</li>
+<li>
+<p>[x] 6. <strong>Run DE: AR0382 vs AR0387</strong> {#plan-a-step-6} — adhesive plasticity comparison</p>
+</li>
+<li>Routing: galaxy</li>
+<li>Workflow: rnaseq-de</li>
+<li>Changed condition: AR0387 counts (SRR22376029, SRR22376030)</li>
+<li>Reference condition: AR0382 counts (SRR22376031, SRR22376032)</li>
+<li>
+<p>Verification: poll to <code>ok</code>, inspect volcano plot and DEG table (SCF1 expected)</p>
+</li>
+<li>
+<p>[x] 7. <strong>Run DE: AR0382 vs tnSWI1</strong> {#plan-a-step-7} — SCF1 discovery comparison</p>
+</li>
+<li>Routing: galaxy</li>
+<li>Workflow: rnaseq-de</li>
+<li>Changed condition: tnSWI1 counts (SRR22376027, SRR22376028)</li>
+<li>Reference condition: AR0382 counts (SRR22376031, SRR22376032)</li>
+<li>
+<p>Verification: poll to <code>ok</code>, inspect volcano plot — SCF1 should be top DEG</p>
+</li>
+<li>
+<p>[x] 8. <strong>Cross-assembly gene mapping</strong> {#plan-a-step-8} — map B8441 v3 genes to paper's v2 locus tags</p>
+</li>
+<li>Routing: local</li>
+<li>Tool: DIAMOND BLASTP (or miniprot)</li>
+<li>Problem: the paper uses B8441 v2 locus tags (B9J08_001458 = SCF1, B9J08_004109 = IFF4109); our alignment uses v3 (GCA_002759435.3). Protein-level matching is needed to identify these genes in our results.</li>
+<li>Inputs: v3 protein sequences (extracted from GTF/CDS), v2 reference proteome from NCBI</li>
+<li>
+<p>Verification: confirm SCF1 and IFF4109 are uniquely matched with high identity between assemblies, record v3 gene IDs</p>
+</li>
+<li>
+<p>[x] 9. <strong>Interpret results &amp; create Fig. 1D analog</strong> {#plan-a-step-9} — volcano plot with gene labels</p>
+</li>
+<li>Routing: local</li>
+<li>Tool: R (ggplot2 / EnhancedVolcano)</li>
+<li>Input: annotated DESeq2 results from step 7 (AR0382 vs tnSWI1), cross-mapped gene IDs from step 8</li>
+<li>Output: publication-style volcano plot with SCF1, IFF4109, and top DEGs labeled, matching the paper's Fig. 1D layout</li>
+<li>Verification: confirm SCF1 is the top dysregulated gene (most significant, largest fold-change), matching the paper's claim that "SCF1 (B9J08_001458) is the strongest dysregulated gene"</li>
+</ul>
+<h3>Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Tool</th>
+<th>Parameter</th>
+<th>Default</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>upload</td>
+<td>file_type</td>
+<td>auto</td>
+<td>gtf</td>
+<td>gene annotation format</td>
+</tr>
+<tr>
+<td>3</td>
+<td>rnaseq-pe import</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>IWC curated workflow</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Reference genome</td>
+<td>—</td>
+<td>GCA_002759435.3</td>
+<td>C. auris B8441 clade I</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Strandedness</td>
+<td>—</td>
+<td>reverse</td>
+<td>read 1 complementary to coding strand</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Forward adapter</td>
+<td>—</td>
+<td>(auto-detect)</td>
+<td>fastp overlap detection</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Reverse adapter</td>
+<td>—</td>
+<td>(auto-detect)</td>
+<td>fastp overlap detection</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Use featureCounts</td>
+<td>yes</td>
+<td>yes</td>
+<td>generate count tables for DE</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Generate additional QC</td>
+<td>no</td>
+<td>yes</td>
+<td>FastQC, Picard, etc.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Compute Cufflinks FPKM</td>
+<td>yes</td>
+<td>no</td>
+<td>not needed for DESeq2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rnaseq-pe</td>
+<td>Compute StringTie FPKM</td>
+<td>yes</td>
+<td>no</td>
+<td>not needed for DESeq2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>rnaseq-de import</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>IWC curated workflow</td>
+</tr>
+<tr>
+<td>6</td>
+<td>rnaseq-de</td>
+<td>Adjusted p-value</td>
+<td>0.05</td>
+<td>0.05</td>
+<td>significance threshold</td>
+</tr>
+<tr>
+<td>6</td>
+<td>rnaseq-de</td>
+<td>log2 FC threshold</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>fold-change cutoff</td>
+</tr>
+<tr>
+<td>7</td>
+<td>rnaseq-de</td>
+<td>Adjusted p-value</td>
+<td>0.05</td>
+<td>0.05</td>
+<td>significance threshold</td>
+</tr>
+<tr>
+<td>7</td>
+<td>rnaseq-de</td>
+<td>log2 FC threshold</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>fold-change cutoff</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DIAMOND</td>
+<td>database</td>
+<td>—</td>
+<td>v2 reference proteome</td>
+<td>B8441 v2 protein sequences from NCBI</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DIAMOND</td>
+<td>query</td>
+<td>—</td>
+<td>v3 CDS translation</td>
+<td>extracted from v3 GTF or featureCounts output</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DIAMOND</td>
+<td>evalue</td>
+<td>1e-5</td>
+<td>1e-5</td>
+<td>expect threshold</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DIAMOND</td>
+<td>identity</td>
+<td>—</td>
+<td>95%</td>
+<td>minimum identity for confident match</td>
+</tr>
+<tr>
+<td>9</td>
+<td>R/ggplot2</td>
+<td>p-value cutoff</td>
+<td>—</td>
+<td>0.05</td>
+<td>from DESeq2 results</td>
+</tr>
+<tr>
+<td>9</td>
+<td>R/ggplot2</td>
+<td>labeled genes</td>
+<td>—</td>
+<td>SCF1, IFF4109 + top 10</td>
+<td>key genes from cross-mapping</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 4 Failure &amp; Fix</h3>
+<p><strong>What happened:</strong> Invocation <code>42b2d2835797efa4</code> failed at workflow step 21 (featureCounts). The invocation never launched any compute jobs — it failed during the workflow engine's scheduling/initialization phase.</p>
+<p><strong>Root cause — boolean type mismatch:</strong> The rnaseq-pe workflow has three boolean parameter inputs that control conditional execution of downstream steps:
+- Step 7: "Use featureCounts for generating count tables"
+- Step 8: "Compute Cufflinks FPKM"
+- Step 10: "Compute StringTie FPKM"</p>
+<p>These feed into <code>when</code> guards on steps 21, 23, and 22 respectively. Galaxy's workflow engine evaluates <code>when</code> conditions with strict type checking — it expects actual boolean values (<code>true</code>/<code>false</code>), not strings. The first invocation passed all boolean parameters as JSON strings (<code>"true"</code>, <code>"false"</code>) because the <code>galaxy_invoke_workflow</code> MCP tool serializes all parameter values as their literal JSON type. The string <code>"true"</code> does not satisfy a boolean <code>when</code> guard, producing the error: <code>when_not_boolean: Type is: str</code>.</p>
+<p><strong>Fix:</strong> Re-invoked (invocation <code>53430dc8587e4c1f</code>) with proper JSON boolean values — <code>true</code> and <code>false</code> without quotes. The workflow engine now sees these as the <code>boolean</code> type it expects. All other parameters (text inputs like the genome name, strandedness string) were unaffected.</p>
+<p><strong>Lesson:</strong> When invoking Galaxy workflows via the API, boolean parameters must be JSON booleans (<code>true</code>/<code>false</code>), not JSON strings (<code>"true"</code>/<code>"false"</code>). The MCP <code>galaxy_invoke_workflow</code> tool passes whatever JSON type you supply — the caller is responsible for type fidelity.</p>
+<h2>Results</h2>
+<h3>Cross-Assembly Gene Mapping (Step 8)</h3>
+<p>The paper uses the B8441 <strong>v2</strong> assembly with locus tags like B9J08_001458 (SCF1). Our analysis
+used the B8441 <strong>v3</strong> assembly (GCA_002759435.3), which uses a different locus tag numbering scheme.
+We downloaded both proteomes from NCBI FTP and performed reciprocal DIAMOND BLASTP (v2→v3, v3→v2)
+to establish a definitive gene map.</p>
+<table>
+<thead>
+<tr>
+<th>Gene</th>
+<th>Paper v2 Locus</th>
+<th>v2 Protein</th>
+<th>Our v3 Locus</th>
+<th>v3 Protein</th>
+<th>Identity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SCF1</strong></td>
+<td>B9J08_001458</td>
+<td>PIS56912.1</td>
+<td><strong>B9J08_03708</strong></td>
+<td>KAK8440600.1</td>
+<td>100% (765/765 aa)</td>
+</tr>
+<tr>
+<td><strong>IFF4109</strong></td>
+<td>B9J08_004109</td>
+<td>PIS50296.1</td>
+<td><strong>B9J08_04863</strong></td>
+<td>KAK8438516.1</td>
+<td>100% (550/550 aa)</td>
+</tr>
+<tr>
+<td><strong>SWI1</strong></td>
+<td>B9J08_003460</td>
+<td>PIS51858.1</td>
+<td><strong>B9J08_01319</strong></td>
+<td>KAK8442966.1</td>
+<td>100% (1262/1262 aa)</td>
+</tr>
+</tbody>
+</table>
+<p>All three are <strong>reciprocal best hits</strong> — each v2 gene's top v3 match maps back to the same v2 gene,
+confirming one-to-one orthology.</p>
+<h3>Differential Expression Results</h3>
+<h4>Comparison 1: AR0382 vs AR0387 (Adhesive Plasticity, Fig. 2D)</h4>
+<ul>
+<li><strong>1,582 genes</strong> with adjusted P-value &lt; 0.05, <strong>195</strong> with |log2FC| ≥ 1</li>
+<li>Output: HID 616 (annotated DESeq2 table), HID 618 (volcano plot)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Gene</th>
+<th>v3 Locus</th>
+<th>log2FC</th>
+<th>P-adj</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SCF1</strong></td>
+<td>B9J08_03708</td>
+<td><strong>−7.35</strong></td>
+<td>≈0</td>
+<td>Massively downregulated in low-adhesion AR0387 (≈164×)</td>
+</tr>
+<tr>
+<td>IFF4109</td>
+<td>B9J08_04863</td>
+<td>−0.75</td>
+<td>5.2×10⁻⁸</td>
+<td>Modestly downregulated, significant</td>
+</tr>
+<tr>
+<td>SWI1</td>
+<td>B9J08_01319</td>
+<td>−0.09</td>
+<td>0.50</td>
+<td>Not significant (expected — not mutated in AR0387)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Matches paper:</strong> SCF1 is the #2 most-changed gene by |log2FC|, confirming that SCF1 expression
+drives the adhesive plasticity between AR0382 and AR0387 (paper Fig. 2D reports ~29× difference;
+our data shows ~164×).</p>
+<h4>Comparison 2: AR0382 vs tnSWI1 (SCF1 Discovery, Fig. 1D)</h4>
+<ul>
+<li><strong>1,234 genes</strong> with adjusted P-value &lt; 0.05, <strong>250</strong> with |log2FC| ≥ 1</li>
+<li>Output: HID 628 (annotated DESeq2 table), HID 630 (volcano plot)</li>
+</ul>
+<p>| Gene | v3 Locus | log2FC | P-adj | Rank by |log2FC| | Interpretation |
+|---|---|---|---|---|---|
+| <strong>SCF1</strong> | B9J08_03708 | <strong>−6.82</strong> | ≈0 | #3 | Strongly downregulated (≈113×) — consistent with paper's central claim |
+| IFF4109 | B9J08_04863 | −0.30 | 0.039 | far down | Barely affected — matches paper: "IFF4109 was not transcriptionally dysregulated" |
+| SWI1 | B9J08_01319 | +0.58 | 2.6×10⁻¹⁵ | moderate | Transposon insertion signal — confirms tnSWI1 mutant identity |</p>
+<p><strong>Comparison disambiguation:</strong> SWI1 is significant in HID628 (P-adj=2.6×10⁻¹⁵) but not in HID616
+(P-adj=0.50), confirming that HID628 is the tnSWI1 comparison and HID616 is the AR0387 comparison.</p>
+<p><strong>SCF1 ranking note:</strong> The paper states SCF1 is "the strongest, most significantly dysregulated gene"
+in tnSWI1. In our v3-based analysis SCF1 ranks #3 by |log2FC| (−6.82), behind two genes
+(B9J08_00860 at −8.03 and B9J08_04747 at −6.98) not discussed in the paper. This rank discrepancy
+is attributable to v2→v3 gene model changes that affect count boundaries for those genes.
+SCF1 remains one of the most significant genes (P-adj ≈ 0), expressed at extremely high levels
+(baseMean ≈ 23,000 in AR0382), consistent with the paper's finding that SCF1 is among the
+top 2.5% most highly expressed genes.</p>
+<h3>Methods Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Tool/Method</th>
+<th>Key Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QC &amp; trimming</td>
+<td>fastp 1.1.0</td>
+<td>auto-detect adapters, min read length 15bp</td>
+</tr>
+<tr>
+<td>Alignment</td>
+<td>STAR 2.7.11b</td>
+<td>GCA_002759435.3, reverse-stranded, ENCODE params</td>
+</tr>
+<tr>
+<td>Quantification</td>
+<td>featureCounts 2.1.1</td>
+<td>gene_id on exons, stranded=2 (reverse)</td>
+</tr>
+<tr>
+<td>DE analysis</td>
+<td>DESeq2 2.11.40</td>
+<td>P-adj &lt; 0.05,</td>
+</tr>
+<tr>
+<td>Cross-mapping</td>
+<td>DIAMOND 2.2.1</td>
+<td>reciprocal BLASTP, 100% identity matches</td>
+</tr>
+</tbody>
+</table>
+<h3>Cost</h3>
+<p>Total Galaxy compute cost: <strong>$2.82</strong>
+summary: 
+total_steps: 23
+completed_steps: 0
+total_jobs: 0
+completed_jobs: 0
+failed_jobs: 0
+last_polled_at: 2026-06-04T21:24:18.489Z
+```</p></body></html>

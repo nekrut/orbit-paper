@@ -1,0 +1,9 @@
+# per-run conda environments (binaries, hundreds of MB) — never publish
+**/.loom/
+# external session transcripts (symlinks to ~/.pi/agent/sessions)
+**/session.jsonl
+# macOS / python cruft
+.DS_Store
+**/.DS_Store
+__pycache__/
+*.pyc

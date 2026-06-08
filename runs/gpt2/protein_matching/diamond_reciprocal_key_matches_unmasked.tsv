@@ -1,0 +1,3 @@
+old_gene	new_gene	reciprocal_best	old_to_new_pident	old_to_new_qcov	old_to_new_scov	old_to_new_bitscore	new_to_old_pident	new_to_old_qcov	new_to_old_scov	new_to_old_bitscore	new_protein_accession	old_to_new_title
+B9J08_001458	B9J08_03708	True	100	100	100	1231	100	100	100	1231	KAK8440600.1	KAK8440600.1 hypothetical protein B9J08_03708 [Candidozyma auris]
+B9J08_004109	B9J08_04863	True	100	100	100	5076	100	100	100	5076	KAK8438516.1	KAK8438516.1 hypothetical protein B9J08_04863 [Candidozyma auris]
