@@ -29,6 +29,8 @@ Six of eight runs completed and reproduced the central finding (SCF1 = v3 `B9J08
 | deepseek | Completed; all steps | reproduced | notebook + HTML | $2.82 | 28 |
 | haiku | Failed; aborted in ~3 min | — | none | — | 3 |
 
+Models (provider): opus = `claude-opus-4-7`, sonnet = `claude-sonnet-4-6`, haiku = `claude-haiku-4-5` (Anthropic); **gpt and gpt2 both = `gpt-5.5`** (OpenAI, via the Codex provider — `openai-codex`/`codex-responses`); gemini-2.5-pro and gemini-3.5-flash (Google); deepseek.
+
 The central scientific pitfall: the paper's v2 6-digit locus tags were **silently re-numbered** in v3, so the naive zero-strip guess (`B9J08_001458` → `B9J08_01458`) maps SCF1 to the wrong gene and yields a false negative. The correct bridge is protein reciprocal-best-hit (DIAMOND): `B9J08_001458` → `B9J08_03708`. See the [report](orbit_llm_reanalysis_report.md) for the full breakdown.
 
 Findings from this experiment were filed as issues/comments on [`galaxyproject/loom`](https://github.com/galaxyproject/loom/issues) (#215–#220 and comments on #150, #210, #209, #186, #199, #23, #21, #75).
