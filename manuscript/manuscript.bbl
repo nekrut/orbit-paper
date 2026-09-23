@@ -1,0 +1,143 @@
+\begin{thebibliography}{10}
+
+\bibitem{galaxy2024}
+Linelle Ann~L and Abueg, Enis Afgan, Olivier Allart, Ahmed~H Awan, Wendi~A
+  Bacon, Dannon Baker, Madeline Bassetti, B\'er\'enice Batut, Matthias Bernt,
+  Daniel Blankenberg, Aureliano Bombarely, Anthony Bretaudeau, Catherine~J
+  Bromhead, Melissa~L Burke, Patrick~K Capon, Martin \v{C}ech, Mar\'ia
+  Chavero-D\'iez, John~M Chilton, Tyler~J Collins, Frederik Coppens, Nate
+  Coraor, Gianmauro Cuccuru, Fabio Cumbo, John Davis, Paul~F De~Geest, Willem
+  de~Koning, Martin Demko, Assunta DeSanto, Jos\'e Manuel~Dom\'inguez Begines,
+  Maria~A Doyle, Bert Droesbeke, Anika Erxleben-Eggenhofer, Melanie~C F\"oll,
+  Giulio Formenti, Anne Fouilloux, Rendani Gangazhe, Tanguy Genthon, Jeremy
+  Goecks, Alejandra N~Gonzalez Beltran, Nuwan~A Goonasekera, Nadia Gou\'e,
+  Timothy~J Griffin, Bj\"orn~A Gr\"uning, Aysam Guerler, Sveinung Gundersen,
+  Ove Johan~Ragnar Gustafsson, Christina Hall, Thomas~W Harrop, Helge Hecht,
+  Alireza Heidari, Tillman Heisner, Florian Heyl, Saskia Hiltemann, Hans-Rudolf
+  Hotz, Cameron~J Hyde, Pratik~D Jagtap, Julia Jakiela, James~E Johnson,
+  Jayadev Joshi, Marie Joss\'e, Khaled Jum'ah, Mat\'u\v{s} Kala\v{s}, Katarzyna
+  Kamieniecka, Tunc Kayikcioglu, Markus Konkol, Leonid Kostrykin, Natalie
+  Kucher, Anup Kumar, Mira Kuntz, Delphine Lariviere, Ross Lazarus, Yvan~Le
+  Bras, Gildas~Le Corguill\'e, Justin Lee, Simone Leo, Leandro Liborio, Romane
+  Libouban, David~L\'opez Tabernero, Lucille Lopez-Delisle, Laila~S Los,
+  Alexandru Mahmoud, Igor Makunin, Pierre Marin, Subina Mehta, Winnie Mok,
+  Pablo~A Moreno, Fran\c{c}ois Morier-Genoud, Stephen Mosher, Teresa M\"uller,
+  Engy Nasr, Anton Nekrutenko, Tiffanie~M Nelson, Asime~J Oba, Alexander
+  Ostrovsky, Polina~V Polunina, Krzysztof Poterlowicz, Elliott~J Price,
+  Gareth~R Price, Helena Rasche, Bryan Raubenolt, Coline Royaux, Luke Sargent,
+  Michelle~T Savage, Volodymyr Savchenko, Denys Savchenko, Michael~C Schatz,
+  Pauline Seguineau, Beatriz Serrano-Solano, Nicola Soranzo, Sanjay~Kumar
+  Srikakulam, Keith Suderman, Anna~E Syme, Marco~Antonio Tangaro, Jonathan~A
+  Tedds, Mehmet Tekman, Wai Cheng (Mike)~Thang, Anil~S Thanki, Michael Uhl,
+  Marius van~den Beek, Deepti Varshney, Jenn Vessio, Pavankumar Videm, Greg
+  Von~Kuster, Gregory~R Watson, Natalie Whitaker-Allen, Uwe Winter, Martin
+  Wolstencroft, Federico Zambelli, Paul Zierep, and Rand Zoabi.
+\newblock The galaxy platform for accessible, reproducible, and collaborative
+  data analyses: 2024 update.
+\newblock {\em Nucleic Acids Research}, 52(W1):W83--W94, May 2024.
+
+\bibitem{boiko2023}
+Daniil~A. Boiko, Robert MacKnight, Ben Kline, and Gabe Gomes.
+\newblock Autonomous chemical research with large language models.
+\newblock {\em Nature}, 624(7992):570--578, December 2023.
+
+\bibitem{cwl2022}
+Michael~R. Crusoe, Sanne Abeln, Alexandru Iosup, Peter Amstutz, John Chilton,
+  Neboj\v{s}a Tijani\'c, Herv\'e M\'enager, Stian Soiland-Reyes, Bogdan
+  Gavrilovi\'c, Carole Goble, and The~CWL Community.
+\newblock Methods included: standardizing computational reuse and portability
+  with the common workflow language.
+\newblock {\em Communications of the ACM}, 65(6):54--63, May 2022.
+
+\bibitem{nextflow2017}
+Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
+  Palumbo, and Cedric Notredame.
+\newblock Nextflow enables reproducible computational workflows.
+\newblock {\em Nature Biotechnology}, 35(4):316--319, April 2017.
+
+\bibitem{galaxymcp2026}
+{Galaxy Project}.
+\newblock Galaxy {Model} {Context} {Protocol} ({MCP}) server.
+\newblock \url{https://github.com/galaxyproject/galaxy-mcp}, 2026.
+\newblock GitHub repository.
+
+\bibitem{galaxyskills2026}
+{Galaxy Project}.
+\newblock Galaxy skills: Modular domain knowledge for autonomous agents.
+\newblock \url{https://github.com/galaxyproject/galaxy-skills}, 2026.
+\newblock GitHub repository.
+
+\bibitem{orbit2026}
+{Galaxy Project}.
+\newblock Orbit: {A} scientific research workbench for autonomous biological
+  discovery.
+\newblock \url{https://github.com/galaxyproject/loom}, 2026.
+\newblock GitHub repository.
+
+\bibitem{agenticplugins2026}
+{Galaxy Project}.
+\newblock Universal {Agentic} {Plugins} for {Galaxy}.
+\newblock \url{https://github.com/galaxyproject/agentic-plugins}, 2026.
+\newblock GitHub repository.
+
+\bibitem{galaxyudt2026}
+{Galaxy Project}.
+\newblock User-{Defined} tools ({UDT}) authoring specification.
+\newblock
+  \url{https://docs.galaxyproject.org/en/release_26.1/dev/user_defined_tools_authoring.html},
+  2026.
+\newblock Galaxy Release 26.1 Documentation.
+
+\bibitem{foundry2026}
+{Galaxy Project}.
+\newblock Workflow {Foundry}: Compiling scientific workflows from literature
+  and pipelines.
+\newblock \url{https://github.com/galaxyproject/foundry}, 2026.
+\newblock GitHub repository.
+
+\bibitem{coscientist2026}
+Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
+  Myaskovsky, Grzegorz Glowaty, Felix Weissenberger, Alessio Orlandi, Dan
+  Popovici, Anil Palepu, Keran Rong, Ryutaro Tanno, Khaled Saab, Fan Zhang,
+  Jacob Blum, Andrew Carroll, Kavita Kulkarni, Nenad Toma\v{s}ev, Dina
+  Zverinski, Ivor Rendulic, Elahe Vedadi, Florian Hasler, Luka Rimanic, Marina
+  Boia, Ivan Budiselic, Ben Feinstein, Mathias Bellaiche, Tom Sheffer, Jan
+  Freyberg, Jeremy Ratcliff, Ottavia Bertolli, Katherine Chou, Avinatan
+  Hassidim, Burak Gokturk, Amin Vahdat, Yuan Guan, Vikram Dhillon,
+  Eeshit~Dhaval Vaishnav, Byron Lee, Tiago R.~D. Costa, Jos\'e~R. Penad\'es,
+  Gary Peltz, Yossi Matias, James Manyika, Demis Hassabis, Yunhan Xu, Pushmeet
+  Kohli, Annalisa Pawlosky, Alan Karthikesalingam, and Vivek Natarajan.
+\newblock Accelerating scientific discovery with co-scientist.
+\newblock {\em Nature}, 655(8122):487--496, May 2026.
+
+\bibitem{aiscientist2024}
+Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
+  Ha.
+\newblock The {AI} scientist: Towards fully automated open-ended scientific
+  discovery.
+\newblock {\em arXiv preprint arXiv:2408.06292}, 2024.
+
+\bibitem{chemcrow2024}
+Andres M.~Bran, Sam Cox, Oliver Schilter, Carlo Baldassari, Andrew~D. White,
+  and Philippe Schwaller.
+\newblock Augmenting large language models with chemistry tools.
+\newblock {\em Nature Machine Intelligence}, 6(5):525--535, May 2024.
+
+\bibitem{kosmos2025}
+Bodhisattwa~Prasad Majumder et~al.
+\newblock Kosmos: An {AI} scientist for autonomous discovery.
+\newblock {\em arXiv preprint arXiv:2511.02824}, 2025.
+
+\bibitem{virtuallab2025}
+Kyle Swanson, Wesley Wu, Nash~L. Bulaong, John~E. Pak, and James Zou.
+\newblock The virtual lab of ai agents designs new sars-cov-2 nanobodies.
+\newblock {\em Nature}, 646(8085):716--723, 2025.
+
+\bibitem{biocoder2024}
+Xiangru Tang, Bill Qian, Rick Gao, Jiakang Chen, Xinyun Chen, and Mark~B
+  Gerstein.
+\newblock Biocoder: a benchmark for bioinformatics code generation with large
+  language models.
+\newblock {\em Bioinformatics}, 40(Supplement\_1):i266--i276, 2024.
+
+\end{thebibliography}

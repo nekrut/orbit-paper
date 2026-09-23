@@ -1,86 +1,146 @@
 #!/usr/bin/env python3
-"""Compare SCF1 expression results across the 8 orbit LLM reanalysis attempts.
+"""Figure for the Orbit LLM reanalysis: two panels telling the story.
 
-Panel A: SCF1 log2FC per attempt, both contrasts, direction-normalized so that
-         down-in-mutant / down-in-AR0387 is negative. Sources: local DESeq2
-         tables where present (sonnet, gpt2) + each run's notebook for the rest.
-Panel B: SCF1 (B9J08_03708) per-sample normalized counts vs the naive "wrong-ID"
-         trap gene (B9J08_01458), from gpt2's protein_matched_key_gene_DE.tsv —
-         shows the real expression collapse and why the naive mapping misses it.
+Panel A — LLM cost spread: ~47x range across the six completing runs for the
+          SAME scientific answer (lollipop, log x). Two runs aborted (no cost).
+Panel B — Result convergence: SCF1 log2FC for both contrasts, direction-
+          normalized, every completing run clustering tightly.
 """
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 import numpy as np
 
-# ---- Panel A data: SCF1 log2FC, normalized to mutant/AR0387 relative to AR0382 WT ----
-# completing attempts only; haiku & gpt(1st) produced no result.
-attempts = ["opus", "sonnet", "gpt2", "gemini\n2.5-pro", "gemini\n3.5-flash", "deepseek"]
-# Fig 1D: tnSWI1 vs AR0382
-fig1d = [-5.83, -6.817, -6.817, -6.81, -6.82, -6.82]
-# Fig 2D/S5: AR0387 vs AR0382
-fig2d = [-6.35, -7.346, -7.346, -7.34, -7.35, -7.35]
-# runs that reported the inverse sign (WT as numerator) -> normalized here
-flipped = {"gemini\n2.5-pro", "gemini\n3.5-flash"}
+# ---------------------------------------------------------------- shared style
+plt.rcParams.update({
+    "font.size": 10,
+    "axes.titlesize": 12,
+    "axes.titleweight": "bold",
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "axes.edgecolor": "#444444",
+    "axes.labelcolor": "#222222",
+    "text.color": "#222222",
+    "xtick.color": "#444444",
+    "ytick.color": "#444444",
+})
 
-paper_ar0387 = -np.log2(29)  # ~-4.86, paper's ~29-fold point estimate for AR0387
+# provider palette (consistent across panels)
+PROV = {
+    "Anthropic": "#C8643C",
+    "OpenAI":    "#10A37F",
+    "Google":    "#4285F4",
+    "DeepSeek":  "#7C4DD1",
+}
+MODEL_PROV = {
+    "opus": "Anthropic", "sonnet": "Anthropic",
+    "gpt-5.5": "OpenAI",
+    "gemini 2.5-pro": "Google", "gemini 3.5-flash": "Google",
+    "deepseek": "DeepSeek",
+}
 
-fig, (axA, axB) = plt.subplots(1, 2, figsize=(14, 6))
+# --------------------------------------------------------------------- data
+# cost (USD, LLM only); only completing runs with a reported figure
+cost = {
+    "deepseek": 2.82,
+    "gemini 2.5-pro": 16.22,
+    "gemini 3.5-flash": 17.31,
+    "gpt-5.5": 23.46,
+    "sonnet": 24.87,
+    "opus": 131.83,
+}
+ratio = max(cost.values()) / min(cost.values())   # ~47x
 
-x = np.arange(len(attempts))
-w = 0.38
-b1 = axA.bar(x - w/2, fig1d, w, label="Fig. 1D: tnSWI1 vs AR0382", color="#3b6ea5")
-b2 = axA.bar(x + w/2, fig2d, w, label="Fig. 2D/S5: AR0387 vs AR0382", color="#c0504d")
-axA.axhline(paper_ar0387, ls="--", lw=1.3, color="grey")
-axA.text(len(attempts)-0.5, paper_ar0387+0.12, "paper AR0387 est. (~29x, log2=-4.86)",
-         ha="right", va="bottom", fontsize=8, color="grey")
-for bars in (b1, b2):
-    for bar in bars:
-        h = bar.get_height()
-        axA.text(bar.get_x()+bar.get_width()/2, h-0.18, f"{h:.2f}",
-                 ha="center", va="top", fontsize=7.5, color="white", fontweight="bold")
-axA.set_xticks(x)
-axA.set_xticklabels(attempts, fontsize=9)
-# mark flipped-sign runs
-for i, a in enumerate(attempts):
-    if a in flipped:
-        axA.text(i, 0.15, "*", ha="center", va="bottom", fontsize=14, color="#7a3b9e")
-axA.set_ylabel("SCF1 log2 fold-change (direction-normalized)")
-axA.set_title("A. SCF1 log2FC across attempts", fontsize=12, loc="left", fontweight="bold")
-axA.axhline(0, color="black", lw=0.8)
-axA.legend(fontsize=8, loc="upper right")
-axA.set_ylim(-8.2, 1.4)
+# SCF1 log2FC, direction-normalized (down-in-mutant / down-in-AR0387 negative)
+models = ["opus", "sonnet", "gpt-5.5", "gemini 2.5-pro", "gemini 3.5-flash", "deepseek"]
+fig1d = {"opus": -5.83, "sonnet": -6.817, "gpt-5.5": -6.817,
+         "gemini 2.5-pro": -6.81, "gemini 3.5-flash": -6.82, "deepseek": -6.82}
+fig2d = {"opus": -6.35, "sonnet": -7.346, "gpt-5.5": -7.346,
+         "gemini 2.5-pro": -7.34, "gemini 3.5-flash": -7.35, "deepseek": -7.35}
+paper_ar0387 = -np.log2(29)   # ~-4.86
 
-# ---- Panel B: per-sample normalized counts (gpt2) ----
-samples = ["AR0382_A", "AR0382_B", "tnSWI1_A", "tnSWI1_B", "AR0387_A", "AR0387_B"]
-scf1   = [46988.8, 44890.2, 383.9, 426.6, 231.4, 244.8]          # B9J08_03708 (correct SCF1)
-wrong  = [2024.3, 1929.96, 1951.9, 1908.3, 1422.5, 1333.7]       # B9J08_01458 (naive trap)
-xb = np.arange(len(samples))
-wb = 0.4
-axB.bar(xb - wb/2, scf1, wb, label="SCF1 = B9J08_03708 (correct, protein-matched)", color="#3b6ea5")
-axB.bar(xb + wb/2, wrong, wb, label="B9J08_01458 (naive zero-strip; wrong gene)", color="#bdbdbd")
-axB.set_yscale("log")
-axB.set_xticks(xb)
-axB.set_xticklabels(samples, rotation=20, fontsize=8.5)
-axB.set_ylabel("DESeq2 normalized counts (log scale)")
-axB.set_title("B. SCF1 expression collapse vs the naive-ID trap (gpt2 data)",
-              fontsize=12, loc="left", fontweight="bold")
-axB.legend(fontsize=8, loc="upper right")
-# shade condition groups
-axB.axvspan(-0.5, 1.5, color="#3b6ea5", alpha=0.05)
-axB.axvspan(1.5, 3.5, color="#c0504d", alpha=0.05)
-axB.axvspan(3.5, 5.5, color="#c0504d", alpha=0.05)
-axB.text(0.5, axB.get_ylim()[1]*0.6, "adhesive WT", ha="center", fontsize=8, color="#3b6ea5")
-axB.text(2.5, axB.get_ylim()[1]*0.6, "tnSWI1 mutant", ha="center", fontsize=8, color="#c0504d")
-axB.text(4.5, axB.get_ylim()[1]*0.6, "AR0387", ha="center", fontsize=8, color="#c0504d")
+# ------------------------------------------------------------------ layout
+fig = plt.figure(figsize=(12.5, 5.4))
+gs = fig.add_gridspec(1, 2, width_ratios=[1.0, 1.15], wspace=0.22,
+                      left=0.085, right=0.97, top=0.80, bottom=0.16)
+axB = fig.add_subplot(gs[0, 0])      # convergence (left, Panel A)
+axA = fig.add_subplot(gs[0, 1])      # cost (right, Panel B)
 
-fig.suptitle("SCF1 expression across 8 orbit LLM reanalysis attempts (Santana 2023 C. auris)",
-             fontsize=13, fontweight="bold")
-fig.text(0.01, 0.005,
-         "* gemini & gemini-3.5-flash reported the inverse sign (WT as numerator); normalized here so down-in-mutant/AR0387 is negative.   "
-         "sonnet & gpt2 are bit-identical (same IWC rnaseq-pe/de workflow).   haiku & gpt (1st attempt) produced no expression result.",
-         fontsize=7, color="#444")
-fig.tight_layout(rect=[0, 0.035, 1, 0.96])
-fig.savefig("/Users/anton/git/orbit-paper/scf1_expression_across_attempts.png", dpi=200)
-fig.savefig("/Users/anton/git/orbit-paper/scf1_expression_across_attempts.pdf")
-print("wrote scf1_expression_across_attempts.png/.pdf")
+# ---------------------------------------------------- Panel A: cost lollipop
+order = sorted(cost, key=cost.get)               # cheap -> expensive
+y = np.arange(len(order))
+xmin = 2.0
+for yi, m in zip(y, order):
+    c = PROV[MODEL_PROV[m]]
+    axA.hlines(yi, xmin, cost[m], color=c, lw=2.4, alpha=0.55, zorder=1)
+    axA.plot(cost[m], yi, "o", ms=11, color=c, zorder=3)
+    axA.text(cost[m] * 1.12, yi, f"${cost[m]:,.2f}", va="center", ha="left",
+             fontsize=9.5, fontweight="bold", color="#222")
+axA.set_xscale("log")
+axA.set_xlim(xmin, 320)
+axA.set_ylim(-0.7, len(order) - 0.3)
+axA.set_yticks(y)
+axA.set_yticklabels(order, fontsize=10)
+axA.set_xlabel("LLM API cost (USD, log scale) — Galaxy compute was free", fontsize=10)
+axA.set_title("B   Same answer, ~47× spread in LLM cost", loc="left")
+axA.set_xticks([2, 5, 10, 20, 50, 100, 200])
+axA.get_xaxis().set_major_formatter(matplotlib.ticker.FuncFormatter(
+    lambda v, _: f"${v:g}"))
+axA.tick_params(axis="x", labelsize=8.5)
+axA.grid(axis="x", color="#dddddd", lw=0.7, zorder=0)
+# 47x bracket between cheapest and dearest
+yb = len(order) - 0.5
+axA.annotate("", xy=(cost["opus"], yb), xytext=(cost["deepseek"], yb),
+             arrowprops=dict(arrowstyle="<->", color="#888", lw=1.4))
+axA.text(np.sqrt(cost["opus"] * cost["deepseek"]), yb + 0.12,
+         f"{ratio:.0f}×", ha="center", va="bottom",
+         fontsize=11, fontweight="bold", color="#555")
+axA.text(xmin * 1.05, -0.55,
+         "two runs (haiku, gpt 1st attempt) aborted at data prep — no result, no cost reported",
+         fontsize=8, style="italic", color="#777", ha="left", va="center")
+
+# ------------------------------------------------ Panel B: log2FC convergence
+rng = np.random.default_rng(0)
+rows = [("Fig. 2D / S5\nAR0387 vs AR0382", fig2d, 1.0),
+        ("Fig. 1D\ntnSWI1 vs AR0382", fig1d, 0.0)]
+for label, dvals, yc in rows:
+    for m in models:
+        c = PROV[MODEL_PROV[m]]
+        jit = (hash(m) % 7 - 3) / 22.0
+        axB.plot(dvals[m], yc + jit, "o", ms=9, color=c,
+                 markeredgecolor="white", markeredgewidth=0.8, zorder=3)
+axB.set_yticks([0.0, 1.0])
+axB.set_yticklabels([r[0] for r in [rows[1], rows[0]]], fontsize=9)
+# (set ticks explicitly in display order)
+axB.set_yticks([1.0, 0.0])
+axB.set_yticklabels([rows[0][0], rows[1][0]], fontsize=9)
+axB.set_ylim(-0.6, 1.5)
+axB.set_xlim(-8.4, -3.7)
+axB.axvline(paper_ar0387, ls="--", lw=1.3, color="#999")
+axB.text(-4.72, 0.5, "paper AR0387\nestimate (~29×)",
+         ha="left", va="center", fontsize=7.8, color="#888")
+axB.annotate("opus: raw MLE\n(unshrunken)", xy=(-5.83, 0.0), xytext=(-5.15, -0.45),
+             fontsize=7.4, color="#888", ha="center",
+             arrowprops=dict(arrowstyle="-", color="#bbb", lw=0.9))
+axB.set_xlabel("SCF1 log₂ fold-change (direction-normalized)", fontsize=9.5)
+axB.set_title("A   Every completing run reproduces the SCF1 collapse", loc="left",
+              fontsize=11, pad=10)
+axB.grid(axis="x", color="#eeeeee", lw=0.7, zorder=0)
+
+# --------------------------------------------------------- legend + titles
+prov_handles = [Line2D([0], [0], marker="o", ls="", ms=9, color=PROV[p],
+                       markeredgecolor="white", label=p) for p in PROV]
+fig.legend(handles=prov_handles, loc="upper right", ncol=4, frameon=False,
+           fontsize=9, bbox_to_anchor=(0.97, 0.975), columnspacing=1.3,
+           handletextpad=0.3)
+fig.suptitle("Eight LLMs reanalyze one C. auris RNA-seq dataset on Galaxy",
+             fontsize=14.5, fontweight="bold", x=0.085, ha="left", y=0.965)
+fig.text(0.085, 0.90,
+         "Santana et al. 2023 (Science) — SCF1 adhesin; reproduced via Orbit on usegalaxy.org",
+         fontsize=9.5, color="#666", ha="left")
+
+for ext in ("png", "pdf"):
+    fig.savefig(f"/Users/anton/git/orbit-paper/scf1_expression_across_attempts.{ext}",
+                dpi=200, bbox_inches="tight")
+print(f"wrote figure; cost ratio = {ratio:.1f}x")
