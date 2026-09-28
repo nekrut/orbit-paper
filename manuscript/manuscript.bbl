@@ -36,10 +36,24 @@ Linelle Ann~L and Abueg, Enis Afgan, Olivier Allart, Ahmed~H Awan, Wendi~A
   data analyses: 2024 update.
 \newblock {\em Nucleic Acids Research}, 52(W1):W83--W94, May 2024.
 
+\bibitem{auburn2016}
+Sarah Auburn, Ulrike B{\"o}hme, Silvia Steinbiss, H.~Trimarsanto, J.~Hostetler,
+  M.~Sanders, et~al.
+\newblock A new {Plasmodium} vivax reference sequence with improved assembly of
+  the subtelomeres reveals an abundance of pir genes.
+\newblock {\em Wellcome Open Research}, 1:4, 2016.
+
 \bibitem{boiko2023}
 Daniil~A. Boiko, Robert MacKnight, Ben Kline, and Gabe Gomes.
 \newblock Autonomous chemical research with large language models.
 \newblock {\em Nature}, 624(7992):570--578, December 2023.
+
+\bibitem{carlton2008}
+Jane~M. Carlton, John~H. Adams, Jo{\~a}o~C. Silva, Shelby~L. Bidwell, Hernan
+  Lorenzo, et~al.
+\newblock Comparative genomics of the neglected human malaria parasite
+  {Plasmodium} vivax.
+\newblock {\em Nature}, 455(7214):757--763, 2008.
 
 \bibitem{cwl2022}
 Michael~R. Crusoe, Sanne Abeln, Alexandru Iosup, Peter Amstutz, John Chilton,
@@ -48,6 +62,13 @@ Michael~R. Crusoe, Sanne Abeln, Alexandru Iosup, Peter Amstutz, John Chilton,
 \newblock Methods included: standardizing computational reuse and portability
   with the common workflow language.
 \newblock {\em Communications of the ACM}, 65(6):54--63, May 2022.
+
+\bibitem{demeulenaere2023}
+Katlijn De~Meulenaere, Bart Cuypers, Dionicia Gamboa, Kris Laukens, and Anna
+  Rosanas-Urgell.
+\newblock A new {Plasmodium} vivax reference genome for {South} {American}
+  isolates.
+\newblock {\em BMC Genomics}, 24(1):606, 2023.
 
 \bibitem{nextflow2017}
 Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
@@ -95,6 +116,13 @@ Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
 \newblock \url{https://github.com/galaxyproject/foundry}, 2026.
 \newblock GitHub repository.
 
+\bibitem{gao2025democratizingaiscientistsusing}
+Shanghua Gao, Richard Zhu, Pengwei Sui, Zhenglun Kong, Sufian Aldogom, Yepeng
+  Huang, Ayush Noori, Reza Shamji, Krishna Parvataneni, Theodoros
+  Tsiligkaridis, and Marinka Zitnik.
+\newblock Democratizing ai scientists using tooluniverse.
+\newblock {\em arXiv preprint arXiv:2509.23426}, 2025.
+
 \bibitem{coscientist2026}
 Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
   Myaskovsky, Grzegorz Glowaty, Felix Weissenberger, Alessio Orlandi, Dan
@@ -109,6 +137,29 @@ Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
   Kohli, Annalisa Pawlosky, Alan Karthikesalingam, and Vivek Natarajan.
 \newblock Accelerating scientific discovery with co-scientist.
 \newblock {\em Nature}, 655(8122):487--496, May 2026.
+
+\bibitem{harrison2020}
+Thomas~E. Harrison, Adam~J. Reid, Deirdre Cunningham, Jean Langhorne, and
+  Matthew~K. Higgins.
+\newblock Structure of the {Plasmodium}-interspersed repeat proteins of the
+  malaria parasite.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  117(50):32098--32104, 2020.
+
+\bibitem{huang2025biomni}
+Kexin Huang, Serena Zhang, Hanchen Wang, Yuanhao Qu, Yingzhou Lu, Yusuf
+  Roohani, Ryan Li, Lin Qiu, Gavin Li, Junze Zhang, Di~Yin, Shruti Marwaha,
+  Jennefer~N. Carter, Xin Zhou, Matthew Wheeler, Jonathan~A. Bernstein, Mengdi
+  Wang, Peng He, Jingtian Zhou, Michael Snyder, Le~Cong, Aviv Regev, and Jure
+  Leskovec.
+\newblock Biomni: A general-purpose biomedical ai agent.
+\newblock {\em bioRxiv preprint bioRxiv:2025.05.30.656746}, 2025.
+
+\bibitem{lopez2013}
+F.~J. L{\'o}pez, M.~Bernabeu, C.~Fernandez-Becerra, and H.~A. del Portillo.
+\newblock A new computational approach redefines the subtelomeric vir
+  superfamily of {Plasmodium} vivax.
+\newblock {\em BMC Genomics}, 14:8, 2013.
 
 \bibitem{aiscientist2024}
 Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
@@ -127,6 +178,25 @@ Andres M.~Bran, Sam Cox, Oliver Schilter, Carlo Baldassari, Andrew~D. White,
 Bodhisattwa~Prasad Majumder et~al.
 \newblock Kosmos: An {AI} scientist for autonomous discovery.
 \newblock {\em arXiv preprint arXiv:2511.02824}, 2025.
+
+\bibitem{miao2026}
+Jiacheng Miao, Joe~R. Davis, Yaohui Zhang, Jonathan~K. Pritchard, and James
+  Zou.
+\newblock Reimagining research papers as interactive and reliable {AI} agents.
+\newblock {\em Nature}, 2026.
+
+\bibitem{suchard2018}
+Marc~A. Suchard, Philippe Lemey, Guy Baele, Daniel~L. Ayres, Alexei~J.
+  Drummond, and Andrew Rambaut.
+\newblock Bayesian phylogenetic and phylodynamic data integration using {BEAST}
+  1.10.
+\newblock {\em Virus Evolution}, 4(1):vey016, 2018.
+
+\bibitem{sun2024}
+Eric~D. Sun, Rong Ma, Paloma Navarro~Negredo, Anne Brunet, and James Zou.
+\newblock {TISSUE}: uncertainty-calibrated prediction of single-cell spatial
+  transcriptomics improves downstream analyses.
+\newblock {\em Nature Methods}, 21(3):444--454, 2024.
 
 \bibitem{virtuallab2025}
 Kyle Swanson, Wesley Wu, Nash~L. Bulaong, John~E. Pak, and James Zou.
