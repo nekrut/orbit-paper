@@ -1,5 +1,71 @@
 \begin{thebibliography}{10}
 
+\bibitem{biocoder2024}
+Xiangru Tang, Bill Qian, Rick Gao, Jiakang Chen, Xinyun Chen, and Mark~B
+  Gerstein.
+\newblock Biocoder: a benchmark for bioinformatics code generation with large
+  language models.
+\newblock {\em Bioinformatics}, 40(Supplement\_1):i266--i276, 2024.
+
+\bibitem{aiscientist2024}
+Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
+  Ha.
+\newblock The {AI} scientist: Towards fully automated open-ended scientific
+  discovery.
+\newblock {\em arXiv preprint arXiv:2408.06292}, 2024.
+
+\bibitem{coscientist2026}
+Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
+  Myaskovsky, Grzegorz Glowaty, Felix Weissenberger, Alessio Orlandi, Dan
+  Popovici, Anil Palepu, Keran Rong, Ryutaro Tanno, Khaled Saab, Fan Zhang,
+  Jacob Blum, Andrew Carroll, Kavita Kulkarni, Nenad Toma\v{s}ev, Dina
+  Zverinski, Ivor Rendulic, Elahe Vedadi, Florian Hasler, Luka Rimanic, Marina
+  Boia, Ivan Budiselic, Ben Feinstein, Mathias Bellaiche, Tom Sheffer, Jan
+  Freyberg, Jeremy Ratcliff, Ottavia Bertolli, Katherine Chou, Avinatan
+  Hassidim, Burak Gokturk, Amin Vahdat, Yuan Guan, Vikram Dhillon,
+  Eeshit~Dhaval Vaishnav, Byron Lee, Tiago R.~D. Costa, Jos\'e~R. Penad\'es,
+  Gary Peltz, Yossi Matias, James Manyika, Demis Hassabis, Yunhan Xu, Pushmeet
+  Kohli, Annalisa Pawlosky, Alan Karthikesalingam, and Vivek Natarajan.
+\newblock Accelerating scientific discovery with co-scientist.
+\newblock {\em Nature}, 655(8122):487--496, May 2026.
+
+\bibitem{virtuallab2025}
+Kyle Swanson, Wesley Wu, Nash~L. Bulaong, John~E. Pak, and James Zou.
+\newblock The virtual lab of ai agents designs new sars-cov-2 nanobodies.
+\newblock {\em Nature}, 646(8085):716--723, 2025.
+
+\bibitem{boiko2023}
+Daniil~A. Boiko, Robert MacKnight, Ben Kline, and Gabe Gomes.
+\newblock Autonomous chemical research with large language models.
+\newblock {\em Nature}, 624(7992):570--578, December 2023.
+
+\bibitem{chemcrow2024}
+Andres M.~Bran, Sam Cox, Oliver Schilter, Carlo Baldassari, Andrew~D. White,
+  and Philippe Schwaller.
+\newblock Augmenting large language models with chemistry tools.
+\newblock {\em Nature Machine Intelligence}, 6(5):525--535, May 2024.
+
+\bibitem{kosmos2025}
+Bodhisattwa~Prasad Majumder et~al.
+\newblock Kosmos: An {AI} scientist for autonomous discovery.
+\newblock {\em arXiv preprint arXiv:2511.02824}, 2025.
+
+\bibitem{huang2025biomni}
+Kexin Huang, Serena Zhang, Hanchen Wang, Yuanhao Qu, Yingzhou Lu, Yusuf
+  Roohani, Ryan Li, Lin Qiu, Gavin Li, Junze Zhang, Di~Yin, Shruti Marwaha,
+  Jennefer~N. Carter, Xin Zhou, Matthew Wheeler, Jonathan~A. Bernstein, Mengdi
+  Wang, Peng He, Jingtian Zhou, Michael Snyder, Le~Cong, Aviv Regev, and Jure
+  Leskovec.
+\newblock Biomni: A general-purpose biomedical ai agent.
+\newblock {\em bioRxiv preprint bioRxiv:2025.05.30.656746}, 2025.
+
+\bibitem{gao2025democratizingaiscientistsusing}
+Shanghua Gao, Richard Zhu, Pengwei Sui, Zhenglun Kong, Sufian Aldogom, Yepeng
+  Huang, Ayush Noori, Reza Shamji, Krishna Parvataneni, Theodoros
+  Tsiligkaridis, and Marinka Zitnik.
+\newblock Democratizing ai scientists using tooluniverse.
+\newblock {\em arXiv preprint arXiv:2509.23426}, 2025.
+
 \bibitem{galaxy2024}
 Linelle Ann~L and Abueg, Enis Afgan, Olivier Allart, Ahmed~H Awan, Wendi~A
   Bacon, Dannon Baker, Madeline Bassetti, B\'er\'enice Batut, Matthias Bernt,
@@ -36,24 +102,11 @@ Linelle Ann~L and Abueg, Enis Afgan, Olivier Allart, Ahmed~H Awan, Wendi~A
   data analyses: 2024 update.
 \newblock {\em Nucleic Acids Research}, 52(W1):W83--W94, May 2024.
 
-\bibitem{auburn2016}
-Sarah Auburn, Ulrike B{\"o}hme, Silvia Steinbiss, H.~Trimarsanto, J.~Hostetler,
-  M.~Sanders, et~al.
-\newblock A new {Plasmodium} vivax reference sequence with improved assembly of
-  the subtelomeres reveals an abundance of pir genes.
-\newblock {\em Wellcome Open Research}, 1:4, 2016.
-
-\bibitem{boiko2023}
-Daniil~A. Boiko, Robert MacKnight, Ben Kline, and Gabe Gomes.
-\newblock Autonomous chemical research with large language models.
-\newblock {\em Nature}, 624(7992):570--578, December 2023.
-
-\bibitem{carlton2008}
-Jane~M. Carlton, John~H. Adams, Jo{\~a}o~C. Silva, Shelby~L. Bidwell, Hernan
-  Lorenzo, et~al.
-\newblock Comparative genomics of the neglected human malaria parasite
-  {Plasmodium} vivax.
-\newblock {\em Nature}, 455(7214):757--763, 2008.
+\bibitem{nextflow2017}
+Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
+  Palumbo, and Cedric Notredame.
+\newblock Nextflow enables reproducible computational workflows.
+\newblock {\em Nature Biotechnology}, 35(4):316--319, April 2017.
 
 \bibitem{cwl2022}
 Michael~R. Crusoe, Sanne Abeln, Alexandru Iosup, Peter Amstutz, John Chilton,
@@ -63,18 +116,18 @@ Michael~R. Crusoe, Sanne Abeln, Alexandru Iosup, Peter Amstutz, John Chilton,
   with the common workflow language.
 \newblock {\em Communications of the ACM}, 65(6):54--63, May 2022.
 
-\bibitem{demeulenaere2023}
-Katlijn De~Meulenaere, Bart Cuypers, Dionicia Gamboa, Kris Laukens, and Anna
-  Rosanas-Urgell.
-\newblock A new {Plasmodium} vivax reference genome for {South} {American}
-  isolates.
-\newblock {\em BMC Genomics}, 24(1):606, 2023.
+\bibitem{agenticplugins2026}
+{Galaxy Project}.
+\newblock Universal {Agentic} {Plugins} for {Galaxy}.
+\newblock \url{https://github.com/galaxyproject/agentic-plugins}, 2026.
+\newblock GitHub repository.
 
-\bibitem{nextflow2017}
-Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
-  Palumbo, and Cedric Notredame.
-\newblock Nextflow enables reproducible computational workflows.
-\newblock {\em Nature Biotechnology}, 35(4):316--319, April 2017.
+\bibitem{orbit2026}
+{Galaxy Project}.
+\newblock Orbit: {A} scientific research workbench for autonomous biological
+  discovery.
+\newblock \url{https://github.com/galaxyproject/loom}, 2026.
+\newblock GitHub repository.
 
 \bibitem{galaxymcp2026}
 {Galaxy Project}.
@@ -88,19 +141,6 @@ Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
 \newblock \url{https://github.com/galaxyproject/galaxy-skills}, 2026.
 \newblock GitHub repository.
 
-\bibitem{orbit2026}
-{Galaxy Project}.
-\newblock Orbit: {A} scientific research workbench for autonomous biological
-  discovery.
-\newblock \url{https://github.com/galaxyproject/loom}, 2026.
-\newblock GitHub repository.
-
-\bibitem{agenticplugins2026}
-{Galaxy Project}.
-\newblock Universal {Agentic} {Plugins} for {Galaxy}.
-\newblock \url{https://github.com/galaxyproject/agentic-plugins}, 2026.
-\newblock GitHub repository.
-
 \bibitem{galaxyudt2026}
 {Galaxy Project}.
 \newblock User-{Defined} tools ({UDT}) authoring specification.
@@ -109,6 +149,12 @@ Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
   2026.
 \newblock Galaxy Release 26.1 Documentation.
 
+\bibitem{tyryshkina2019}
+Anna Tyryshkina, Nate Coraor, and Anton Nekrutenko.
+\newblock Predicting runtimes of bioinformatics tools based on historical data:
+  five years of {Galaxy} usage.
+\newblock {\em Bioinformatics}, 35(18):3453--3460, 2019.
+
 \bibitem{foundry2026}
 {Galaxy Project}.
 \newblock Workflow {Foundry}: Compiling scientific workflows from literature
@@ -116,27 +162,50 @@ Paolo Di~Tommaso, Maria Chatzou, Evan~W Floden, Pablo~Prieto Barja, Emilio
 \newblock \url{https://github.com/galaxyproject/foundry}, 2026.
 \newblock GitHub repository.
 
-\bibitem{gao2025democratizingaiscientistsusing}
-Shanghua Gao, Richard Zhu, Pengwei Sui, Zhenglun Kong, Sufian Aldogom, Yepeng
-  Huang, Ayush Noori, Reza Shamji, Krishna Parvataneni, Theodoros
-  Tsiligkaridis, and Marinka Zitnik.
-\newblock Democratizing ai scientists using tooluniverse.
-\newblock {\em arXiv preprint arXiv:2509.23426}, 2025.
+\bibitem{miao2026}
+Jiacheng Miao, Joe~R. Davis, Yaohui Zhang, Jonathan~K. Pritchard, and James
+  Zou.
+\newblock Reimagining research papers as interactive and reliable {AI} agents.
+\newblock {\em Nature}, 2026.
 
-\bibitem{coscientist2026}
-Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
-  Myaskovsky, Grzegorz Glowaty, Felix Weissenberger, Alessio Orlandi, Dan
-  Popovici, Anil Palepu, Keran Rong, Ryutaro Tanno, Khaled Saab, Fan Zhang,
-  Jacob Blum, Andrew Carroll, Kavita Kulkarni, Nenad Toma\v{s}ev, Dina
-  Zverinski, Ivor Rendulic, Elahe Vedadi, Florian Hasler, Luka Rimanic, Marina
-  Boia, Ivan Budiselic, Ben Feinstein, Mathias Bellaiche, Tom Sheffer, Jan
-  Freyberg, Jeremy Ratcliff, Ottavia Bertolli, Katherine Chou, Avinatan
-  Hassidim, Burak Gokturk, Amin Vahdat, Yuan Guan, Vikram Dhillon,
-  Eeshit~Dhaval Vaishnav, Byron Lee, Tiago R.~D. Costa, Jos\'e~R. Penad\'es,
-  Gary Peltz, Yossi Matias, James Manyika, Demis Hassabis, Yunhan Xu, Pushmeet
-  Kohli, Annalisa Pawlosky, Alan Karthikesalingam, and Vivek Natarajan.
-\newblock Accelerating scientific discovery with co-scientist.
-\newblock {\em Nature}, 655(8122):487--496, May 2026.
+\bibitem{sun2024}
+Eric~D. Sun, Rong Ma, Paloma Navarro~Negredo, Anne Brunet, and James Zou.
+\newblock {TISSUE}: uncertainty-calibrated prediction of single-cell spatial
+  transcriptomics improves downstream analyses.
+\newblock {\em Nature Methods}, 21(3):444--454, 2024.
+
+\bibitem{jackson2026}
+Andrew~P. Jackson, Deirdre~A. Cunningham, Christiaan van Ooij, et~al.
+\newblock Essential function reflected in the phylodynamics of a multigene
+  family -- the pir genes of malaria parasites.
+\newblock {\em eLife}, 15:e111505, 2026.
+
+\bibitem{carlton2008}
+Jane~M. Carlton, John~H. Adams, Jo{\~a}o~C. Silva, Shelby~L. Bidwell, Hernan
+  Lorenzo, et~al.
+\newblock Comparative genomics of the neglected human malaria parasite
+  {Plasmodium} vivax.
+\newblock {\em Nature}, 455(7214):757--763, 2008.
+
+\bibitem{lopez2013}
+F.~J. L{\'o}pez, M.~Bernabeu, C.~Fernandez-Becerra, and H.~A. del Portillo.
+\newblock A new computational approach redefines the subtelomeric vir
+  superfamily of {Plasmodium} vivax.
+\newblock {\em BMC Genomics}, 14:8, 2013.
+
+\bibitem{auburn2016}
+Sarah Auburn, Ulrike B{\"o}hme, Silvia Steinbiss, H.~Trimarsanto, J.~Hostetler,
+  M.~Sanders, et~al.
+\newblock A new {Plasmodium} vivax reference sequence with improved assembly of
+  the subtelomeres reveals an abundance of pir genes.
+\newblock {\em Wellcome Open Research}, 1:4, 2016.
+
+\bibitem{demeulenaere2023}
+Katlijn De~Meulenaere, Bart Cuypers, Dionicia Gamboa, Kris Laukens, and Anna
+  Rosanas-Urgell.
+\newblock A new {Plasmodium} vivax reference genome for {South} {American}
+  isolates.
+\newblock {\em BMC Genomics}, 24(1):606, 2023.
 
 \bibitem{harrison2020}
 Thomas~E. Harrison, Adam~J. Reid, Deirdre Cunningham, Jean Langhorne, and
@@ -146,45 +215,6 @@ Thomas~E. Harrison, Adam~J. Reid, Deirdre Cunningham, Jean Langhorne, and
 \newblock {\em Proceedings of the National Academy of Sciences},
   117(50):32098--32104, 2020.
 
-\bibitem{huang2025biomni}
-Kexin Huang, Serena Zhang, Hanchen Wang, Yuanhao Qu, Yingzhou Lu, Yusuf
-  Roohani, Ryan Li, Lin Qiu, Gavin Li, Junze Zhang, Di~Yin, Shruti Marwaha,
-  Jennefer~N. Carter, Xin Zhou, Matthew Wheeler, Jonathan~A. Bernstein, Mengdi
-  Wang, Peng He, Jingtian Zhou, Michael Snyder, Le~Cong, Aviv Regev, and Jure
-  Leskovec.
-\newblock Biomni: A general-purpose biomedical ai agent.
-\newblock {\em bioRxiv preprint bioRxiv:2025.05.30.656746}, 2025.
-
-\bibitem{lopez2013}
-F.~J. L{\'o}pez, M.~Bernabeu, C.~Fernandez-Becerra, and H.~A. del Portillo.
-\newblock A new computational approach redefines the subtelomeric vir
-  superfamily of {Plasmodium} vivax.
-\newblock {\em BMC Genomics}, 14:8, 2013.
-
-\bibitem{aiscientist2024}
-Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
-  Ha.
-\newblock The {AI} scientist: Towards fully automated open-ended scientific
-  discovery.
-\newblock {\em arXiv preprint arXiv:2408.06292}, 2024.
-
-\bibitem{chemcrow2024}
-Andres M.~Bran, Sam Cox, Oliver Schilter, Carlo Baldassari, Andrew~D. White,
-  and Philippe Schwaller.
-\newblock Augmenting large language models with chemistry tools.
-\newblock {\em Nature Machine Intelligence}, 6(5):525--535, May 2024.
-
-\bibitem{kosmos2025}
-Bodhisattwa~Prasad Majumder et~al.
-\newblock Kosmos: An {AI} scientist for autonomous discovery.
-\newblock {\em arXiv preprint arXiv:2511.02824}, 2025.
-
-\bibitem{miao2026}
-Jiacheng Miao, Joe~R. Davis, Yaohui Zhang, Jonathan~K. Pritchard, and James
-  Zou.
-\newblock Reimagining research papers as interactive and reliable {AI} agents.
-\newblock {\em Nature}, 2026.
-
 \bibitem{suchard2018}
 Marc~A. Suchard, Philippe Lemey, Guy Baele, Daniel~L. Ayres, Alexei~J.
   Drummond, and Andrew Rambaut.
@@ -192,22 +222,41 @@ Marc~A. Suchard, Philippe Lemey, Guy Baele, Daniel~L. Ayres, Alexei~J.
   1.10.
 \newblock {\em Virus Evolution}, 4(1):vey016, 2018.
 
-\bibitem{sun2024}
-Eric~D. Sun, Rong Ma, Paloma Navarro~Negredo, Anne Brunet, and James Zou.
-\newblock {TISSUE}: uncertainty-calibrated prediction of single-cell spatial
-  transcriptomics improves downstream analyses.
-\newblock {\em Nature Methods}, 21(3):444--454, 2024.
+\bibitem{pond2026hyphaeon}
+Sergei~L. Kosakovsky~Pond, Steven Weaver, Danielle Callan, Jordan~D. Zehr,
+  Dannon Baker, Marius van~den Beek, John Chilton, Nate Coraor, Scott Cain, and
+  Anton Nekrutenko.
+\newblock {HyphAeon}: Attention on evolution across deep time transforms
+  comparative genomics.
+\newblock {\em bioRxiv}, page 2026.09.06.749597, 2026.
 
-\bibitem{virtuallab2025}
-Kyle Swanson, Wesley Wu, Nash~L. Bulaong, John~E. Pak, and James Zou.
-\newblock The virtual lab of ai agents designs new sars-cov-2 nanobodies.
-\newblock {\em Nature}, 646(8085):716--723, 2025.
+\bibitem{gire2014genomic}
+Stephen~K. Gire, Augustine Goba, Kristian~G. Andersen, Rachel S.~G. Sealfon,
+  Daniel~J. Park, Lansana Kanneh, Simbirie Jalloh, Mambu Momoh, Mohamed Fullah,
+  Gytis Dudas, et~al.
+\newblock Genomic surveillance elucidates {Ebola} virus origin and transmission
+  during the 2014 outbreak.
+\newblock {\em Science}, 345(6202):1369--1372, 2014.
 
-\bibitem{biocoder2024}
-Xiangru Tang, Bill Qian, Rick Gao, Jiakang Chen, Xinyun Chen, and Mark~B
-  Gerstein.
-\newblock Biocoder: a benchmark for bioinformatics code generation with large
-  language models.
-\newblock {\em Bioinformatics}, 40(Supplement\_1):i266--i276, 2024.
+\bibitem{dudas2017virus}
+Gytis Dudas, Luiz~Max Carvalho, Trevor Bedford, Andrew~J. Tatem, Guy Baele,
+  Nuno~R. Faria, Daniel~J. Park, Jason~T. Ladner, Alimuddin Arias, Andrew
+  Rambaut, et~al.
+\newblock Virus genomes reveal factors that spread and sustained the {West
+  African Ebola} epidemic.
+\newblock {\em Nature}, 544(7650):309--315, 2017.
+
+\bibitem{taylorsalmon2024travel}
+Emma Taylor-Salmon, Verity Hill, Lauren~M. Paul, Robert~T. Koch, Nathan~D.
+  Grubaugh, et~al.
+\newblock Travel surveillance uncovers dengue virus dynamics and introductions
+  in the {Caribbean}.
+\newblock {\em Nature Communications}, 15(1):4167, 2024.
+
+\bibitem{fieller1954some}
+Edgar~C. Fieller.
+\newblock Some problems in interval estimation.
+\newblock {\em Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 16(2):175--185, 1954.
 
 \end{thebibliography}
