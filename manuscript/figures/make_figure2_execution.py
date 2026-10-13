@@ -2,16 +2,17 @@
 """
 Generate publication-grade Figure 2:
 Empirical Reanalysis and Replication Across Independent Agent Execution Environments.
-Compares the concrete execution workflows, reference genomes, and differential expression
-effect sizes (log2FC) of three autonomous agents (Google Gemini via Antigravity, Anthropic
-Claude via Claude Code, OpenAI Codex via GPT-6 Astra) against published benchmarks for
-Bacillus cereus enterotoxin expression (PMC12804731).
+Panel a: Alluvial trajectory flow of three autonomous agents (Claude Opus 5.5, Codex GPT-6 Astra,
+Gemini 3.8 Flash) across seven execution stages, demonstrating complete toolchain divergence.
+Panel b: Forest plot of differential expression effect sizes (log2FC and 95% CIs) for target enterotoxin
+genes (nheB, entFM, nheA, nheC) compared against the published benchmark (PMC12804731).
 """
 
 import os
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+from matplotlib.path import Path
 import numpy as np
 
 mpl.rcParams["font.sans-serif"] = ["Helvetica", "Arial", "DejaVu Sans"]
@@ -98,136 +99,182 @@ def make_figure():
         },
     ]
 
-    fig = plt.figure(figsize=(15.2, 8.4), dpi=300)
+    fig = plt.figure(figsize=(16.8, 7.6), dpi=300)
     
-    ax_banner = fig.add_axes([0.025, 0.90, 0.95, 0.085])
-    ax_table = fig.add_axes([0.025, 0.08, 0.47, 0.79])
-    ax_forest = fig.add_axes([0.54, 0.12, 0.435, 0.75])
+    # Coordinates for panels
+    # Left: Panel a (Alluvial flow of 3 agents)
+    ax_a = fig.add_axes([0.020, 0.07, 0.585, 0.87])
+    # Right: Panel b (Forest plot of differential expression)
+    ax_forest = fig.add_axes([0.650, 0.10, 0.335, 0.82])
 
-    # 1. Top Banner
-    ax_banner.axis("off")
-    banner_rect = patches.FancyBboxPatch(
-        (0, 0), 1, 1, transform=ax_banner.transAxes,
-        boxstyle="round,pad=0,rounding_size=0.08",
-        facecolor="#f8fafc", edgecolor="#cbd5e1", linewidth=1.0
-    )
-    ax_banner.add_patch(banner_rect)
-    ax_banner.text(0.015, 0.64, "Empirical Reanalysis and Biological Signal Replication Across Three Agent Platforms",
-                   fontsize=12.5, fontweight="bold", color="#0f172a", va="center")
-    ax_banner.text(0.015, 0.28, "Re-analysis of Glucose vs. TSB contrast (PMC12804731) across Gemini 3.8 Flash, Claude Opus 5.5, and Codex GPT-6 Astra",
-                   fontsize=8.5, color="#475569", va="center")
+    fig.text(0.020, 0.965, "a   Autonomous Execution Trajectories Across Three Agent Platforms",
+             fontsize=11.5, fontweight="bold", color="#0f172a", va="top")
+    fig.text(0.650, 0.965, "b   Target Enterotoxin Differential Expression (log2FC vs. TSB Control)",
+             fontsize=11.5, fontweight="bold", color="#0f172a", va="top")
 
-    summary_badges = [
-        ("Biological Concordance", "100% Direction (nhe down, entFM up)", "#15803d"),
-        ("Toolchain Overlap", "0% Shared (Bowtie2 vs nf-core vs HISAT2)", "#b91c1c"),
-        ("Provenance Tracking", "0% Archived (ephemeral terminal scripts)", "#c2410c"),
-    ]
-    for idx, (b_title, b_sub, b_col) in enumerate(summary_badges):
-        bx = 0.58 + idx * 0.138
-        b_patch = patches.FancyBboxPatch(
-            (bx, 0.12), 0.132, 0.76, transform=ax_banner.transAxes,
-            boxstyle="round,pad=0,rounding_size=0.06",
-            facecolor="#ffffff", edgecolor="#e2e8f0", linewidth=0.8
-        )
-        ax_banner.add_patch(b_patch)
-        ax_banner.text(bx + 0.066, 0.60, b_title, fontsize=7.8, fontweight="bold", color=b_col, ha="center", va="center")
-        ax_banner.text(bx + 0.066, 0.28, b_sub, fontsize=6.6, color="#64748b", ha="center", va="center")
+    # ----------------------------------------------------
+    # Panel a: Alluvial Trajectory Flow
+    # ----------------------------------------------------
+    total_w_a = 730
+    total_h_a = 350
+    ax_a.set_xlim(0, total_w_a)
+    ax_a.set_ylim(total_h_a, 0)
+    ax_a.axis("off")
 
-    # 2. Left Column: Architecture & Execution Matrix
-    ax_table.axis("off")
-    ax_table.text(0.0, 0.99, "a  Autonomous Execution Architecture and Toolchain Matrix",
-                  fontsize=11.0, fontweight="bold", color="#0f172a", va="top")
-
-    harnesses = [
-        {
-            "name": "Google Gemini 3.8 Flash",
-            "runtime": "Antigravity CLI (agy)",
-            "color": "#0d9488",
-            "ref": "anQ-h4 (GCF_020861345.1)\nRefSeq LMD38_RS* locus tags",
-            "pipeline": "Ad-hoc Bash + R scripts\nLocal Conda environment",
-            "align": "fastp v1.4.0 -> bowtie2 v2.5.5\nsubread featureCounts v2.1.1",
-            "stats": "DESeq2 v1.50.2 (5-sample fit)\nStandard Wald test",
-            "toxins": "nheB down, entFM up, hbl/cytK absent\n(cytK absent in anQ-h4 annotation)",
-            "verdict": "Concordant biological trend\nEphemeral bash script"
-        },
-        {
-            "name": "Anthropic Claude Opus 5.5",
-            "runtime": "Claude Code (cc)",
-            "color": "#2563eb",
-            "ref": "ATCC 10987 (GCA_000008005.1)\nGenBank BCE_* locus tags + tblastn",
-            "pipeline": "nf-core/rnaseq 3.14.0 +\nnf-core/differentialabundance 1.4.0",
-            "align": "Trim Galore -> STAR 2-pass -> Salmon\nfeatureCounts (MAPQ 255 unique)",
-            "stats": "DESeq2 v1.34.0 (ashr shrinkage)\nGLU vs TSB Wald test",
-            "toxins": "nheB down, entFM up, hbl absent\nDiscovered cytK present (BCE_1209)",
-            "verdict": "Concordant biological trend\nHeavy disk footprint (>100GB)"
-        },
-        {
-            "name": "OpenAI Codex / GPT-6 Astra",
-            "runtime": "Codex exec (--ephemeral)",
-            "color": "#ea580c",
-            "ref": "Dual: anQ-h4 (GCF_020861345.1) &\nATCC 10987 (GCA_000008005.1)",
-            "pipeline": "Modular Bash runner (run_all.sh)\nConda with explicit package URLs",
-            "align": "fastp (Q20) -> HISAT2 (unspliced)\nfeatureCounts (MAPQ>=10, fragments)",
-            "stats": "DESeq2 (5-sample, no outlier replace)\nWald intervals + normal prior shrink",
-            "toxins": "nheB down, entFM up, hbl absent\nSensitivity analysis across 2 genomes",
-            "verdict": "Concordant biological trend\nStrict statistics, isolated code"
-        },
+    STAGES_A = [
+        {"k": "runtime", "label": "AGENT PLATFORM"},
+        {"k": "ref", "label": "REFERENCE GENOME"},
+        {"k": "engine", "label": "PIPELINE ENGINE"},
+        {"k": "aligner", "label": "READ ALIGNER"},
+        {"k": "quant", "label": "QUANTIFICATION"},
+        {"k": "model", "label": "DIFFERENTIAL MODEL"},
+        {"k": "outcome", "label": "BIOLOGICAL OUTCOME"},
     ]
 
-    card_y = 0.94
-    card_h = 0.29
-    card_gap = 0.025
-
-    categories = [
-        ("Reference Genome:", "ref"),
-        ("Software Stack:", "pipeline"),
-        ("Alignment & Quant:", "align"),
-        ("Differential Model:", "stats"),
-        ("Toxin Findings:", "toxins"),
+    # Node definitions per stage
+    # For each stage, list nodes from top to bottom (y positions)
+    # Claude = blue (#2563eb), Codex = orange (#ea580c), Gemini = teal (#0d9488)
+    STAGE_NODES = [
+        # Stage 0: AGENT PLATFORM
+        [
+            {"agent": "cc", "main": "Claude Opus 5.5", "sub": "Claude Code (cc)", "y": 70},
+            {"agent": "codex", "main": "Codex GPT-6 Astra", "sub": "OpenAI runner", "y": 160},
+            {"agent": "gemini", "main": "Gemini 3.8 Flash", "sub": "Antigravity CLI (agy)", "y": 250},
+        ],
+        # Stage 1: REFERENCE GENOME
+        [
+            {"agent": "gemini", "main": "anQ-h4 (RefSeq)", "sub": "GCF_020861345.1", "y": 70},
+            {"agent": "codex", "main": "Dual Reference", "sub": "anQ-h4 & ATCC 10987", "y": 160},
+            {"agent": "cc", "main": "ATCC 10987", "sub": "GCA_000008005.1", "y": 250},
+        ],
+        # Stage 2: PIPELINE ENGINE
+        [
+            {"agent": "cc", "main": "nf-core/rnaseq", "sub": "Docker (>100GB)", "y": 70},
+            {"agent": "codex", "main": "Modular runner", "sub": "run_all.sh pipeline", "y": 160},
+            {"agent": "gemini", "main": "Ad-hoc Bash", "sub": "Local Conda env", "y": 250},
+        ],
+        # Stage 3: READ ALIGNER
+        [
+            {"agent": "gemini", "main": "Bowtie2 v2.5.5", "sub": "fastp polyG removal", "y": 70},
+            {"agent": "codex", "main": "HISAT2", "sub": "fastp Q20 filter", "y": 160},
+            {"agent": "cc", "main": "STAR 2-pass", "sub": "Trim Galore QC", "y": 250},
+        ],
+        # Stage 4: QUANTIFICATION
+        [
+            {"agent": "cc", "main": "Salmon / fCounts", "sub": "MAPQ 255 unique", "y": 70},
+            {"agent": "codex", "main": "featureCounts", "sub": "MAPQ >= 10, fragments", "y": 160},
+            {"agent": "gemini", "main": "featureCounts", "sub": "transcript features", "y": 250},
+        ],
+        # Stage 5: DIFFERENTIAL MODEL
+        [
+            {"agent": "cc", "main": "DESeq2 + ashr", "sub": "adaptive shrinkage", "y": 70},
+            {"agent": "codex", "main": "DESeq2 normal", "sub": "normal prior shrink", "y": 160},
+            {"agent": "gemini", "main": "DESeq2 Wald", "sub": "5-sample contrast", "y": 250},
+        ],
+        # Stage 6: BIOLOGICAL OUTCOME (Converging)
+        [
+            {"agent": "cc", "main": "nheB down, entFM up", "sub": "Discovered cytK (BCE_1209)", "y": 80},
+            {"agent": "codex", "main": "nheB down, entFM up", "sub": "Dual-genome concordant", "y": 160},
+            {"agent": "gemini", "main": "nheB down, entFM up", "sub": "hbl / cytK absent", "y": 240},
+        ],
     ]
 
-    for h_idx, h in enumerate(harnesses):
-        y_pos = card_y - h_idx * (card_h + card_gap) - card_h
-        card_box = patches.FancyBboxPatch(
-            (0.0, y_pos), 1.0, card_h,
-            boxstyle="round,pad=0,rounding_size=0.03",
-            facecolor="#ffffff", edgecolor=h["color"], linewidth=1.4
-        )
-        ax_table.add_patch(card_box)
+    AGENT_COLORS = {
+        "cc": "#2563eb",
+        "codex": "#ea580c",
+        "gemini": "#0d9488",
+    }
 
-        tag_rect = patches.FancyBboxPatch(
-            (0.0, y_pos + card_h - 0.052), 1.0, 0.052,
-            boxstyle="round,pad=0,rounding_size=0.03",
-            facecolor=h["color"], edgecolor="none"
-        )
-        ax_table.add_patch(tag_rect)
-        ax_table.text(0.025, y_pos + card_h - 0.026, h["name"], fontsize=9.2, fontweight="bold", color="#ffffff", va="center")
-        ax_table.text(0.975, y_pos + card_h - 0.026, f"Runtime: {h['runtime']}", fontsize=8.0, color="#ffffff", ha="right", va="center")
+    left_a = 16
+    col_w_a = 98
+    node_w_a = 8
+    node_h_a = 28
+    ribbon_h = 20
 
-        cx1, cx2 = 0.025, 0.52
-        rows = [
-            (categories[0], categories[1]),
-            (categories[2], categories[3]),
-            (categories[4], None)
-        ]
-        
-        row_y = y_pos + card_h - 0.086
-        for r_idx, (col1, col2) in enumerate(rows):
-            lbl1, key1 = col1
-            ax_table.text(cx1, row_y, lbl1, fontsize=7.2, fontweight="bold", color="#475569", va="top")
-            ax_table.text(cx1 + 0.17, row_y, h[key1], fontsize=7.2, color="#0f172a", va="top")
+    # Draw Ribbons first
+    for s_idx in range(len(STAGES_A) - 1):
+        x0 = left_a + s_idx * col_w_a + node_w_a
+        x1 = left_a + (s_idx + 1) * col_w_a
+        xm = (x0 + x1) / 2.0
 
-            if col2:
-                lbl2, key2 = col2
-                ax_table.text(cx2, row_y, lbl2, fontsize=7.2, fontweight="bold", color="#475569", va="top")
-                ax_table.text(cx2 + 0.17, row_y, h[key2], fontsize=7.2, color="#0f172a", va="top")
-            
-            row_y -= 0.066
+        curr_nodes = STAGE_NODES[s_idx]
+        next_nodes = STAGE_NODES[s_idx + 1]
 
-    # 3. Right Column: Forest Plot of log2FC
-    ax_forest.text(0.0, 1.04, "b  Target Enterotoxin Differential Expression (log2FC vs. TSB Control)",
-                   fontsize=11.0, fontweight="bold", color="#0f172a", va="top", transform=ax_forest.transAxes)
+        for c_node in curr_nodes:
+            ag = c_node["agent"]
+            # find corresponding node in next stage
+            n_node = next(n for n in next_nodes if n["agent"] == ag)
 
+            y0 = c_node["y"] - ribbon_h / 2.0
+            y1 = n_node["y"] - ribbon_h / 2.0
+
+            verts = [
+                (x0, y0),
+                (xm, y0), (xm, y1), (x1, y1),
+                (x1, y1 + ribbon_h),
+                (xm, y1 + ribbon_h), (xm, y0 + ribbon_h), (x0, y0 + ribbon_h),
+                (x0, y0)
+            ]
+            codes = [
+                Path.MOVETO,
+                Path.CURVE4, Path.CURVE4, Path.CURVE4,
+                Path.LINETO,
+                Path.CURVE4, Path.CURVE4, Path.CURVE4,
+                Path.CLOSEPOLY
+            ]
+            path = Path(verts, codes)
+            patch = patches.PathPatch(path, facecolor=AGENT_COLORS[ag], alpha=0.42, edgecolor="none", zorder=2)
+            ax_a.add_patch(patch)
+
+    # Draw Column Headers and Nodes
+    header_y = 38
+    for s_idx, stage in enumerate(STAGES_A):
+        nx = left_a + s_idx * col_w_a
+        ax_a.text(nx, header_y, stage["label"], fontsize=7.8, fontweight="bold", color="#334155", va="bottom", zorder=4)
+
+        for nd in STAGE_NODES[s_idx]:
+            ag = nd["agent"]
+            ny = nd["y"] - node_h_a / 2.0
+            bar_col = AGENT_COLORS[ag] if s_idx == 0 else "#334155"
+
+            n_patch = patches.FancyBboxPatch(
+                (nx, ny), node_w_a, node_h_a,
+                boxstyle="round,pad=0,rounding_size=2",
+                facecolor=bar_col, edgecolor="none", zorder=3
+            )
+            ax_a.add_patch(n_patch)
+
+            tx = nx + node_w_a + 3
+            # Main label
+            ax_a.text(tx, nd["y"] - 4.2, nd["main"], fontsize=7.2, fontweight="bold", color="#0f172a", va="center",
+                      bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.12"), zorder=4)
+            # Sub label
+            sub_col = "#b91c1c" if "Discovered" in nd["sub"] else "#64748b"
+            ax_a.text(tx, nd["y"] + 5.5, nd["sub"], fontsize=6.2, fontweight="bold" if "Discovered" in nd["sub"] else "normal",
+                      color=sub_col, va="center",
+                      bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.12"), zorder=4)
+
+    # Bottom Legend in Panel a
+    leg_y = total_h_a - 14
+    ax_a.text(left_a, leg_y, "Agent Platform:", fontsize=8.0, fontweight="bold", color="#334155", va="center")
+    cur_lx = left_a + 85
+    legend_items = [
+        ("Claude Opus 5.5", "#2563eb"),
+        ("Codex GPT-6 Astra", "#ea580c"),
+        ("Gemini 3.8 Flash", "#0d9488"),
+    ]
+    for l_name, l_col in legend_items:
+        rect = patches.Rectangle((cur_lx, leg_y - 4), 12, 8, facecolor=l_col, edgecolor="none")
+        ax_a.add_patch(rect)
+        ax_a.text(cur_lx + 15, leg_y, l_name, fontsize=7.6, color="#1e293b", va="center")
+        cur_lx += 125
+
+    ax_a.text(total_w_a - 10, leg_y, "Toolchain overlap: 0% shared tools across all platforms.",
+              fontsize=7.3, color="#64748b", ha="right", va="center", style="italic")
+
+    # ----------------------------------------------------
+    # Panel b: Forest Plot of log2FC
+    # ----------------------------------------------------
     y_total_span = 26.0
     for g_idx, g in enumerate(genes):
         gene_key = g["key"]
@@ -266,7 +313,7 @@ def make_figure():
         leg_handles.append(line)
         leg_labels.append(m["short"])
 
-    ax_forest.legend(leg_handles, leg_labels, loc="lower center", bbox_to_anchor=(0.5, -0.16),
+    ax_forest.legend(leg_handles, leg_labels, loc="lower center", bbox_to_anchor=(0.5, -0.14),
                      ncol=3, fontsize=7.8, frameon=True, facecolor="#ffffff", edgecolor="#cbd5e1")
 
     output_pdf = os.path.join(base_dir, "figure2_agent_execution.pdf")

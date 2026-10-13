@@ -51,7 +51,7 @@ def make_figure():
     famRank = {"opus": 0, "codex": 1, "gemini": 2}
 
     STAGES = [
-        {"k": "fam", "label": "MODEL HARNESS", "fmt": lambda v: FAM_INFO[v]["name"]},
+        {"k": "fam", "label": "AGENT FAMILY", "fmt": lambda v: FAM_INFO[v]["name"]},
         {"k": "ref", "label": "REFERENCE GENOME", "fmt": lambda v: v},
         {"k": "wf", "label": "PIPELINE ENGINE", "fmt": lambda v: v},
         {"k": "trim", "label": "READ TRIMMING", "fmt": lambda v: v},
@@ -67,7 +67,7 @@ def make_figure():
 
     colW = 162
     left = 32
-    top = 98
+    top = 34
     unit = 15.0
     gap = 22.0
     nodeW = 10.0
@@ -110,42 +110,11 @@ def make_figure():
     total_w = left + (len(STAGES) - 1) * colW + nodeW + 160
     total_h = max_h + 38
 
-    fig = plt.figure(figsize=(15.4, 8.0), dpi=300)
+    fig = plt.figure(figsize=(15.4, 6.6), dpi=300)
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_xlim(0, total_w)
     ax.set_ylim(total_h, 0)
     ax.axis("off")
-
-    # --- Top Banner & Summary Tiles ---
-    banner_rect = patches.FancyBboxPatch(
-        (left, 12), total_w - 2 * left, 64,
-        boxstyle="round,pad=0,rounding_size=6",
-        facecolor="#f8fafc", edgecolor="#cbd5e1", linewidth=1.0
-    )
-    ax.add_patch(banner_rect)
-
-    ax.text(left + 16, 32, "Combinatorial Divergence in Autonomous Agent Planning Trajectories",
-            fontsize=13.5, fontweight="bold", color="#0f172a", va="center")
-    ax.text(left + 16, 53, "30 isolated LLM agents tasked with replicating PMC12804731 without domain cyberinfrastructure produce 18 distinct pipelines spanning ~1,400 combinatorial paths",
-            fontsize=9.0, color="#475569", va="center")
-
-    badge_x = total_w - left - 460
-    metrics = [
-        ("30", "Agent Plans", "#0f172a"),
-        ("18", "Distinct Pipelines", "#b91c1c"),
-        ("11", "Result-Altering", "#c2410c"),
-        ("~1,400", "Permutations", "#4338ca")
-    ]
-    for b_idx, (m_val, m_lbl, m_col) in enumerate(metrics):
-        bx = badge_x + b_idx * 112
-        tile = patches.FancyBboxPatch(
-            (bx, 19), 102, 50,
-            boxstyle="round,pad=0,rounding_size=4",
-            facecolor="#ffffff", edgecolor="#e2e8f0", linewidth=0.8
-        )
-        ax.add_patch(tile)
-        ax.text(bx + 51, 36, m_val, fontsize=12.5, fontweight="bold", color=m_col, ha="center", va="center")
-        ax.text(bx + 51, 55, m_lbl, fontsize=7.5, color="#64748b", ha="center", va="center")
 
     # --- Ribbons ---
     for p_idx, p in enumerate(plans):
