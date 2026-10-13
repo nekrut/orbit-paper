@@ -88,7 +88,11 @@ As mentioned earlier, this entire process can be driven from any agent and works
 
 ![figures/flow.pdf](figures/flow.pdf)
 
-***The flow of verifiable agentic science: from Agent through Infrastructure to Result.** Autonomous agents—including Orbit, Claude Code, OpenAI Codex, Google Antigravity, and Pi.dev—interact with computational services via the Galaxy Model Context Protocol (MCP), Galaxy skills, and Foundry skills (Agent Layer). Execution branches based on local computational capacity. When local compute is available, agents assemble tools, prototype logic, and run unit tests locally before launching jobs and workflows on Galaxy. When local compute is absent, agents assemble, prototype, test, and execute the complete analytical workflow directly on Galaxy public cyberinfrastructure (Infrastructure Layer). Galaxy executes tasks across distributed supercomputing allocations and GPU clusters via native tools, BioContainers, and unprivileged User-Defined Tools. All analytical operations record directly into a living research notebook. This record preserves an immutable directed acyclic graph with machine-checkable results (Result Layer).*
+***The flow of verifiable agentic science: from Agent through Infrastructure to Result.** 
+**1**, Agent Layer: Autonomous runtimes—including Orbit, Claude Code, and OpenAI Codex—orchestrate biomedical investigations through natural language prompts, planning, and interactive dialogue. 
+**2**, Guardrails: Domain skills supply procedural bioinformatics intelligence, validating parameters and tool suitability before execution. The Galaxy Model Context Protocol (MCP) server translates agent intents into structured, typed API calls (`run_tool`, `query_history`), replacing unconstrained shell commands with machine-validated endpoints. 
+**3**, Public Compute Infrastructure: Galaxy dispatches compute-heavy tasks to national supercomputing allocations (ACCESS-CI) and cloud nodes, managing execution across native tools and containerized environments. 
+All analytical operations, execution logs, and output datasets stream back into a living research notebook, preserving an immutable directed acyclic graph with permanent computational provenance.*
 
 
 
