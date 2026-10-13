@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 Generate publication-grade Figure 1:
-Combinatorial Divergence in Autonomous Agent Planning Trajectories.
+Combinatorial Divergence in Autonomous Agent Planning and Execution Trajectories.
 Visualizes the alluvial flow of 30 independent LLM agent plans (10 Claude Opus,
-10 OpenAI Codex, 10 Google Gemini) across 8 analytical decisions, highlighting
-model-family clustering, major forks, and combinatorial fragmentation.
+10 OpenAI Codex, 10 Google Gemini) across 8 analytical decisions, with the three
+empirically executed agent workflows highlighted as bold ribbons.
 """
 
 import json
@@ -13,7 +13,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.path import Path
-import numpy as np
 
 mpl.rcParams["font.sans-serif"] = ["Helvetica", "Arial", "DejaVu Sans"]
 mpl.rcParams["font.family"] = "sans-serif"
@@ -43,9 +42,9 @@ def make_figure():
         d["wf"] = WFMAP.get(d["wf"], d["wf"])
 
     FAM_INFO = {
-        "opus": {"name": "Claude Opus 5.5", "color": "#2563eb", "badge": "Anthropic"},
-        "codex": {"name": "Codex (GPT-6 Astra)", "color": "#ea580c", "badge": "OpenAI"},
-        "gemini": {"name": "Gemini 3.8 Flash", "color": "#0d9488", "badge": "Google"},
+        "opus": {"name": "Claude Opus 5.5", "color": "#2563eb", "badge": "Anthropic", "marker": "s"},
+        "codex": {"name": "Codex (GPT-6 Astra)", "color": "#ea580c", "badge": "OpenAI", "marker": "^"},
+        "gemini": {"name": "Gemini 3.8 Flash", "color": "#0d9488", "badge": "Google", "marker": "o"},
     }
     FAMS = ["opus", "codex", "gemini"]
     famRank = {"opus": 0, "codex": 1, "gemini": 2}
@@ -65,7 +64,7 @@ def make_figure():
     keyOrder = [s["k"] for s in STAGES]
     plans = sorted(DATA, key=lambda p: [famRank[p["fam"]] if k == "fam" else p[k] for k in keyOrder])
 
-    colW = 162
+    colW = 164
     left = 32
     top = 34
     unit = 15.0
@@ -107,16 +106,16 @@ def make_figure():
             nd["members"].append(idx)
 
     max_h = max(L["h"] for L in layout)
-    total_w = left + (len(STAGES) - 1) * colW + nodeW + 160
-    total_h = max_h + 38
+    total_w = left + (len(STAGES) - 1) * colW + nodeW + 185
+    total_h = max_h + 46
 
-    fig = plt.figure(figsize=(15.4, 6.6), dpi=300)
+    fig = plt.figure(figsize=(16.2, 6.8), dpi=300)
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_xlim(0, total_w)
     ax.set_ylim(total_h, 0)
     ax.axis("off")
 
-    # --- Ribbons ---
+    # 1. Background Ribbons (30 plans, transparent alpha=0.18)
     for p_idx, p in enumerate(plans):
         fam_col = FAM_INFO[p["fam"]]["color"]
         for i in range(len(STAGES) - 1):
@@ -142,13 +141,107 @@ def make_figure():
                 Path.CLOSEPOLY
             ]
             path = Path(verts, codes)
-            patch = patches.PathPatch(path, facecolor=fam_col, alpha=0.40, edgecolor="none")
+            patch = patches.PathPatch(path, facecolor=fam_col, alpha=0.18, edgecolor="none", zorder=2)
             ax.add_patch(patch)
 
-    # --- Stage Column Headers & Nodes ---
+    # 2. Highlighted Empirical Trajectories (3 agents, alpha=0.92, bold outline)
+    executed_trajectories = [
+        {
+            "id": "opus",
+            "name": "Claude Code (Opus 5.5)",
+            "badge": "Executed: Claude Code",
+            "color": "#2563eb",
+            "marker": "s",
+            "steps": [
+                ("fam", "opus", slotY[4][0]),
+                ("ref", "anQ-h4", slotY[4][1]),
+                ("wf", "nf-core/rnaseq", slotY[4][2]),
+                ("trim", "Trim Galore", slotY[4][3]),
+                ("rRNA", "Keep & measure", slotY[4][4]),
+                ("aligner", "STAR", slotY[4][5]),
+                ("feature", "Gene/exon (all)", slotY[4][6]),
+                ("model", "All samples (pooled)", slotY[4][7]),
+                ("shrink", "ashr", slotY[4][8]),
+            ]
+        },
+        {
+            "id": "codex",
+            "name": "OpenAI Codex (GPT-6 Astra)",
+            "badge": "Executed: Codex runner",
+            "color": "#ea580c",
+            "marker": "^",
+            "steps": [
+                ("fam", "codex", slotY[12][0]),
+                ("ref", "ATCC 10987", slotY[12][1]),
+                ("wf", "Snakemake", slotY[12][2]),
+                ("trim", "fastp", slotY[12][3]),
+                ("rRNA", "Keep & measure", slotY[12][4]),
+                ("aligner", "HISAT2", slotY[12][5]),
+                ("feature", "CDS only", slotY[12][6]),
+                ("model", "5 samples only", slotY[12][7]),
+                ("shrink", "apeglm", slotY[12][8]),
+            ]
+        },
+        {
+            "id": "gemini",
+            "name": "Antigravity CLI (Gemini 3.8)",
+            "badge": "Executed: Antigravity CLI",
+            "color": "#0d9488",
+            "marker": "o",
+            "steps": [
+                ("fam", "gemini", slotY[28][0]),
+                ("ref", "anQ-h4", slotY[28][1]),
+                ("wf", "Bash/R scripts", layout[2]["nodes"]["Bash/R scripts"]["y"] + 1.0),
+                ("trim", "fastp", slotY[20][3]),
+                ("rRNA", "Keep & measure", slotY[23][4]),
+                ("aligner", "Bowtie2", slotY[23][5]),
+                ("feature", "Gene/exon (all)", slotY[28][6]),
+                ("model", "5 samples only", slotY[28][7]),
+                ("shrink", "apeglm", slotY[28][8]),
+            ]
+        },
+    ]
+
+    ribbon_h = unit - 2.0
+
+    for traj in executed_trajectories:
+        t_col = traj["color"]
+        steps = traj["steps"]
+        for i in range(len(STAGES) - 1):
+            x0 = layout[i]["x"] + nodeW
+            x1 = layout[i+1]["x"]
+            xm = (x0 + x1) / 2.0
+            y0 = steps[i][2] + 1.0
+            y1 = steps[i+1][2] + 1.0
+
+            verts = [
+                (x0, y0),
+                (xm, y0), (xm, y1), (x1, y1),
+                (x1, y1 + ribbon_h),
+                (xm, y1 + ribbon_h), (xm, y0 + ribbon_h), (x0, y0 + ribbon_h),
+                (x0, y0)
+            ]
+            codes = [
+                Path.MOVETO,
+                Path.CURVE4, Path.CURVE4, Path.CURVE4,
+                Path.LINETO,
+                Path.CURVE4, Path.CURVE4, Path.CURVE4,
+                Path.CLOSEPOLY
+            ]
+            path = Path(verts, codes)
+
+            # White glow outline underneath
+            glow = patches.PathPatch(path, facecolor=t_col, alpha=1.0, edgecolor="#ffffff", linewidth=3.6, zorder=5)
+            ax.add_patch(glow)
+
+            # Bold colored ribbon on top
+            patch = patches.PathPatch(path, facecolor=t_col, alpha=0.92, edgecolor="#0f172a", linewidth=1.2, zorder=6)
+            ax.add_patch(patch)
+
+    # 3. Stage Column Headers & Nodes
     for i, s in enumerate(STAGES):
         L = layout[i]
-        ax.text(L["x"], top - 14, s["label"], fontsize=8.5, fontweight="bold", color="#334155", va="bottom")
+        ax.text(L["x"], top - 14, s["label"], fontsize=8.5, fontweight="bold", color="#334155", va="bottom", zorder=8)
 
         for opt_key, nd in L["nodes"].items():
             nh = nd["n"] * unit
@@ -163,7 +256,7 @@ def make_figure():
             n_patch = patches.FancyBboxPatch(
                 (node_x, node_y + 0.5), nodeW, nh - 1.0,
                 boxstyle="round,pad=0,rounding_size=2",
-                facecolor=bar_col, edgecolor="none"
+                facecolor=bar_col, edgecolor="none", zorder=7
             )
             ax.add_patch(n_patch)
 
@@ -177,37 +270,56 @@ def make_figure():
                       (s["k"] == "model" and opt_key in ["All samples (pooled)", "5 samples only"])
 
             if nh <= 20:
-                # Single line for small nodes
                 disp_str = f"{label_text} ({count_str})"
                 ax.text(tx, ty, disp_str, fontsize=7.8, fontweight="medium", color="#0f172a", va="center",
-                        bbox=dict(facecolor="#ffffff", alpha=0.85, edgecolor="none", boxstyle="round,pad=0.2"))
+                        bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.2"), zorder=8)
             else:
                 if is_fork:
-                    t1 = ax.text(tx, ty - 4.5, label_text, fontsize=8.2, fontweight="bold", color="#0f172a", va="center",
-                                 bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.15"))
+                    ax.text(tx, ty - 4.5, label_text, fontsize=8.2, fontweight="bold", color="#0f172a", va="center",
+                            bbox=dict(facecolor="#ffffff", alpha=0.90, edgecolor="none", boxstyle="round,pad=0.15"), zorder=8)
                     ax.text(tx, ty + 6.2, f"{count_str} (Major Fork)", fontsize=7.2, fontweight="medium", color="#b91c1c", va="center",
-                            bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.15"))
+                            bbox=dict(facecolor="#ffffff", alpha=0.90, edgecolor="none", boxstyle="round,pad=0.15"), zorder=8)
                 else:
                     ax.text(tx, ty - 4.0, label_text, fontsize=8.0, fontweight="medium", color="#1e293b", va="center",
-                            bbox=dict(facecolor="#ffffff", alpha=0.85, edgecolor="none", boxstyle="round,pad=0.15"))
+                            bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.15"), zorder=8)
                     ax.text(tx, ty + 6.0, count_str, fontsize=7.0, color="#64748b", va="center",
-                            bbox=dict(facecolor="#ffffff", alpha=0.85, edgecolor="none", boxstyle="round,pad=0.15"))
+                            bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.15"), zorder=8)
 
-    # Legend at bottom left
+    # 4. Markers and end badges for the 3 executed trajectories
+    for traj in executed_trajectories:
+        start_y = traj["steps"][0][2] + ribbon_h / 2.0
+        start_x = layout[0]["x"] + nodeW / 2.0
+        ax.scatter([start_x], [start_y], marker=traj["marker"], s=45, color="#ffffff", edgecolor="#0f172a", linewidth=1.0, zorder=10)
+
+    exit_x = layout[8]["x"] + nodeW + 65
+    for traj in executed_trajectories:
+        exit_y = traj["steps"][8][2] + ribbon_h / 2.0
+        
+        # Draw connecting leader line from ribbon exit to badge
+        ax.plot([layout[8]["x"] + nodeW, exit_x - 12], [exit_y, exit_y], color=traj["color"], lw=1.5, linestyle=":", zorder=9)
+        ax.scatter([exit_x - 12], [exit_y], marker=traj["marker"], s=50, color=traj["color"], edgecolor="#0f172a", linewidth=0.8, zorder=10)
+        ax.text(exit_x - 2, exit_y, traj["badge"], fontsize=7.6, fontweight="bold", color="#ffffff", va="center", ha="left",
+                bbox=dict(facecolor=traj["color"], edgecolor="#0f172a", boxstyle="round,pad=0.25", linewidth=0.8), zorder=9)
+
+    # 5. Enhanced Legend at bottom
     leg_x = left
-    leg_y = total_h - 18
-    ax.text(leg_x, leg_y, "Agent Family:", fontsize=8.5, fontweight="bold", color="#334155", va="center")
-    
-    cur_lx = leg_x + 85
+    leg_y = total_h - 20
+
+    ax.text(leg_x, leg_y, "Planning Cohort (n=30):", fontsize=8.2, fontweight="bold", color="#334155", va="center")
+    cur_lx = leg_x + 135
     for f_key in FAMS:
         f_info = FAM_INFO[f_key]
-        leg_rect = patches.Rectangle((cur_lx, leg_y - 5), 14, 10, facecolor=f_info["color"], edgecolor="none")
+        leg_rect = patches.Rectangle((cur_lx, leg_y - 4), 12, 8, facecolor=f_info["color"], alpha=0.25, edgecolor="none")
         ax.add_patch(leg_rect)
-        ax.text(cur_lx + 18, leg_y, f"{f_info['name']} (10 plans)", fontsize=8.2, color="#1e293b", va="center")
-        cur_lx += 175
+        ax.text(cur_lx + 16, leg_y, f"{f_info['name']} (10 plans)", fontsize=7.8, color="#475569", va="center")
+        cur_lx += 165
 
-    ax.text(total_w - left, leg_y, "Analysis based on 30 isolated executions against PMC12804731 without shared skills or cyberinfrastructure.",
-            fontsize=7.8, color="#64748b", ha="right", va="center", style="italic")
+    cur_lx += 15
+    ax.text(cur_lx, leg_y, "Empirical Execution (n=3):", fontsize=8.2, fontweight="bold", color="#0f172a", va="center")
+    cur_lx += 140
+    leg_rect_exec = patches.Rectangle((cur_lx, leg_y - 4), 16, 8, facecolor="#2563eb", alpha=0.92, edgecolor="#0f172a", linewidth=1.0)
+    ax.add_patch(leg_rect_exec)
+    ax.text(cur_lx + 22, leg_y, "Bold highlighted ribbons trace live local execution on host hardware", fontsize=7.8, fontweight="bold", color="#0f172a", va="center")
 
     output_pdf = os.path.join(base_dir, "figure1_agent_trajectories.pdf")
     output_png = os.path.join(base_dir, "figure1_agent_trajectories.png")
