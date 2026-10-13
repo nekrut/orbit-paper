@@ -147,7 +147,7 @@ def make_figure():
             "pipeline": "Ad-hoc Bash + R scripts\nLocal Conda environment",
             "align": "fastp v1.4.0 -> bowtie2 v2.5.5\nsubread featureCounts v2.1.1",
             "stats": "DESeq2 v1.50.2 (5-sample fit)\nStandard Wald test",
-            "toxins": "nheB down, entFM up; hbl/cytK absent\n(cytK absent in anQ-h4 annotation)",
+            "toxins": "nheB down, entFM up, hbl/cytK absent\n(cytK absent in anQ-h4 annotation)",
             "verdict": "Concordant biological trend\nEphemeral bash script"
         },
         {
@@ -158,7 +158,7 @@ def make_figure():
             "pipeline": "nf-core/rnaseq 3.14.0 +\nnf-core/differentialabundance 1.4.0",
             "align": "Trim Galore -> STAR 2-pass -> Salmon\nfeatureCounts (MAPQ 255 unique)",
             "stats": "DESeq2 v1.34.0 (ashr shrinkage)\nGLU vs TSB Wald test",
-            "toxins": "nheB down, entFM up; hbl absent\nDiscovered cytK present (BCE_1209)",
+            "toxins": "nheB down, entFM up, hbl absent\nDiscovered cytK present (BCE_1209)",
             "verdict": "Concordant biological trend\nHeavy disk footprint (>100GB)"
         },
         {
@@ -169,7 +169,7 @@ def make_figure():
             "pipeline": "Modular Bash runner (run_all.sh)\nConda with explicit package URLs",
             "align": "fastp (Q20) -> HISAT2 (unspliced)\nfeatureCounts (MAPQ>=10, fragments)",
             "stats": "DESeq2 (5-sample, no outlier replace)\nWald intervals + normal prior shrink",
-            "toxins": "nheB down, entFM up; hbl absent\nSensitivity analysis across 2 genomes",
+            "toxins": "nheB down, entFM up, hbl absent\nSensitivity analysis across 2 genomes",
             "verdict": "Concordant biological trend\nStrict statistics, isolated code"
         },
     ]
@@ -202,7 +202,7 @@ def make_figure():
         )
         ax_table.add_patch(tag_rect)
         ax_table.text(0.025, y_pos + card_h - 0.026, h["name"], fontsize=9.2, fontweight="bold", color="#ffffff", va="center")
-        ax_table.text(0.975, y_pos + card_h - 0.026, f"Harness: {h['runtime']}", fontsize=8.0, color="#ffffff", ha="right", va="center")
+        ax_table.text(0.975, y_pos + card_h - 0.026, f"Runtime: {h['runtime']}", fontsize=8.0, color="#ffffff", ha="right", va="center")
 
         cx1, cx2 = 0.025, 0.52
         rows = [
@@ -247,21 +247,11 @@ def make_figure():
             # Plot marker
             ax_forest.scatter([lfc], [y_pos], color=m["color"], marker=m["marker"], s=45, zorder=4, edgecolor="#0f172a", linewidth=0.5)
 
-            txt_x = max(ci_h + 0.15, lfc + 0.2)
-            if txt_x > 2.5:
-                txt_x = ci_l - 0.15
-                ha_align = "right"
-            else:
-                ha_align = "left"
-            
-            if gene_key == "nheC" and m["id"] == "codex_paper":
-                txt_x = lfc - 0.25
-                ha_align = "right"
+            ax_forest.text(2.55, y_pos, f"{lfc:+.2f} ({sig})", fontsize=7.0, color=m["color"], fontweight="bold" if sig in ["*", "**", "***"] else "normal", va="center", ha="left")
 
-            ax_forest.text(txt_x, y_pos, f"{lfc:+.2f} ({sig})", fontsize=6.8, color=m["color"], fontweight="bold" if sig in ["*", "**", "***"] else "normal", va="center", ha=ha_align)
-
+    ax_forest.text(2.55, y_total_span - 0.5, "log2FC (sig)", fontsize=7.2, fontweight="bold", color="#475569", va="bottom", ha="left")
     ax_forest.axvline(0, color="#94a3b8", lw=1.0, linestyle="--", zorder=2)
-    ax_forest.set_xlim(-4.0, 3.2)
+    ax_forest.set_xlim(-4.0, 3.7)
     ax_forest.set_ylim(0.5, y_total_span + 0.5)
     ax_forest.set_xlabel("log2 Fold Change (0.5% Glucose / TSB Control)", fontsize=8.8, fontweight="bold", color="#334155")
     ax_forest.set_yticks([])
