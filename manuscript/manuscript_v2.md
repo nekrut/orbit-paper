@@ -1,6 +1,6 @@
 # Verifiable Agentic Science on Public Infrastructure
 
-**Dannon Baker**$^{1,6}$, **Scott Cain**$^{2,6}$, **Marius van den Beek**$^{2,6}$, **John Chilton**$^{2,6}$, **Danielle Callan**$^{2,6}$, **Steven Weaver**$^{3}$, **Nate Coraor**$^{2,6}$, **Kelsey Beavers**$^{4}$, **Björn Grüning**$^{5,6}$, **Sergei L. Kosakovsky Pond**$^{3,*}$, and **Anton Nekrutenko**$^{2,6,*}$
+**Dannon Baker**$^{1,6}$, **Scott Cain**$^{2,6}$, **Marius van den Beek**$^{2,6}$, **John Chilton**$^{2,6}$, **Danielle Callan**$^{2,6}$, **Steven Weaver**$^{3}$, **Nate Coraor**$^{2,6}$, **Kelsey Beavers**$^{4}$, **Björn Grüning**$^{5,6,7}$, **Sergei L. Kosakovsky Pond**$^{3,*}$, and **Anton Nekrutenko**$^{2,6,*}$
 
 $^{1}$ Department of Biology, Johns Hopkins University, Baltimore, MD, USA  
 $^{2}$ Department of Biochemistry and Molecular Biology, Penn State University, University Park, PA, USA  
@@ -8,6 +8,7 @@ $^{3}$ Institute for Genomics and Evolutionary Medicine, Department of Biology, 
 $^{4}$ Texas Advanced Computing Center, The University of Texas at Austin, Austin, TX, USA  
 $^{5}$ Department of Computer Science, University of Freiburg, Freiburg, Germany  
 $^{6}$ [galaxyproject.org](https://galaxyproject.org)  
+$^{7}$ [usegalaxy.eu](https://usegalaxy.eu)  
 $^{*}$ Correspondence: `spond@temple.edu`, `anton@nekrut.org`
 
 
