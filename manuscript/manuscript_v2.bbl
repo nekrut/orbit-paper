@@ -150,6 +150,11 @@ Wei Shen, John~A. Lees, and Zamin Iqbal.
   with {LexicMap}.
 \newblock {\em Nature Biotechnology}, 2025.
 
+\bibitem{bray2016near}
+Nicolas~L. Bray, Harold Pimentel, P{\'a}ll Melsted, and Lior Pachter.
+\newblock Near-optimal probabilistic {RNA}-seq quantification.
+\newblock {\em Nature Biotechnology}, 34(5):525--527, 2016.
+
 \bibitem{tyryshkina2019}
 Anna Tyryshkina, Nate Coraor, and Anton Nekrutenko.
 \newblock Predicting runtimes of bioinformatics tools based on historical data:
