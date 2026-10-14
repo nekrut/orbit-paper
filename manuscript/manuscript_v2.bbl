@@ -13,8 +13,8 @@ Andres M.~Bran, Sam Cox, Oliver Schilter, Carlo Baldassari, Andrew~D. White,
 
 \bibitem{virtuallab2025}
 Kyle Swanson, Wesley Wu, Nash~L. Bulaong, John~E. Pak, and James Zou.
-\newblock The virtual lab of ai agents designs new sars-cov-2 nanobodies.
-\newblock {\em Nature}, 646(8085):716--723, 2025.
+\newblock The {Virtual Lab} of {AI} agents designs new {SARS-CoV-2} nanobodies.
+\newblock {\em Nature}, 646(8085):716--723, July 2025.
 
 \bibitem{aiscientist2024}
 Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
@@ -24,7 +24,8 @@ Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
 \newblock {\em arXiv preprint arXiv:2408.06292}, 2024.
 
 \bibitem{kosmos2025}
-Bodhisattwa~Prasad Majumder et~al.
+Ludovico Mitchener, Angela Yiu, Benjamin Chang, Mathieu Bourdenx, Tyler
+  Nadolski, et~al.
 \newblock Kosmos: An {AI} scientist for autonomous discovery.
 \newblock {\em arXiv preprint arXiv:2511.02824}, 2025.
 
@@ -34,7 +35,7 @@ Kexin Huang, Serena Zhang, Hanchen Wang, Yuanhao Qu, Yingzhou Lu, Yusuf
   Jennefer~N. Carter, Xin Zhou, Matthew Wheeler, Jonathan~A. Bernstein, Mengdi
   Wang, Peng He, Jingtian Zhou, Michael Snyder, Le~Cong, Aviv Regev, and Jure
   Leskovec.
-\newblock Biomni: A general-purpose biomedical ai agent.
+\newblock Biomni: A general-purpose biomedical {AI} agent.
 \newblock {\em bioRxiv preprint bioRxiv:2025.05.30.656746}, 2025.
 
 \bibitem{coscientist2026}
@@ -49,42 +50,43 @@ Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
   Eeshit~Dhaval Vaishnav, Byron Lee, Tiago R.~D. Costa, Jos\'e~R. Penad\'es,
   Gary Peltz, Yossi Matias, James Manyika, Demis Hassabis, Yunhan Xu, Pushmeet
   Kohli, Annalisa Pawlosky, Alan Karthikesalingam, and Vivek Natarajan.
-\newblock Accelerating scientific discovery with co-scientist.
+\newblock Accelerating scientific discovery with {Co-Scientist}.
 \newblock {\em Nature}, 655(8122):487--496, May 2026.
 
 \bibitem{galaxy2024}
-Linelle Ann~L and Abueg, Enis Afgan, Olivier Allart, Ahmed~H Awan, Wendi~A
-  Bacon, Dannon Baker, Madeline Bassetti, B\'er\'enice Batut, Matthias Bernt,
-  Daniel Blankenberg, Aureliano Bombarely, Anthony Bretaudeau, Catherine~J
-  Bromhead, Melissa~L Burke, Patrick~K Capon, Martin \v{C}ech, Mar\'ia
-  Chavero-D\'iez, John~M Chilton, Tyler~J Collins, Frederik Coppens, Nate
-  Coraor, Gianmauro Cuccuru, Fabio Cumbo, John Davis, Paul~F De~Geest, Willem
-  de~Koning, Martin Demko, Assunta DeSanto, Jos\'e Manuel~Dom\'inguez Begines,
-  Maria~A Doyle, Bert Droesbeke, Anika Erxleben-Eggenhofer, Melanie~C F\"oll,
-  Giulio Formenti, Anne Fouilloux, Rendani Gangazhe, Tanguy Genthon, Jeremy
-  Goecks, Alejandra N~Gonzalez Beltran, Nuwan~A Goonasekera, Nadia Gou\'e,
-  Timothy~J Griffin, Bj\"orn~A Gr\"uning, Aysam Guerler, Sveinung Gundersen,
-  Ove Johan~Ragnar Gustafsson, Christina Hall, Thomas~W Harrop, Helge Hecht,
-  Alireza Heidari, Tillman Heisner, Florian Heyl, Saskia Hiltemann, Hans-Rudolf
-  Hotz, Cameron~J Hyde, Pratik~D Jagtap, Julia Jakiela, James~E Johnson,
-  Jayadev Joshi, Marie Joss\'e, Khaled Jum'ah, Mat\'u\v{s} Kala\v{s}, Katarzyna
-  Kamieniecka, Tunc Kayikcioglu, Markus Konkol, Leonid Kostrykin, Natalie
-  Kucher, Anup Kumar, Mira Kuntz, Delphine Lariviere, Ross Lazarus, Yvan~Le
-  Bras, Gildas~Le Corguill\'e, Justin Lee, Simone Leo, Leandro Liborio, Romane
-  Libouban, David~L\'opez Tabernero, Lucille Lopez-Delisle, Laila~S Los,
-  Alexandru Mahmoud, Igor Makunin, Pierre Marin, Subina Mehta, Winnie Mok,
-  Pablo~A Moreno, Fran\c{c}ois Morier-Genoud, Stephen Mosher, Teresa M\"uller,
-  Engy Nasr, Anton Nekrutenko, Tiffanie~M Nelson, Asime~J Oba, Alexander
-  Ostrovsky, Polina~V Polunina, Krzysztof Poterlowicz, Elliott~J Price,
-  Gareth~R Price, Helena Rasche, Bryan Raubenolt, Coline Royaux, Luke Sargent,
-  Michelle~T Savage, Volodymyr Savchenko, Denys Savchenko, Michael~C Schatz,
-  Pauline Seguineau, Beatriz Serrano-Solano, Nicola Soranzo, Sanjay~Kumar
-  Srikakulam, Keith Suderman, Anna~E Syme, Marco~Antonio Tangaro, Jonathan~A
-  Tedds, Mehmet Tekman, Wai Cheng (Mike)~Thang, Anil~S Thanki, Michael Uhl,
-  Marius van~den Beek, Deepti Varshney, Jenn Vessio, Pavankumar Videm, Greg
-  Von~Kuster, Gregory~R Watson, Natalie Whitaker-Allen, Uwe Winter, Martin
-  Wolstencroft, Federico Zambelli, Paul Zierep, and Rand Zoabi.
-\newblock The galaxy platform for accessible, reproducible, and collaborative
+{The Galaxy Community}, Linelle Ann~L Abueg, Enis Afgan, Olivier Allart,
+  Ahmed~H Awan, Wendi~A Bacon, Dannon Baker, Madeline Bassetti, B\'er\'enice
+  Batut, Matthias Bernt, Daniel Blankenberg, Aureliano Bombarely, Anthony
+  Bretaudeau, Catherine~J Bromhead, Melissa~L Burke, Patrick~K Capon, Martin
+  \v{C}ech, Mar\'ia Chavero-D\'iez, John~M Chilton, Tyler~J Collins, Frederik
+  Coppens, Nate Coraor, Gianmauro Cuccuru, Fabio Cumbo, John Davis, Paul~F
+  De~Geest, Willem de~Koning, Martin Demko, Assunta DeSanto, Jos\'e
+  Manuel~Dom\'inguez Begines, Maria~A Doyle, Bert Droesbeke, Anika
+  Erxleben-Eggenhofer, Melanie~C F\"oll, Giulio Formenti, Anne Fouilloux,
+  Rendani Gangazhe, Tanguy Genthon, Jeremy Goecks, Alejandra N~Gonzalez
+  Beltran, Nuwan~A Goonasekera, Nadia Gou\'e, Timothy~J Griffin, Bj\"orn~A
+  Gr\"uning, Aysam Guerler, Sveinung Gundersen, Ove Johan~Ragnar Gustafsson,
+  Christina Hall, Thomas~W Harrop, Helge Hecht, Alireza Heidari, Tillman
+  Heisner, Florian Heyl, Saskia Hiltemann, Hans-Rudolf Hotz, Cameron~J Hyde,
+  Pratik~D Jagtap, Julia Jakiela, James~E Johnson, Jayadev Joshi, Marie
+  Joss\'e, Khaled Jum'ah, Mat\'u\v{s} Kala\v{s}, Katarzyna Kamieniecka, Tunc
+  Kayikcioglu, Markus Konkol, Leonid Kostrykin, Natalie Kucher, Anup Kumar,
+  Mira Kuntz, Delphine Lariviere, Ross Lazarus, Yvan~Le Bras, Gildas~Le
+  Corguill\'e, Justin Lee, Simone Leo, Leandro Liborio, Romane Libouban,
+  David~L\'opez Tabernero, Lucille Lopez-Delisle, Laila~S Los, Alexandru
+  Mahmoud, Igor Makunin, Pierre Marin, Subina Mehta, Winnie Mok, Pablo~A
+  Moreno, Fran\c{c}ois Morier-Genoud, Stephen Mosher, Teresa M\"uller, Engy
+  Nasr, Anton Nekrutenko, Tiffanie~M Nelson, Asime~J Oba, Alexander Ostrovsky,
+  Polina~V Polunina, Krzysztof Poterlowicz, Elliott~J Price, Gareth~R Price,
+  Helena Rasche, Bryan Raubenolt, Coline Royaux, Luke Sargent, Michelle~T
+  Savage, Volodymyr Savchenko, Denys Savchenko, Michael~C Schatz, Pauline
+  Seguineau, Beatriz Serrano-Solano, Nicola Soranzo, Sanjay~Kumar Srikakulam,
+  Keith Suderman, Anna~E Syme, Marco~Antonio Tangaro, Jonathan~A Tedds, Mehmet
+  Tekman, Wai Cheng (Mike)~Thang, Anil~S Thanki, Michael Uhl, Marius van~den
+  Beek, Deepti Varshney, Jenn Vessio, Pavankumar Videm, Greg Von~Kuster,
+  Gregory~R Watson, Natalie Whitaker-Allen, Uwe Winter, Martin Wolstencroft,
+  Federico Zambelli, Paul Zierep, and Rand Zoabi.
+\newblock The {Galaxy} platform for accessible, reproducible, and collaborative
   data analyses: 2024 update.
 \newblock {\em Nucleic Acids Research}, 52(W1):W83--W94, May 2024.
 
@@ -148,7 +150,7 @@ Rayan Chikhi, T{\'e}o Lemane, Rapha{\"e}l Loll-Krippleber, Merc{\`e}
 Wei Shen, John~A. Lees, and Zamin Iqbal.
 \newblock Efficient sequence alignment against millions of prokaryotic genomes
   with {LexicMap}.
-\newblock {\em Nature Biotechnology}, 2025.
+\newblock {\em Nature Biotechnology}, 44(8):1383--1390, 2026.
 
 \bibitem{bray2016near}
 Nicolas~L. Bray, Harold Pimentel, P{\'a}ll Melsted, and Lior Pachter.
@@ -164,12 +166,12 @@ Nicolas~L. Bray, Harold Pimentel, P{\'a}ll Melsted, and Lior Pachter.
 \newblock Galaxy Release 26.1 Documentation.
 
 \bibitem{hokken2018}
-Margriet W.~J. Hokken, Bas~J. Zwaan, Willem J.~G. Melchers, and Paul~E.
-  Verweij.
+Margriet W.~J. Hokken, Jan Zoll, Jordy P.~M. Coolen, Bas~J. Zwaan, Paul~E.
+  Verweij, and Willem J.~G. Melchers.
 \newblock Phenotypic plasticity and the evolution of azole resistance in
-  \textit{Aspergillus fumigatus}: an expression profile of clinical isolates
+  \textit{Aspergillus fumigatus}; an expression profile of clinical isolates
   upon exposure to itraconazole.
-\newblock {\em BMC Genomics}, 19:678, 2018.
+\newblock {\em BMC Genomics}, 20(1):28, 2019.
 
 \bibitem{chung2014}
 DaWoon Chung, Brian~M. Barker, Charles~C. Carey, B.~Merriman, Ernst~R. Werner,
@@ -190,13 +192,13 @@ Christa~G. Toenhake, Sabine A.-K. Fraschka, M.~S. Vijayabaskar, David~R.
 
 \bibitem{ruiz2021}
 Jos{\'e}~L. Ruiz, Lisa~C. Ranford-Cartwright, and Elena G{\'o}mez-D{\'i}az.
-\newblock Chromatin changes in \textit{Anopheles gambiae} induced by
-  \textit{Plasmodium falciparum} infection.
-\newblock {\em NAR Genomics and Bioinformatics}, 3(2):lqab044, 2021.
+\newblock The regulatory genome of the malaria vector \textit{Anopheles
+  gambiae}: integrating chromatin accessibility and gene expression.
+\newblock {\em NAR Genomics and Bioinformatics}, 3(1):lqaa113, 2021.
 
 \bibitem{wang2024}
-Yibaina Wang, Qiaoyun Huang, Yifan Wang, Qian Han, Hongwei Ren, Gang Wang,
-  Liwang Cui, Zhiming Yuan, and Han Xia.
+Shunlong Wang, Ying Huang, Fei Wang, Qian Han, Nanjie Ren, Xiaoyu Wang, Yingjun
+  Cui, Zhiming Yuan, and Han Xia.
 \newblock A cell atlas of the adult female \textit{Aedes aegypti} midgut
   revealed by single-cell {RNA} sequencing.
 \newblock {\em Scientific Data}, 11:587, 2024.
@@ -206,6 +208,7 @@ Jiacheng Miao, Joe~R. Davis, Yaohui Zhang, Jonathan~K. Pritchard, and James
   Zou.
 \newblock Reimagining research papers as interactive and reliable {AI} agents.
 \newblock {\em Nature}, 2026.
+\newblock doi:10.1038/s41586-026-11044-y.
 
 \bibitem{sun2024}
 Eric~D. Sun, Rong Ma, Paloma Navarro~Negredo, Anne Brunet, and James Zou.
@@ -214,8 +217,8 @@ Eric~D. Sun, Rong Ma, Paloma Navarro~Negredo, Anne Brunet, and James Zou.
 \newblock {\em Nature Methods}, 21(3):444--454, 2024.
 
 \bibitem{carlton2008}
-Jane~M. Carlton, John~H. Adams, Jo{\~a}o~C. Silva, Shelby~L. Bidwell, Hernan
-  Lorenzo, et~al.
+Jane~M. Carlton, John~H. Adams, Joana~C. Silva, Shelby~L. Bidwell, Hernan
+  Lorenzi, et~al.
 \newblock Comparative genomics of the neglected human malaria parasite
   {Plasmodium} vivax.
 \newblock {\em Nature}, 455(7214):757--763, 2008.
@@ -230,8 +233,9 @@ Thomas~E. Harrison, Adam~J. Reid, Deirdre Cunningham, Jean Langhorne, and
 
 \bibitem{pond2026hyphaeon}
 Sergei~L. Kosakovsky~Pond, Steven Weaver, Danielle Callan, Jordan~D. Zehr,
-  Dannon Baker, Marius van~den Beek, John Chilton, Nate Coraor, Scott Cain, and
-  Anton Nekrutenko.
+  Alexander~G. Lucaci, Hannah Verdonk, Avery Selberg, Gallean Brown, Maria
+  Chikina, Nathan~L. Clark, Kateryna~D. Makova, Darren~P. Martin, and Anton
+  Nekrutenko.
 \newblock {HyphAeon}: Attention on evolution across deep time transforms
   comparative genomics.
 \newblock {\em bioRxiv}, page 2026.09.06.749597, 2026.
@@ -245,7 +249,8 @@ Sergei~L. Kosakovsky~Pond, Steven Weaver, Danielle Callan, Jordan~D. Zehr,
   (\url{https://github.com/galaxyproject/brc-analytics}).
 
 \bibitem{jackson2026}
-Andrew~P. Jackson, Deirdre~A. Cunningham, Christiaan van Ooij, et~al.
+Andrew~P. Jackson, Deirdre~A. Cunningham, Lin Lin, Naomi~Mara Claro~de
+  Oliveira, S{\'e}verine~C. Chevalley-Maurel, et~al.
 \newblock Essential function reflected in the phylodynamics of a multigene
   family -- the pir genes of malaria parasites.
 \newblock {\em eLife}, 15:e111505, 2026.
@@ -289,16 +294,16 @@ Stephen~K. Gire, Augustine Goba, Kristian~G. Andersen, Rachel S.~G. Sealfon,
 Gytis Dudas, Luiz~Max Carvalho, Trevor Bedford, Andrew~J. Tatem, Guy Baele,
   Nuno~R. Faria, Daniel~J. Park, Jason~T. Ladner, Alimuddin Arias, Andrew
   Rambaut, et~al.
-\newblock Virus genomes reveal factors that spread and sustained the {West
-  African Ebola} epidemic.
+\newblock Virus genomes reveal factors that spread and sustained the {Ebola}
+  epidemic.
 \newblock {\em Nature}, 544(7650):309--315, 2017.
 
 \bibitem{taylorsalmon2024travel}
-Emma Taylor-Salmon, Verity Hill, Lauren~M. Paul, Robert~T. Koch, Nathan~D.
-  Grubaugh, et~al.
+Emma Taylor-Salmon, Verity Hill, Lauren~M. Paul, Robert~T. Koch, Mallery~I.
+  Breban, et~al.
 \newblock Travel surveillance uncovers dengue virus dynamics and introductions
   in the {Caribbean}.
-\newblock {\em Nature Communications}, 15(1):4167, 2024.
+\newblock {\em Nature Communications}, 15(1):3508, 2024.
 
 \bibitem{fieller1954some}
 Edgar~C. Fieller.

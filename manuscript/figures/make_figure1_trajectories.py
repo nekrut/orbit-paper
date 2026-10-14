@@ -144,61 +144,31 @@ def make_figure():
             patch = patches.PathPatch(path, facecolor=fam_col, alpha=0.18, edgecolor="none", zorder=2)
             ax.add_patch(patch)
 
-    # 2. Highlighted Empirical Trajectories (3 agents, alpha=0.92, bold outline)
+    # 2. Highlighted Representative Planning Trajectories (1 per family, alpha=0.92, bold outline)
     executed_trajectories = [
         {
             "id": "opus",
-            "name": "Claude Code (Opus 5.5)",
-            "badge": "Executed: Claude Code",
+            "name": "Claude Opus 5.5",
+            "badge": "Plan: Claude Opus 5.5",
             "color": "#2563eb",
             "marker": "s",
-            "steps": [
-                ("fam", "opus", slotY[4][0]),
-                ("ref", "anQ-h4", slotY[4][1]),
-                ("wf", "nf-core/rnaseq", slotY[4][2]),
-                ("trim", "Trim Galore", slotY[4][3]),
-                ("rRNA", "Keep & measure", slotY[4][4]),
-                ("aligner", "STAR", slotY[4][5]),
-                ("feature", "Gene/exon (all)", slotY[4][6]),
-                ("model", "All samples (pooled)", slotY[4][7]),
-                ("shrink", "ashr", slotY[4][8]),
-            ]
+            "steps": [(s["k"], plans[4][s["k"]], slotY[4][i]) for i, s in enumerate(STAGES)],
         },
         {
             "id": "codex",
             "name": "OpenAI Codex (GPT-6 Astra)",
-            "badge": "Executed: Codex runner",
+            "badge": "Plan: Codex (GPT-6 Astra)",
             "color": "#ea580c",
             "marker": "^",
-            "steps": [
-                ("fam", "codex", slotY[12][0]),
-                ("ref", "ATCC 10987", slotY[12][1]),
-                ("wf", "Snakemake", slotY[12][2]),
-                ("trim", "fastp", slotY[12][3]),
-                ("rRNA", "Keep & measure", slotY[12][4]),
-                ("aligner", "HISAT2", slotY[12][5]),
-                ("feature", "CDS only", slotY[12][6]),
-                ("model", "5 samples only", slotY[12][7]),
-                ("shrink", "apeglm", slotY[12][8]),
-            ]
+            "steps": [(s["k"], plans[12][s["k"]], slotY[12][i]) for i, s in enumerate(STAGES)],
         },
         {
             "id": "gemini",
-            "name": "Antigravity CLI (Gemini 3.8)",
-            "badge": "Executed: Antigravity CLI",
+            "name": "Gemini 3.8 Flash",
+            "badge": "Plan: Gemini 3.8 Flash",
             "color": "#0d9488",
             "marker": "o",
-            "steps": [
-                ("fam", "gemini", slotY[28][0]),
-                ("ref", "anQ-h4", slotY[28][1]),
-                ("wf", "Bash/R scripts", layout[2]["nodes"]["Bash/R scripts"]["y"] + 1.0),
-                ("trim", "fastp", slotY[20][3]),
-                ("rRNA", "Keep & measure", slotY[23][4]),
-                ("aligner", "Bowtie2", slotY[23][5]),
-                ("feature", "Gene/exon (all)", slotY[28][6]),
-                ("model", "5 samples only", slotY[28][7]),
-                ("shrink", "apeglm", slotY[28][8]),
-            ]
+            "steps": [(s["k"], plans[20][s["k"]], slotY[20][i]) for i, s in enumerate(STAGES)],
         },
     ]
 
@@ -315,11 +285,11 @@ def make_figure():
         cur_lx += 165
 
     cur_lx += 15
-    ax.text(cur_lx, leg_y, "Empirical Execution (n=3):", fontsize=8.2, fontweight="bold", color="#0f172a", va="center")
-    cur_lx += 140
+    ax.text(cur_lx, leg_y, "Highlighted Plans (n=3):", fontsize=8.2, fontweight="bold", color="#0f172a", va="center")
+    cur_lx += 125
     leg_rect_exec = patches.Rectangle((cur_lx, leg_y - 4), 16, 8, facecolor="#2563eb", alpha=0.92, edgecolor="#0f172a", linewidth=1.0)
     ax.add_patch(leg_rect_exec)
-    ax.text(cur_lx + 22, leg_y, "Bold highlighted ribbons trace live local execution on host hardware", fontsize=7.8, fontweight="bold", color="#0f172a", va="center")
+    ax.text(cur_lx + 22, leg_y, "Bold ribbons trace one representative planning trajectory per model family", fontsize=7.8, fontweight="bold", color="#0f172a", va="center")
 
     output_pdf = os.path.join(base_dir, "figure1_agent_trajectories.pdf")
     output_png = os.path.join(base_dir, "figure1_agent_trajectories.png")

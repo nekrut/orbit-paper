@@ -109,9 +109,9 @@ def make_figure():
         facecolor="#F0FDF4", edgecolor="#86EFAC", linewidth=1.2
     )
     ax_a_card.add_patch(box_a)
-    ax_a_card.text(0.035, 0.65, "Galaxy Execution Metrics (1,000-cell Tutorial Reference):", fontsize=9.6, fontweight="bold", color="#166534")
-    ax_a_card.text(0.035, 0.38, "Empirical Coverage: 86.46% (nominal 77%)  |  MAE: 1.9564", fontsize=8.6, color="#14532D")
-    ax_a_card.text(0.035, 0.14, "Mean log(1+PI): 2.0621  |  P95: 2.3552  |  Concordance: r = 1.0000", fontsize=8.6, color="#14532D")
+    ax_a_card.text(0.035, 0.65, "Galaxy UDT Execution (1,000-cell Tutorial Subset, 32 calibration genes):", fontsize=9.2, fontweight="bold", color="#166534")
+    ax_a_card.text(0.035, 0.38, "Empirical Coverage: 86.46% (nominal 77%, \u03b1 = 0.23)  |  MAE: 1.9564", fontsize=8.5, color="#14532D")
+    ax_a_card.text(0.035, 0.14, "Mean log(1+PI): 2.0621  |  P95: 2.3552  |  Local vs. Galaxy UDT: r = 1.0000", fontsize=8.5, color="#14532D")
 
     ax_b_card = fig.add_axes([0.53, 0.035, 0.43, 0.105])
     ax_b_card.axis("off")
@@ -120,9 +120,9 @@ def make_figure():
         facecolor="#F8FAFC", edgecolor="#CBD5E1", linewidth=1.2
     )
     ax_b_card.add_patch(box_b)
-    ax_b_card.text(0.035, 0.65, "Published Benchmark Metrics (Miao et al., Nature 2026):", fontsize=9.6, fontweight="bold", color="#0F172A")
-    ax_b_card.text(0.035, 0.38, "Reported Coverage: ~86.5% (nominal 77%)  |  Nominal \u03b1 = 0.23", fontsize=8.6, color="#334155")
-    ax_b_card.text(0.035, 0.14, "Mean log(1+PI): ~2.06  |  P95: ~2.35  |  Benchmark Status: Published baseline", fontsize=8.6, color="#334155")
+    ax_b_card.text(0.035, 0.65, "Published Paper2Agent Benchmark (Miao et al., Nature 2026, Ext. Data Fig. 1c):", fontsize=9.2, fontweight="bold", color="#0F172A")
+    ax_b_card.text(0.035, 0.38, "Input: 1,000-cell tutorial subset (31 calibration genes after 1% prevalence filter)", fontsize=8.5, color="#334155")
+    ax_b_card.text(0.035, 0.14, "Colorbar scale: [2.00, 2.30] (clipped at 95th percentile, nominal \u03b1 = 0.23)", fontsize=8.5, color="#334155")
 
     # Save outputs
     fig.savefig(output_png, bbox_inches="tight", dpi=300)

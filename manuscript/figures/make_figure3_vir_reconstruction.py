@@ -79,7 +79,7 @@ def make_figure():
     fig.text(0.065, 0.912, "Pairwise amino acid identity between continental assemblies (PvW1 vs. PvPAM)", fontsize=8.8, fontstyle="italic", color="#475569")
 
     fig.text(0.52, 0.945, "b", fontsize=17, fontweight="bold", color="#1E3A8A")
-    fig.text(0.545, 0.945, "Reconstructed Structural Phylogeny and Global Panmixia", fontsize=12.5, fontweight="bold", color="#0F172A")
+    fig.text(0.545, 0.945, "Reconstructed Structural Phylogeny and Ancestral Lineage Sharing", fontsize=12.5, fontweight="bold", color="#0F172A")
     fig.text(0.545, 0.912, "Circular ML structural phylogeny (FoldMason + IQ-TREE 3) of dominant superfamily FS_001 (n=338)", fontsize=8.8, fontstyle="italic", color="#475569")
 
     # Panel a: Histogram - Native vector plot with log y-scale
