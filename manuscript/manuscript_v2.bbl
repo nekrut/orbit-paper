@@ -104,19 +104,6 @@ Kate{\v{r}}ina Vyklick{\'a}, Ji{\v{r}}{\'\i} Ku{\v{c}}era, Vojt{\v{e}}ch
   expression in \textit{Bacillus cereus} (pacificus).
 \newblock {\em Scientific Reports}, 16(1):1917, 2026.
 
-\bibitem{agenticplugins2026}
-{Galaxy Project}.
-\newblock Universal {Agentic} {Plugins} for {Galaxy}.
-\newblock \url{https://github.com/galaxyproject/agentic-plugins}, 2026.
-\newblock GitHub repository.
-
-\bibitem{orbit2026}
-{Galaxy Project}.
-\newblock Orbit: {A} scientific research workbench for autonomous biological
-  discovery.
-\newblock \url{https://github.com/galaxyproject/loom}, 2026.
-\newblock GitHub repository.
-
 \bibitem{galaxymcp2026}
 {Galaxy Project}.
 \newblock Galaxy {Model} {Context} {Protocol} ({MCP}) server.
@@ -129,6 +116,47 @@ Kate{\v{r}}ina Vyklick{\'a}, Ji{\v{r}}{\'\i} Ku{\v{c}}era, Vojt{\v{e}}ch
 \newblock \url{https://github.com/galaxyproject/galaxy-skills}, 2026.
 \newblock GitHub repository.
 
+\bibitem{dobin2013}
+Alexander Dobin, Carrie~A. Davis, Felix Schlesinger, Jorg Drenkow, Chris
+  Zaleski, Sonali Jha, Philippe Batut, Mark Chaisson, and Thomas~R. Gingeras.
+\newblock {STAR}: ultrafast universal {RNA}-seq aligner.
+\newblock {\em Bioinformatics}, 29(1):15--21, 2013.
+
+\bibitem{alphagenome2025}
+{\v{Z}}iga Avsec, Natasha Latysheva, Jun Cheng, Guido Novati, Kyle~R. Taylor,
+  Tom Ward, Clare Bycroft, Lauren Nicolaisen, Eirini Arvaniti, Joshua Pan,
+  Raina Thomas, Vincent Dutordoir, Matteo Perino, Soham De, Alexander Karollus,
+  Adam Gayoso, Toby Sargeant, Anne Mottram, Lai~Hong Wong, Pavol Drot{\'a}r,
+  Adam Kosiorek, Andrew Senior, Richard Tanburn, Taylor Applebaum, Souradeep
+  Basu, Demis Hassabis, and Pushmeet Kohli.
+\newblock {AlphaGenome}: advancing regulatory variant effect prediction with a
+  unified {DNA} sequence model.
+\newblock {\em bioRxiv preprint bioRxiv:2025.06.25.661532}, 2025.
+
+\bibitem{logan2024}
+Rayan Chikhi, T{\'e}o Lemane, Rapha{\"e}l Loll-Krippleber, Merc{\`e}
+  Montoliu-Nerin, Brice Raffestin, Antonio~Pedro Camargo, Carson~J. Miller,
+  Mateus~Bernabe Fiamenghi, Daniel~Paiva Agustinho, Sina Majidian, Greg Autric,
+  Maxime Hugues, Junkyoung Lee, Roland Faure, Kristen~D. Curry, Jorge A.~Moura
+  de~Sousa, Eduardo P.~C. Rocha, David Koslicki, Paul Medvedev, Purav Gupta,
+  Jessica Shen, Alejandro Morales-Tapia, Kate Sihuta, Peter~J. Roy, Grant~W.
+  Brown, Robert~C. Edgar, Anton Korobeynikov, Martin Steinegger, Caleb~A.
+  Lareau, Pierre Peterlongo, and Artem Babaian.
+\newblock Logan: Planetary-scale genome assembly surveys life's diversity.
+\newblock {\em bioRxiv preprint bioRxiv:2024.07.30.605881}, 2024.
+
+\bibitem{lexicmap2025}
+Wei Shen, John~A. Lees, and Zamin Iqbal.
+\newblock Efficient sequence alignment against millions of prokaryotic genomes
+  with {LexicMap}.
+\newblock {\em Nature Biotechnology}, 2025.
+
+\bibitem{tyryshkina2019}
+Anna Tyryshkina, Nate Coraor, and Anton Nekrutenko.
+\newblock Predicting runtimes of bioinformatics tools based on historical data:
+  five years of {Galaxy} usage.
+\newblock {\em Bioinformatics}, 35(18):3453--3460, 2019.
+
 \bibitem{galaxyudt2026}
 {Galaxy Project}.
 \newblock User-{Defined} tools ({UDT}) authoring specification.
@@ -136,12 +164,6 @@ Kate{\v{r}}ina Vyklick{\'a}, Ji{\v{r}}{\'\i} Ku{\v{c}}era, Vojt{\v{e}}ch
   \url{https://docs.galaxyproject.org/en/release_26.1/dev/user_defined_tools_authoring.html},
   2026.
 \newblock Galaxy Release 26.1 Documentation.
-
-\bibitem{tyryshkina2019}
-Anna Tyryshkina, Nate Coraor, and Anton Nekrutenko.
-\newblock Predicting runtimes of bioinformatics tools based on historical data:
-  five years of {Galaxy} usage.
-\newblock {\em Bioinformatics}, 35(18):3453--3460, 2019.
 
 \bibitem{miao2026}
 Jiacheng Miao, Joe~R. Davis, Yaohui Zhang, Jonathan~K. Pritchard, and James
