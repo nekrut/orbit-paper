@@ -1,0 +1,5 @@
+sample	tissue	infection	macs212_peaks	ruiz_excel_all_rows	ruiz_excel_I1I2_rows	excel_all_hit_by_macs212_51recip	pct_excel_all_hit	excel_I1I2_hit_by_macs212_51recip	pct_excel_I1I2_hit
+SRR12064732	Midguts	I1	47945	40529	22556	36795	90.79	20836	92.37
+SRR12064733	Midguts	I2	63427	53392	20454	48915	91.61	19055	93.16
+SRR12064734	Salivary glands	I1	46058	51703	35208	42279	81.77	31936	90.71
+SRR12064735	Salivary glands	I2	49701	47381	33368	43685	92.2	31088	93.17

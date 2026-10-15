@@ -17,17 +17,16 @@ Kyle Swanson, Wesley Wu, Nash~L. Bulaong, John~E. Pak, and James Zou.
 \newblock {\em Nature}, 646(8085):716--723, July 2025.
 
 \bibitem{aiscientist2024}
-Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
-  Ha.
-\newblock The {AI} scientist: Towards fully automated open-ended scientific
-  discovery.
-\newblock {\em arXiv preprint arXiv:2408.06292}, 2024.
+Chris Lu, Cong Lu, Robert~Tjarko Lange, Yutaro Yamada, Shengran Hu, Jakob
+  Foerster, David Ha, and Jeff Clune.
+\newblock Towards end-to-end automation of {AI} research.
+\newblock {\em Nature}, 651(8107):914--919, 2026.
 
 \bibitem{kosmos2025}
 Ludovico Mitchener, Angela Yiu, Benjamin Chang, Mathieu Bourdenx, Tyler
   Nadolski, et~al.
 \newblock Kosmos: An {AI} scientist for autonomous discovery.
-\newblock {\em arXiv preprint arXiv:2511.02824}, 2025.
+\newblock {\em arXiv}, page 2511.02824, 2025.
 
 \bibitem{huang2025biomni}
 Kexin Huang, Serena Zhang, Hanchen Wang, Yuanhao Qu, Yingzhou Lu, Yusuf
@@ -36,7 +35,7 @@ Kexin Huang, Serena Zhang, Hanchen Wang, Yuanhao Qu, Yingzhou Lu, Yusuf
   Wang, Peng He, Jingtian Zhou, Michael Snyder, Le~Cong, Aviv Regev, and Jure
   Leskovec.
 \newblock Biomni: A general-purpose biomedical {AI} agent.
-\newblock {\em bioRxiv preprint bioRxiv:2025.05.30.656746}, 2025.
+\newblock {\em bioRxiv}, page 2025.05.30.656746, 2025.
 
 \bibitem{coscientist2026}
 Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
@@ -90,10 +89,57 @@ Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
   data analyses: 2024 update.
 \newblock {\em Nucleic Acids Research}, 52(W1):W83--W94, May 2024.
 
+\bibitem{iuc2026}
+{Intergalactic Utilities Commission}.
+\newblock Galaxy {Intergalactic} {Utilities} {Commission} ({IUC}) tool
+  repository.
+\newblock \url{https://github.com/galaxyproject/tools-iuc}, 2026.
+\newblock GitHub repository.
+
+\bibitem{biocontainers2017}
+Felipe da~Veiga~Leprevost, Bj{\"o}rn~A. Gr{\"u}ning, Saulo Alves~Aflitos,
+  Hannes~L. R{\"o}st, Julian Uszkoreit, Harald Barsnes, Marc Vaudel, Pablo
+  Moreno, Laurent Gatto, Jonas Weber, Mingze Bai, Rafael~C. Jimenez, Timo
+  Sachsenberg, Julianus Pfeuffer, Roberto Vera~Alvarez, Johannes Griss,
+  Alexey~I. Nesvizhskii, and Yasset Perez-Riverol.
+\newblock {BioContainers}: an open-source and community-driven framework for
+  software standardization.
+\newblock {\em Bioinformatics}, 33(16):2580--2582, 2017.
+
+\bibitem{iwc2026}
+{Intergalactic Workflow Commission}.
+\newblock Galaxy {Intergalactic} {Workflow} {Commission} ({IWC}).
+\newblock \url{https://iwc.galaxyproject.org}, 2026.
+\newblock Workflow registry and GitHub repository
+  (\url{https://github.com/galaxyproject/iwc}).
+
+\bibitem{batut2018}
+B{\'e}r{\'e}nice Batut, Saskia Hiltemann, Andrea Bagnacani, Dannon Baker, Vikas
+  Bhardwaj, Clemens Blank, Anthony Bretaudeau, Loraine Brillet-Gu{\'e}guen,
+  Martin {\v{C}}ech, John Chilton, Dave Clements, Nate Coraor, Bj{\"o}rn~A.
+  Gr{\"u}ning, Aysam Guerler, Jennifer Hillman-Jackson, Delphine Larivi{\`e}re,
+  Ross Lazarus, Yvan Le~Bras, Herv{\'e} M{\'e}nager, Anton Nekrutenko, Tobias
+  Rausch, Helena Rasche, Nicola Soranzo, Marius van~den Beek, Jeremy Goecks,
+  James Taylor, and Daniel Blankenberg.
+\newblock Community-driven data analysis training for biology.
+\newblock {\em Cell Systems}, 6(6):752--758.e1, 2018.
+
+\bibitem{hiltemann2023}
+Saskia Hiltemann, Helena Rasche, Simon Gladman, Hans-Rudolf Hotz, Delphine
+  Larivi{\`e}re, Daniel Blankenberg, Pratik~D. Jagtap, Thomas Wollmann, Anthony
+  Bretaudeau, Nadia Gou{\'e}, Timothy~J. Griffin, Coline Royaux, Yvan Le~Bras,
+  Subina Mehta, Anna Syme, Frederik Coppens, Bert Droesbeke, Nicola Soranzo,
+  Wendi Bacon, Fotis Psomopoulos, Crist{\'o}bal Gallardo-Alba, John Davis,
+  Melanie~Christine F{\"o}ll, Matthias Fahrner, Maria~A. Doyle, Beatriz
+  Serrano-Solano, Anne Fouilloux, Peter van Heusden, Wolfgang Maier, Dave
+  Clements, Florian Heyl, Bj{\"o}rn Gr{\"u}ning, B{\'e}r{\'e}nice Batut, and
+  {Galaxy Training Network}.
+\newblock {Galaxy Training}: A powerful framework for teaching!
+\newblock {\em PLOS Computational Biology}, 19(1):e1010752, 2023.
+
 \bibitem{foundry2026}
 {Galaxy Project}.
-\newblock Workflow {Foundry}: Compiling scientific workflows from literature
-  and pipelines.
+\newblock Galaxy workflow {Foundry}.
 \newblock \url{https://github.com/galaxyproject/foundry}, 2026.
 \newblock GitHub repository.
 
@@ -104,17 +150,17 @@ Kate{\v{r}}ina Vyklick{\'a}, Ji{\v{r}}{\'\i} Ku{\v{c}}era, Vojt{\v{e}}ch
   R{\r{u}}{\v{z}}i{\v{c}}ka, and Petra Bo{\v{r}}ilov{\'a}~Linhartov{\'a}.
 \newblock Effect of carbohydrate substrates on growth and enterotoxin gene
   expression in \textit{Bacillus cereus} (pacificus).
-\newblock {\em Scientific Reports}, 16(1):1917, 2026.
+\newblock {\em Scientific Reports}, 16(1):1917, 2025.
 
 \bibitem{galaxymcp2026}
 {Galaxy Project}.
-\newblock Galaxy {Model} {Context} {Protocol} ({MCP}) server.
+\newblock Galaxy {MCP} server.
 \newblock \url{https://github.com/galaxyproject/galaxy-mcp}, 2026.
 \newblock GitHub repository.
 
 \bibitem{galaxyskills2026}
 {Galaxy Project}.
-\newblock Galaxy skills: Modular domain knowledge for autonomous agents.
+\newblock Galactic skills.
 \newblock \url{https://github.com/galaxyproject/galaxy-skills}, 2026.
 \newblock GitHub repository.
 
@@ -132,7 +178,7 @@ Alexander Dobin, Carrie~A. Davis, Felix Schlesinger, Jorg Drenkow, Chris
   Adam Kosiorek, Andrew Senior, Richard Tanburn, Taylor Applebaum, Souradeep
   Basu, Demis Hassabis, and Pushmeet Kohli.
 \newblock Advancing regulatory variant effect prediction with {AlphaGenome}.
-\newblock {\em Nature}, 649:1206--1218, 2026.
+\newblock {\em Nature}, 649(8099):1206--1218, 2026.
 
 \bibitem{logan2024}
 Rayan Chikhi, T{\'e}o Lemane, Rapha{\"e}l Loll-Krippleber, Merc{\`e}
@@ -144,7 +190,7 @@ Rayan Chikhi, T{\'e}o Lemane, Rapha{\"e}l Loll-Krippleber, Merc{\`e}
   Brown, Robert~C. Edgar, Anton Korobeynikov, Martin Steinegger, Caleb~A.
   Lareau, Pierre Peterlongo, and Artem Babaian.
 \newblock Logan: Planetary-scale genome assembly surveys life's diversity.
-\newblock {\em bioRxiv preprint bioRxiv:2024.07.30.605881}, 2024.
+\newblock {\em bioRxiv}, page 2024.07.30.605881, 2024.
 
 \bibitem{lexicmap2025}
 Wei Shen, John~A. Lees, and Zamin Iqbal.
@@ -165,6 +211,19 @@ Nicolas~L. Bray, Harold Pimentel, P{\'a}ll Melsted, and Lior Pachter.
   2026.
 \newblock Galaxy Release 26.1 Documentation.
 
+\bibitem{miao2026}
+Jiacheng Miao, Joe~R. Davis, Yaohui Zhang, Jonathan~K. Pritchard, and James
+  Zou.
+\newblock Reimagining research papers as interactive and reliable {AI} agents.
+\newblock {\em Nature}, 2026.
+\newblock Advance online publication; PMID 42749808.
+
+\bibitem{sun2024}
+Eric~D. Sun, Rong Ma, Paloma Navarro~Negredo, Anne Brunet, and James Zou.
+\newblock {TISSUE}: uncertainty-calibrated prediction of single-cell spatial
+  transcriptomics improves downstream analyses.
+\newblock {\em Nature Methods}, 21(3):444--454, 2024.
+
 \bibitem{hokken2018}
 Margriet W.~J. Hokken, Jan Zoll, Jordy P.~M. Coolen, Bas~J. Zwaan, Paul~E.
   Verweij, and Willem J.~G. Melchers.
@@ -172,23 +231,6 @@ Margriet W.~J. Hokken, Jan Zoll, Jordy P.~M. Coolen, Bas~J. Zwaan, Paul~E.
   \textit{Aspergillus fumigatus}; an expression profile of clinical isolates
   upon exposure to itraconazole.
 \newblock {\em BMC Genomics}, 20(1):28, 2019.
-
-\bibitem{chung2014}
-DaWoon Chung, Brian~M. Barker, Charles~C. Carey, B.~Merriman, Ernst~R. Werner,
-  Beatrix~E. Lechner, Sourabh Dhingra, C.~Cheng, W.~Xu, Sarah~J. Blosser,
-  K.~Morohashi, Aur{\'e}lien Mazurie, Thomas~K. Mitchell, Hubertus Haas,
-  Aaron~P. Mitchell, and Robert~A. Cramer.
-\newblock {ChIP}-seq and in vivo transcriptome analyses of the
-  \textit{Aspergillus fumigatus} {SREBP} {SrbA} reveals a new regulator of the
-  fungal hypoxia response and virulence.
-\newblock {\em PLOS Pathogens}, 10(11):e1004487, 2014.
-
-\bibitem{toenhake2018}
-Christa~G. Toenhake, Sabine A.-K. Fraschka, M.~S. Vijayabaskar, David~R.
-  Westhead, Simon~J. van Heeringen, and Rich{\'a}rd B{\'a}rtfai.
-\newblock Chromatin accessibility-based characterization of the gene regulatory
-  network underlying \textit{Plasmodium falciparum} blood-stage development.
-\newblock {\em Cell Host \& Microbe}, 23(4):557--569, 2018.
 
 \bibitem{ruiz2021}
 Jos{\'e}~L. Ruiz, Lisa~C. Ranford-Cartwright, and Elena G{\'o}mez-D{\'i}az.
@@ -202,19 +244,6 @@ Shunlong Wang, Ying Huang, Fei Wang, Qian Han, Nanjie Ren, Xiaoyu Wang, Yingjun
 \newblock A cell atlas of the adult female \textit{Aedes aegypti} midgut
   revealed by single-cell {RNA} sequencing.
 \newblock {\em Scientific Data}, 11:587, 2024.
-
-\bibitem{miao2026}
-Jiacheng Miao, Joe~R. Davis, Yaohui Zhang, Jonathan~K. Pritchard, and James
-  Zou.
-\newblock Reimagining research papers as interactive and reliable {AI} agents.
-\newblock {\em Nature}, 2026.
-\newblock doi:10.1038/s41586-026-11044-y.
-
-\bibitem{sun2024}
-Eric~D. Sun, Rong Ma, Paloma Navarro~Negredo, Anne Brunet, and James Zou.
-\newblock {TISSUE}: uncertainty-calibrated prediction of single-cell spatial
-  transcriptomics improves downstream analyses.
-\newblock {\em Nature Methods}, 21(3):444--454, 2024.
 
 \bibitem{carlton2008}
 Jane~M. Carlton, John~H. Adams, Joana~C. Silva, Shelby~L. Bidwell, Hernan
@@ -231,57 +260,6 @@ Thomas~E. Harrison, Adam~J. Reid, Deirdre Cunningham, Jean Langhorne, and
 \newblock {\em Proceedings of the National Academy of Sciences},
   117(50):32098--32104, 2020.
 
-\bibitem{pond2026hyphaeon}
-Sergei~L. Kosakovsky~Pond, Steven Weaver, Danielle Callan, Jordan~D. Zehr,
-  Alexander~G. Lucaci, Hannah Verdonk, Avery Selberg, Gallean Brown, Maria
-  Chikina, Nathan~L. Clark, Kateryna~D. Makova, Darren~P. Martin, and Anton
-  Nekrutenko.
-\newblock {HyphAeon}: Attention on evolution across deep time transforms
-  comparative genomics.
-\newblock {\em bioRxiv}, page 2026.09.06.749597, 2026.
-
-\bibitem{brcanalytics2026}
-{Galaxy Project and BRC-Analytics Consortium}.
-\newblock {BRC-Analytics}: {Bioinformatics} {Resource} {Center} analytics
-  portal.
-\newblock \url{https://brc-analytics.org}, 2026.
-\newblock Web portal and GitHub repository
-  (\url{https://github.com/galaxyproject/brc-analytics}).
-
-\bibitem{jackson2026}
-Andrew~P. Jackson, Deirdre~A. Cunningham, Lin Lin, Naomi~Mara Claro~de
-  Oliveira, S{\'e}verine~C. Chevalley-Maurel, et~al.
-\newblock Essential function reflected in the phylodynamics of a multigene
-  family -- the pir genes of malaria parasites.
-\newblock {\em eLife}, 15:e111505, 2026.
-
-\bibitem{lopez2013}
-F.~J. L{\'o}pez, M.~Bernabeu, C.~Fernandez-Becerra, and H.~A. del Portillo.
-\newblock A new computational approach redefines the subtelomeric vir
-  superfamily of {Plasmodium} vivax.
-\newblock {\em BMC Genomics}, 14:8, 2013.
-
-\bibitem{auburn2016}
-Sarah Auburn, Ulrike B{\"o}hme, Silvia Steinbiss, H.~Trimarsanto, J.~Hostetler,
-  M.~Sanders, et~al.
-\newblock A new {Plasmodium} vivax reference sequence with improved assembly of
-  the subtelomeres reveals an abundance of pir genes.
-\newblock {\em Wellcome Open Research}, 1:4, 2016.
-
-\bibitem{demeulenaere2023}
-Katlijn De~Meulenaere, Bart Cuypers, Dionicia Gamboa, Kris Laukens, and Anna
-  Rosanas-Urgell.
-\newblock A new {Plasmodium} vivax reference genome for {South} {American}
-  isolates.
-\newblock {\em BMC Genomics}, 24(1):606, 2023.
-
-\bibitem{suchard2018}
-Marc~A. Suchard, Philippe Lemey, Guy Baele, Daniel~L. Ayres, Alexei~J.
-  Drummond, and Andrew Rambaut.
-\newblock Bayesian phylogenetic and phylodynamic data integration using {BEAST}
-  1.10.
-\newblock {\em Virus Evolution}, 4(1):vey016, 2018.
-
 \bibitem{gire2014genomic}
 Stephen~K. Gire, Augustine Goba, Kristian~G. Andersen, Rachel S.~G. Sealfon,
   Daniel~J. Park, Lansana Kanneh, Simbirie Jalloh, Mambu Momoh, Mohamed Fullah,
@@ -292,11 +270,149 @@ Stephen~K. Gire, Augustine Goba, Kristian~G. Andersen, Rachel S.~G. Sealfon,
 
 \bibitem{dudas2017virus}
 Gytis Dudas, Luiz~Max Carvalho, Trevor Bedford, Andrew~J. Tatem, Guy Baele,
-  Nuno~R. Faria, Daniel~J. Park, Jason~T. Ladner, Alimuddin Arias, Andrew
-  Rambaut, et~al.
+  Nuno~R. Faria, Daniel~J. Park, Jason~T. Ladner, Armando Arias, Danny Asogun,
+  et~al.
 \newblock Virus genomes reveal factors that spread and sustained the {Ebola}
   epidemic.
 \newblock {\em Nature}, 544(7650):309--315, 2017.
+
+\bibitem{hill2019skygrid}
+Verity Hill and Guy Baele.
+\newblock Bayesian estimation of past population dynamics in {BEAST} 1.10 using
+  the {Skygrid} coalescent model.
+\newblock {\em Molecular Biology and Evolution}, 36(11):2620--2628, 2019.
+
+\bibitem{faria2021genomics}
+Nuno~R. Faria, Thomas~A. Mellan, Charles Whittaker, Ingra~M. Claro, Darlan
+  da~S. Candido, Swapnil Mishra, Myuki A.~E. Crispim, Flavia C.~S. Sales, Iwona
+  Hawryluk, John~T. McCrone, et~al.
+\newblock Genomics and epidemiology of the {P.1} {SARS-CoV-2} lineage in
+  {Manaus}, {Brazil}.
+\newblock {\em Science}, 372(6544):815--821, 2021.
+
+\bibitem{pond2026hyphaeon}
+Sergei~L. Kosakovsky~Pond, Steven Weaver, Danielle Callan, Jordan~D. Zehr,
+  Alexander~G. Lucaci, Hannah Verdonk, Avery Selberg, Gallean Brown, Maria
+  Chikina, Nathan~L. Clark, Kateryna~D. Makova, Darren~P. Martin, and Anton
+  Nekrutenko.
+\newblock {HyphAeon}: Attention on evolution across deep time transforms
+  comparative genomics.
+\newblock {\em bioRxiv}, page 2026.09.06.749597, 2026.
+\newblock Preprint; ChronAeon molecular-clock module in
+  \url{https://github.com/veg/chronaeon} and
+  \url{https://github.com/veg/HyphAeon}.
+
+\bibitem{brcanalytics2026}
+{Galaxy Project and BRC-Analytics Consortium}.
+\newblock {BRC-Analytics}: {Bioinformatics} {Resource} {Center} analytics
+  portal.
+\newblock \url{https://brc-analytics.org}, 2026.
+\newblock Web portal and GitHub repository
+  (\url{https://github.com/galaxyproject/brc-analytics}).
+
+\bibitem{lopez2013}
+F.~J. L{\'o}pez, M.~Bernabeu, C.~Fernandez-Becerra, and H.~A. del Portillo.
+\newblock A new computational approach redefines the subtelomeric vir
+  superfamily of {Plasmodium} vivax.
+\newblock {\em BMC Genomics}, 14:8, 2013.
+
+\bibitem{auburn2016}
+Sarah Auburn, Ulrike B{\"o}hme, Sascha Steinbiss, Hidayat Trimarsanto, Jessica
+  Hostetler, Mandy~J. Sanders, Qi~Gao, Francois Nosten, Christopher~I. Newbold,
+  Matthew Berriman, Ric~N. Price, and Thomas~D. Otto.
+\newblock A new {Plasmodium} vivax reference sequence with improved assembly of
+  the subtelomeres reveals an abundance of pir genes.
+\newblock {\em Wellcome Open Research}, 1:4, 2016.
+
+\bibitem{minassian2021pvw1}
+Angela~M. Minassian, Yrene Themistocleous, Sarah~E. Silk, Jordan~R. Barrett,
+  Alison Kemp, Doris Quinkert, Carolyn~M. Nielsen, Nick~J. Edwards, Thomas~A.
+  Rawlinson, Fernando Ramos~Lopez, et~al.
+\newblock Controlled human malaria infection with a clonal \textit{Plasmodium
+  vivax} isolate for blood-stage vaccine testing.
+\newblock {\em JCI Insight}, 6(23):e152465, 2021.
+
+\bibitem{demeulenaere2023}
+Katlijn De~Meulenaere, Bart Cuypers, Dionicia Gamboa, Kris Laukens, and Anna
+  Rosanas-Urgell.
+\newblock A new {Plasmodium} vivax reference genome for {South} {American}
+  isolates.
+\newblock {\em BMC Genomics}, 24(1):606, 2023.
+
+\bibitem{jackson2026}
+Andrew~P. Jackson, Deirdre~A. Cunningham, Lin Lin, Naomi~Mara Claro~de
+  Oliveira, S{\'e}verine~C. Chevalley-Maurel, et~al.
+\newblock Essential function reflected in the phylodynamics of a multigene
+  family -- the pir genes of malaria parasites.
+\newblock {\em eLife Reviewed Preprint}, page RP111505, 2026.
+
+\bibitem{suchard2018}
+Marc~A. Suchard, Philippe Lemey, Guy Baele, Daniel~L. Ayres, Alexei~J.
+  Drummond, and Andrew Rambaut.
+\newblock Bayesian phylogenetic and phylodynamic data integration using {BEAST}
+  1.10.
+\newblock {\em Virus Evolution}, 4(1):vey016, 2018.
+
+\bibitem{andersen2015lassa}
+Kristian~G. Andersen, B.~Jesse Shapiro, Christian~B. Matranga, Rachel Sealfon,
+  Aaron~E. Lin, Lina~M. Moses, Onikepe~A. Folarin, Augustine Goba, Ikponmwosa
+  Odia, Philomena~E. Ehiane, et~al.
+\newblock Clinical sequencing uncovers origins and evolution of {Lassa} virus.
+\newblock {\em Cell}, 162(4):738--750, 2015.
+
+\bibitem{suchard2020lassa}
+Guy Baele, Mandev~S. Gill, Philippe Lemey, and Marc~A. Suchard.
+\newblock Fast, scalable and accurate model selection for phylodynamic
+  inference.
+\newblock {\em Systematic Biology}, 69(5):953--965, 2020.
+
+\bibitem{dux2020measles}
+Ariane D{\"u}x, Sebastian Lequime, Livia~V. Patrono, Bram Vrancken, Seng{\"u}l
+  Boral, Jan~F. Gogarten, Antonia Hilbig, David Horst, Kevin Merkel, Baptiste
+  Prepoint, et~al.
+\newblock Measles virus and rinderpest virus divergence dated to the sixth
+  century {BCE}.
+\newblock {\em Science}, 368(6497):1367--1370, 2020.
+
+\bibitem{rea2026}
+Morluto.
+\newblock {REA}: {Reverse} {Engineer} {Anything}.
+\newblock \url{https://github.com/morluto/rea}, 2026.
+\newblock GitHub repository.
+
+\bibitem{gill2020skygrid}
+Mandev~S. Gill, Philippe Lemey, Marc~A. Suchard, Andrew Rambaut, and Guy Baele.
+\newblock Online bayesian phylodynamic inference in {BEAST} with application to
+  epidemic reconstruction.
+\newblock {\em Molecular Biology and Evolution}, 37(6):1832--1842, 2020.
+
+\bibitem{fieller1954some}
+Edgar~C. Fieller.
+\newblock Some problems in interval estimation.
+\newblock {\em Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 16(2):175--185, 1954.
+
+\bibitem{dellicour2020chikv}
+Simon Dellicour, Guy Baele, Gytis Dudas, Nuno~R. Faria, Oliver~G. Pybus,
+  Marc~A. Suchard, Andrew Rambaut, and Philippe Lemey.
+\newblock Phylodynamic assessment of intervention strategies for the west
+  african {Ebola} virus outbreak and {Chikungunya} epidemic.
+\newblock {\em Molecular Biology and Evolution}, 37(10):2993--3006, 2020.
+
+\bibitem{otoole2023mpox}
+{\'A}ine O'Toole, Richard~A. Neher, Nnaemeka Ndodo, V{\'\i}tor Borges, Ben
+  Gannon, Jo{\~a}o~Paulo Gomes, Natalie Groves, Daniel~J. King, David Lau,
+  John~T. McCrone, et~al.
+\newblock {APOBEC3} deaminase editing in mpox virus as evidence for sustained
+  human transmission since at least 2016.
+\newblock {\em Science}, 382(6670):595--600, 2023.
+
+\bibitem{commins2023mab}
+Neil Commins, Matthew~R. Sullivan, Kira McGowen, Evan Koch, Eric~J. Rubin, and
+  Maha Farhat.
+\newblock Phylogenomic analysis of \textit{Mycobacterium abscessus} clinical
+  isolates.
+\newblock {\em Nature Microbiology}, 8(8):1495--1507, 2023.
 
 \bibitem{taylorsalmon2024travel}
 Emma Taylor-Salmon, Verity Hill, Lauren~M. Paul, Robert~T. Koch, Mallery~I.
@@ -305,26 +421,42 @@ Emma Taylor-Salmon, Verity Hill, Lauren~M. Paul, Robert~T. Koch, Mallery~I.
   in the {Caribbean}.
 \newblock {\em Nature Communications}, 15(1):3508, 2024.
 
-\bibitem{fieller1954some}
-Edgar~C. Fieller.
-\newblock Some problems in interval estimation.
-\newblock {\em Journal of the Royal Statistical Society: Series B
-  (Methodological)}, 16(2):175--185, 1954.
+\bibitem{worobey2014flu}
+Michael Worobey, Guan-Zhu Han, and Andrew Rambaut.
+\newblock A synchronized global sweep of the internal genes of modern avian
+  influenza virus.
+\newblock {\em Nature}, 508(7495):254--257, 2014.
 
-\bibitem{biocontainers2017}
-Felipe da~Veiga~Leprevost, Bj{\"o}rn~A. Gr{\"u}ning, Saulo Alves~Aflitos,
-  Hannes~L. R{\"o}st, Julian Uszkoreit, Harald Barsnes, Marc Vaudel, Pablo
-  Moreno, Laurent Gatto, Jonas Weber, Mingze Bai, Rafael~C. Jimenez, Timo
-  Sachsenberg, Julianus Pfeuffer, Roberto Vera~Alvarez, Johannes Griss,
-  Alexey~I. Nesvizhskii, and Yasset Perez-Riverol.
-\newblock {BioContainers}: an open-source and community-driven framework for
-  software standardization.
-\newblock {\em Bioinformatics}, 33(16):2580--2582, 2017.
+\bibitem{spyrou2019plague}
+Maria~A. Spyrou, Marcel Keller, Rezeda~I. Tukhbatova, Christiana~L. Scheib,
+  Elizabeth~A. Nelson, Aida Andrades~Valtue{\~n}a, Gunnar~U. Neumann, Don
+  Walker, Amelie Alterauge, Niamh Carty, et~al.
+\newblock Phylogeography of the second plague pandemic revealed through
+  analysis of historical \textit{Yersinia pestis} genomes.
+\newblock {\em Nature Communications}, 10(1):4470, 2019.
 
-\bibitem{rea2026}
-Morluto.
-\newblock {REA}: {Reverse} {Engineer} {Anything}.
-\newblock \url{https://github.com/morluto/rea}, 2026.
-\newblock GitHub repository.
+\bibitem{comas2013mtb}
+I{\~n}aki Comas, Mireia Coscolla, Tao Luo, Sonia Borrell, Kathryn~E. Holt,
+  Midori Kato-Maeda, Julian Parkhill, Bijaya Malla, Stefan Berg, Guy Thwaites,
+  et~al.
+\newblock Out-of-{Africa} migration and {Neolithic} coexpansion of
+  \textit{Mycobacterium tuberculosis} with modern humans.
+\newblock {\em Nature Genetics}, 45(10):1176--1182, 2013.
+
+\bibitem{bos2014mtb}
+Kirsten~I. Bos, Kelly~M. Harkins, Alexander Herbig, Mireia Coscolla, Nico
+  Weber, I{\~n}aki Comas, Stephen~A. Forrest, Josephine~M. Bryant, Simon~R.
+  Harris, Verena~J. Schuenemann, et~al.
+\newblock Pre-{Columbian} mycobacterial genomes reveal seals as a source of
+  {New} {World} human tuberculosis.
+\newblock {\em Nature}, 514(7523):494--497, 2014.
+
+\bibitem{patrono2022mpox}
+Livia~V. Patrono, K{\'a}tia Pl{\'e}h, Liran Samuni, Markus Ulrich, Caroline
+  R{\"o}themeier, Andreas Sachse, Sonja Muschter, Andreas Nitsche, Emmanuel
+  Couacy-Hymann, Christophe Boesch, et~al.
+\newblock Monkeypox virus emergence in wild chimpanzees reveals distinct
+  clinical outcomes and viral diversity.
+\newblock {\em Nature Microbiology}, 5(7):955--965, 2020.
 
 \end{thebibliography}

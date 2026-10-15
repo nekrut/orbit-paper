@@ -1,134 +1,116 @@
 #!/usr/bin/env python3
 """
-Generate publication-grade Figure 2 (or Figure for Section 3.1):
-Direct comparison of spatial transcriptomics conformal prediction intervals
-between Orbit autonomous reproduction on Galaxy and published results from Miao et al. (Nature 2026).
-
-Layout:
-  Two panels side-by-side:
-  - Panel a: Our results (Orbit autonomous agent on UseGalaxy.org, ACCESS-CI allocation)
-  - Panel b: Their results (Paper2Agent published benchmark, Miao et al. 2026, Extended Data Fig. 1c)
+Generate Figure 5 (figure2_spatial_comparison.{pdf,png}) exclusively from
+tracked in-repo data and image assets under manuscript/figures/data/spatial/.
 """
+import json
+from pathlib import Path
 
-import os
-from PIL import Image, ImageDraw, ImageFont
-import numpy as np
-import matplotlib as mpl
+import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch
+import numpy as np
+from PIL import Image
 
-mpl.rcParams["font.sans-serif"] = ["Helvetica", "Arial", "DejaVu Sans"]
-mpl.rcParams["font.family"] = "sans-serif"
-mpl.rcParams["figure.dpi"] = 300
-mpl.rcParams["savefig.dpi"] = 300
-mpl.rcParams["pdf.fonttype"] = 42
+plt.rcParams["font.sans-serif"] = "DejaVu Sans"
+plt.rcParams["axes.edgecolor"] = "#333333"
+plt.rcParams["axes.linewidth"] = 0.8
+plt.rcParams["pdf.fonttype"] = 42
+plt.rcParams["ps.fonttype"] = 42
 
-def make_figure():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    output_pdf = os.path.join(base_dir, "figure2_spatial_comparison.pdf")
-    output_png = os.path.join(base_dir, "figure2_spatial_comparison.png")
+HERE = Path(__file__).resolve().parent
+DATA_DIR = HERE / "data" / "spatial"
 
-    # 1. Load source images
-    our_src_path = "/Users/anton/git/spatTrOrbit/local_reference/galaxy_smoke_pi_width.png"
-    their_src_path = "/Users/anton/git/spatTrOrbit/paper_assets/Fig5_ESM.jpg"
 
-    if not os.path.exists(our_src_path) or not os.path.exists(their_src_path):
-        raise FileNotFoundError(f"Missing source images: {our_src_path} or {their_src_path}")
+def main() -> None:
+    galaxy_img_path = DATA_DIR / "galaxy_smoke_pi_width.png"
+    paper_img_path = DATA_DIR / "Fig5_ESM.jpg"
+    galaxy_summary_path = DATA_DIR / "galaxy_smoke_summary.json"
+    local_summary_path = DATA_DIR / "smoke_acta2_sklearn15_summary.json"
+    full_summary_path = DATA_DIR / "full_dataset15_galaxy_summary.json"
 
-    # Crop published benchmark from Miao et al. (Nature 2026) Extended Data Fig. 1c
-    im_orig = Image.open(their_src_path)
-    crop_b = im_orig.crop((3190, 3425, 4340, 4495))
+    with open(galaxy_summary_path) as f:
+        gal = json.load(f)
+    with open(local_summary_path) as f:
+        loc = json.load(f)
+    with open(full_summary_path) as f:
+        full = json.load(f)
 
-    # Prepare our reproduction with matched "Orbit agent" header
-    im_our_raw = Image.open(our_src_path).convert("RGBA")
+    img_gal = mpimg.imread(galaxy_img_path)
 
-    top_pad = 225
-    im_a = Image.new("RGBA", (im_our_raw.width, im_our_raw.height + top_pad), (255, 255, 255, 255))
-    im_a.paste(im_our_raw, (0, top_pad))
+    img_pap_full = Image.open(paper_img_path)
+    w, h = img_pap_full.size
+    # Clean crop around Extended Data Fig. 1c (SpatialDM Acta2 prediction interval width panel)
+    crop_box = (int(w * 0.575), int(h * 0.325), int(w * 0.998), int(h * 0.72))
+    img_pap_cropped = np.array(img_pap_full.crop(crop_box))
 
-    draw = ImageDraw.Draw(im_a)
-    font_bold = None
-    for fpath in [
-        "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
-        "/System/Library/Fonts/Supplemental/Helvetica-Bold.ttf",
-        "/System/Library/Fonts/Helvetica.ttc",
-    ]:
-        if os.path.exists(fpath):
-            try:
-                font_bold = ImageFont.truetype(fpath, 115)
-                break
-            except Exception:
-                continue
-    if font_bold is None:
-        font_bold = ImageFont.load_default()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.0, 6.2), dpi=300)
+    fig.patch.set_facecolor("white")
 
-    scatter_center_x = (76 + 1095) / 2.0
-    bbox = draw.textbbox((0, 0), "Orbit agent", font=font_bold)
-    tw = bbox[2] - bbox[0]
-    draw.text((scatter_center_x - tw / 2.0, 32), "Orbit agent", fill=(0, 0, 0, 255), font=font_bold)
-
-    im_a_crop = im_a.crop((60, 10, 1445, 1260 + top_pad))
-
-    # Match aspect ratio to crop_b
-    target_aspect = crop_b.width / crop_b.height
-    cur_w, cur_h = im_a_crop.size
-    target_w = int(cur_h * target_aspect)
-    pad_w = target_w - cur_w
-    pad_l = pad_w // 2
-    pad_r = pad_w - pad_l
-    im_a_final = Image.new("RGBA", (target_w, cur_h), (255, 255, 255, 255))
-    im_a_final.paste(im_a_crop, (pad_l, 0))
-
-    # 2. Assemble figure canvas
-    fig = plt.figure(figsize=(14.0, 7.6), facecolor="white")
-
-    # Panel A header
-    fig.text(0.04, 0.955, "a", fontsize=18, fontweight="bold", color="#1E3A8A")
-    fig.text(0.068, 0.955, "Our results: Galaxy UDT reproduction", fontsize=13.5, fontweight="bold", color="#0F172A")
-    fig.text(0.068, 0.922, "Autonomous execution on UseGalaxy.org (ACCESS-CI allocation, 4 cores)", fontsize=9.2, fontstyle="italic", color="#475569")
-
-    # Panel B header
-    fig.text(0.53, 0.955, "b", fontsize=18, fontweight="bold", color="#1E3A8A")
-    fig.text(0.558, 0.955, "Their results: Published benchmark (Miao et al., Nature 2026)", fontsize=13.5, fontweight="bold", color="#0F172A")
-    fig.text(0.558, 0.922, "Paper2Agent TISSUE execution (Extended Data Fig. 1c)", fontsize=9.2, fontstyle="italic", color="#475569")
-
-    # Main plot axes
-    ax_a = fig.add_axes([0.04, 0.17, 0.43, 0.72])
-    ax_a.imshow(im_a_final)
-    ax_a.axis("off")
-
-    ax_b = fig.add_axes([0.53, 0.17, 0.43, 0.72])
-    ax_b.imshow(crop_b)
-    ax_b.axis("off")
-
-    # Stats cards at bottom
-    ax_a_card = fig.add_axes([0.04, 0.035, 0.43, 0.105])
-    ax_a_card.axis("off")
-    box_a = FancyBboxPatch(
-        (0.0, 0.0), 1.0, 1.0, boxstyle="round,pad=0.03,rounding_size=0.06",
-        facecolor="#F0FDF4", edgecolor="#86EFAC", linewidth=1.2
+    ax1.imshow(img_gal)
+    ax1.set_title(
+        "A  Orbit Galaxy UDT Execution (1,000-cell tutorial subset)",
+        fontsize=11.5,
+        fontweight="bold",
+        pad=10,
+        loc="left",
+        color="#1a1a1a",
     )
-    ax_a_card.add_patch(box_a)
-    ax_a_card.text(0.035, 0.65, "Galaxy UDT Execution (1,000-cell Tutorial Subset, 32 calibration genes):", fontsize=9.2, fontweight="bold", color="#166534")
-    ax_a_card.text(0.035, 0.38, "Empirical Coverage: 86.46% (nominal 77%, \u03b1 = 0.23)  |  MAE: 1.9564", fontsize=8.5, color="#14532D")
-    ax_a_card.text(0.035, 0.14, "Mean log(1+PI): 2.0621  |  P95: 2.3552  |  Local vs. Galaxy UDT: r = 1.0000", fontsize=8.5, color="#14532D")
+    ax1.axis("off")
 
-    ax_b_card = fig.add_axes([0.53, 0.035, 0.43, 0.105])
-    ax_b_card.axis("off")
-    box_b = FancyBboxPatch(
-        (0.0, 0.0), 1.0, 1.0, boxstyle="round,pad=0.03,rounding_size=0.06",
-        facecolor="#F8FAFC", edgecolor="#CBD5E1", linewidth=1.2
+    ax2.imshow(img_pap_cropped)
+    ax2.set_title(
+        "B  Published Paper2Agent Benchmark (Miao et al. Extended Data Fig. 1c)",
+        fontsize=11.5,
+        fontweight="bold",
+        pad=10,
+        loc="left",
+        color="#1a1a1a",
     )
-    ax_b_card.add_patch(box_b)
-    ax_b_card.text(0.035, 0.65, "Published Paper2Agent Benchmark (Miao et al., Nature 2026, Ext. Data Fig. 1c):", fontsize=9.2, fontweight="bold", color="#0F172A")
-    ax_b_card.text(0.035, 0.38, "Input: 1,000-cell tutorial subset (31 calibration genes after 1% prevalence filter)", fontsize=8.5, color="#334155")
-    ax_b_card.text(0.035, 0.14, "Colorbar scale: [2.00, 2.30] (clipped at 95th percentile, nominal \u03b1 = 0.23)", fontsize=8.5, color="#334155")
+    ax2.axis("off")
 
-    # Save outputs
-    fig.savefig(output_png, bbox_inches="tight", dpi=300)
-    fig.savefig(output_pdf, bbox_inches="tight", dpi=300)
-    plt.close(fig)
-    print(f"Generated: {output_png} and {output_pdf}")
+    gal_cov = gal["empirical_coverage"] * 100.0
+    loc_cov = loc["empirical_coverage"] * 100.0
+    gal_mean = gal["mean_pi_width_log1p"]
+    loc_mean = loc["mean_pi_width_log1p"]
+    full_cov = full["empirical_coverage"] * 100.0
+    full_mean = full["mean_pi_width_log1p"]
+    full_r = full["pearson_r"]
+    full_n = full["num_cells"]
+
+    metrics_text = (
+        f"Quantitative Verification & Calibration Provenance (Target gene: Acta2, 77% nominal conformal level, α = 0.23):\n"
+        f"• Calibration gene filter: 31 calibration genes after 1% minimum expression filter (drops Flt1; 32 unfiltered)\n"
+        f"• Tutorial Subset (1,000 cells, 33 genes): Galaxy UDT coverage = {gal_cov:.2f}% vs. {loc_cov:.2f}% local reference  |  "
+        f"Mean log(1 + PI width) = {gal_mean:.4f} (Galaxy) vs. {loc_mean:.4f} (local)\n"
+        f"• Numerical Reproducibility: Identical cross-platform splits yield $\\Delta_{{\\mathrm{{max}}}} < 10^{{-15}}$ ($r = 1.0000$); "
+        f"full Dataset 15 ({full_n:,} cells) achieves {full_cov:.2f}% coverage, mean width {full_mean:.4f}, $r = {full_r:.4f}$"
+    )
+
+    fig.text(
+        0.5,
+        0.025,
+        metrics_text,
+        ha="center",
+        va="bottom",
+        fontsize=9.2,
+        color="#1f2937",
+        linespacing=1.4,
+        bbox=dict(
+            boxstyle="round,pad=0.55",
+            facecolor="#f8fafc",
+            edgecolor="#cbd5e1",
+            linewidth=1.0,
+        ),
+    )
+
+    plt.tight_layout(rect=[0, 0.16, 1, 0.98])
+
+    out_pdf = HERE / "figure2_spatial_comparison.pdf"
+    out_png = HERE / "figure2_spatial_comparison.png"
+    plt.savefig(out_pdf, dpi=300, bbox_inches="tight")
+    plt.savefig(out_png, dpi=300, bbox_inches="tight")
+    print(f"Saved {out_pdf} and {out_png}")
+
 
 if __name__ == "__main__":
-    make_figure()
+    main()

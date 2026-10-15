@@ -1,0 +1,9 @@
+track_id	track_label	tissue	total_regions	unique_genes	promoters	enhancers
+canonical_ruiz_excel	Published (Ruiz Table S3)	Midguts	43010	8121	13629	21133
+canonical_ruiz_excel	Published (Ruiz Table S3)	Salivary glands	68576	9204	20488	38286
+unfitted_macs212_recip0.51	Unfitted 51% recip. (MACS2 2.1.2)	Midguts	41580	7898	13107	20152
+unfitted_macs212_recip0.51	Unfitted 51% recip. (MACS2 2.1.2)	Salivary glands	57518	8682	18614	31305
+unfitted_macs211_recip0.51	Unfitted 51% recip. (MACS2 2.1.1)	Midguts	41340	7878	13057	20042
+unfitted_macs211_recip0.51	Unfitted 51% recip. (MACS2 2.1.1)	Salivary glands	57274	8669	18563	31150
+fitted_macs212_either0.851	Fitted either_frac=0.851 (MACS2 2.1.2)	Midguts	44780	8018	13566	21753
+fitted_macs212_either0.851	Fitted either_frac=0.851 (MACS2 2.1.2)	Salivary glands	67594	8964	20071	38425

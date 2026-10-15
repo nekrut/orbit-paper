@@ -1,128 +1,264 @@
 #!/usr/bin/env python3
 """
-Generate publication-grade Figure 3 for Section 3.2:
-Reconstruction of the VIR Multigene Antigen Family Architecture:
-Sequence Twilight Zone Over-Splitting vs. Structure-Aware Global Panmixia.
-
-Layout:
-  Two panels side-by-side:
-  - Panel a: Sequence Twilight Zone and Family Over-Splitting (Log-scale identity histogram + comparison card)
-  - Panel b: Reconstructed Structural Phylogeny and Global Panmixia (Circular tree + parsimony card)
+Generate Figure 7 (figure3_vir_reconstruction.{pdf,png}) exclusively from
+tracked in-repo files under manuscript/figures/data/vir/.
 """
+from io import BytesIO
+from pathlib import Path
 
-import os
+import fitz  # PyMuPDF
+import matplotlib.gridspec as gridspec
+import matplotlib.lines as mlines
 import matplotlib.pyplot as plt
-import matplotlib as mpl
-from matplotlib.patches import FancyBboxPatch
-import pandas as pd
 import numpy as np
+import pandas as pd
 from PIL import Image
-import fitz
 
-mpl.rcParams["font.sans-serif"] = ["Helvetica", "Arial", "DejaVu Sans"]
-mpl.rcParams["font.family"] = "sans-serif"
-mpl.rcParams["figure.dpi"] = 300
-mpl.rcParams["savefig.dpi"] = 300
-mpl.rcParams["pdf.fonttype"] = 42
+plt.rcParams["font.sans-serif"] = "DejaVu Sans"
+plt.rcParams["axes.edgecolor"] = "#333333"
+plt.rcParams["axes.linewidth"] = 0.8
+plt.rcParams["pdf.fonttype"] = 42
+plt.rcParams["ps.fonttype"] = 42
 
-def make_figure():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    output_pdf = os.path.join(base_dir, "figure3_vir_reconstruction.pdf")
-    output_png = os.path.join(base_dir, "figure3_vir_reconstruction.png")
-    hist_standalone_pdf = os.path.join(base_dir, "identity_histogram.pdf")
+HERE = Path(__file__).resolve().parent
+DATA_DIR = HERE / "data" / "vir"
 
-    tree_pdf = os.path.join(base_dir, "q2_part_tree.pdf")
-    fs_tsv = "/Users/anton/git/phist/data/genomes/alignments/ortho/fs001_rbh.tsv"
-    hk_tsv = "/Users/anton/git/phist/data/genomes/alignments/ortho/housekeeping_rbh.tsv"
 
-    if not os.path.exists(tree_pdf):
-        raise FileNotFoundError(f"Missing tree vector file: {tree_pdf}")
+def main() -> None:
+    hk_path = DATA_DIR / "housekeeping_rbh.tsv"
+    vir_path = DATA_DIR / "fs001_rbh.tsv"
+    tree_pdf_path = DATA_DIR / "q2_part_tree.pdf"
 
-    fs = pd.read_csv(fs_tsv, sep="\t")
-    hk = pd.read_csv(hk_tsv, sep="\t")
-    fs_med = fs["pident"].median()
-    hk_med = hk["pident"].median()
+    df_hk = pd.read_csv(hk_path, sep="\t")
+    df_vir = pd.read_csv(vir_path, sep="\t")
 
-    # 1. Update standalone identity_histogram.pdf with log y-scale
-    fig_hist, ax_h = plt.subplots(figsize=(8, 5), facecolor="white")
-    bins = np.linspace(0, 100, 36)
-    ax_h.hist(hk["pident"], bins=bins, density=True, alpha=0.55, label=f"Housekeeping RBH (n={len(hk):,})", color="#2563EB", edgecolor="none")
-    ax_h.hist(fs["pident"], bins=bins, density=True, alpha=0.65, label=f"FS_001 RBH (n={len(fs):,})", color="#DC2626", edgecolor="none")
-    ax_h.axvline(fs_med, color="#DC2626", linestyle="--", linewidth=1.5, label=f"FS_001 median = {fs_med:.1f}%")
-    ax_h.axvline(hk_med, color="#2563EB", linestyle="--", linewidth=1.5, label=f"Housekeeping median = {hk_med:.1f}%")
-    ax_h.set_yscale("log")
-    ax_h.set_ylim(1e-4, 1.0)
-    ax_h.set_xlim(0, 100)
-    ax_h.set_xlabel("Pairwise Amino Acid Identity (%)", fontsize=10, fontweight="bold", color="#1E293B")
-    ax_h.set_ylabel("Density (log scale)", fontsize=10, fontweight="bold", color="#1E293B")
-    ax_h.set_title("PvW1 <-> PvPAM ortholog identity\nFS_001 (subtelomeric VIR) vs housekeeping", fontsize=11, fontweight="bold", color="#0F172A")
-    ax_h.grid(True, which="both", axis="y", linestyle=":", alpha=0.4, color="#94A3B8")
-    ax_h.grid(True, which="major", axis="x", linestyle=":", alpha=0.3, color="#94A3B8")
-    ax_h.legend(frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=9, loc="upper left")
-    plt.tight_layout()
-    fig_hist.savefig(hist_standalone_pdf, bbox_inches="tight")
-    plt.close(fig_hist)
-    print(f"Updated standalone: {hist_standalone_pdf}")
+    hk_pident = (
+        df_hk["pident"] * 100.0 if df_hk["pident"].max() <= 1.0 else df_hk["pident"]
+    )
+    vir_pident = (
+        df_vir["pident"] * 100.0 if df_vir["pident"].max() <= 1.0 else df_vir["pident"]
+    )
 
-    # 2. Render Tree from vector PDF
-    doc_t = fitz.open(tree_pdf)
-    pix_t = doc_t[0].get_pixmap(dpi=300)
-    im_tree_raw = Image.frombytes("RGB", [pix_t.width, pix_t.height], pix_t.samples)
-    im_tree_crop = im_tree_raw.crop((480, 650, 2030, 1860))
+    hk_med = float(np.median(hk_pident))
+    hk_iqr = float(np.percentile(hk_pident, 75) - np.percentile(hk_pident, 25))
+    vir_med = float(np.median(vir_pident))
+    vir_iqr = float(np.percentile(vir_pident, 75) - np.percentile(vir_pident, 25))
 
-    # 3. Create composite figure
-    fig = plt.figure(figsize=(13.2, 6.2), facecolor="white")
+    fig = plt.figure(figsize=(13.6, 6.1), dpi=300)
+    fig.patch.set_facecolor("white")
+    gs = gridspec.GridSpec(1, 2, width_ratios=[1.12, 1.18], wspace=0.12)
 
-    # Headers
-    fig.text(0.04, 0.945, "a", fontsize=17, fontweight="bold", color="#1E3A8A")
-    fig.text(0.065, 0.945, "Sequence Twilight Zone and Family Over-Splitting", fontsize=12.5, fontweight="bold", color="#0F172A")
-    fig.text(0.065, 0.912, "Pairwise amino acid identity between continental assemblies (PvW1 vs. PvPAM)", fontsize=8.8, fontstyle="italic", color="#475569")
+    # Panel A: Sequence vs. Structural Divergence
+    ax1 = fig.add_subplot(gs[0])
+    data = [vir_pident.values, hk_pident.values]
+    colors = ["#2563eb", "#d97706"]
+    labels = [
+        f"VIR Core Fold\n(FS_001 RBH, n = {len(vir_pident)})",
+        f"Housekeeping Control\n(Single-Copy RBH, n = {len(hk_pident)})",
+    ]
 
-    fig.text(0.52, 0.945, "b", fontsize=17, fontweight="bold", color="#1E3A8A")
-    fig.text(0.545, 0.945, "Reconstructed Structural Phylogeny and Ancestral Lineage Sharing", fontsize=12.5, fontweight="bold", color="#0F172A")
-    fig.text(0.545, 0.912, "Circular ML structural phylogeny (FoldMason + IQ-TREE 3) of dominant superfamily FS_001 (n=338)", fontsize=8.8, fontstyle="italic", color="#475569")
+    bp = ax1.boxplot(
+        data,
+        vert=False,
+        patch_artist=True,
+        tick_labels=labels,
+        widths=0.38,
+        boxprops=dict(linewidth=1.2, alpha=0.82),
+        medianprops=dict(color="#111827", linewidth=2.2),
+        whiskerprops=dict(linewidth=1.2, color="#374151"),
+        capprops=dict(linewidth=1.2, color="#374151"),
+        flierprops=dict(marker="o", markersize=2.8, alpha=0.32),
+    )
 
-    # Panel a: Histogram - Native vector plot with log y-scale
-    ax_a_hist = fig.add_axes([0.08, 0.14, 0.39, 0.73])
-    ax_a_hist.hist(hk["pident"], bins=bins, density=True, alpha=0.55, label=f"Housekeeping RBH (n={len(hk):,})", color="#2563EB", edgecolor="none")
-    ax_a_hist.hist(fs["pident"], bins=bins, density=True, alpha=0.65, label=f"FS_001 RBH (n={len(fs):,})", color="#DC2626", edgecolor="none")
+    for patch, color in zip(bp["boxes"], colors):
+        patch.set_facecolor(color)
+        patch.set_edgecolor("#1e293b")
 
-    ax_a_hist.axvline(fs_med, color="#DC2626", linestyle="--", linewidth=1.5, label=f"FS_001 median = {fs_med:.1f}%")
-    ax_a_hist.axvline(hk_med, color="#2563EB", linestyle="--", linewidth=1.5, label=f"Housekeeping median = {hk_med:.1f}%")
+    np.random.seed(42)
+    for i, (d, c) in enumerate(zip(data, colors), start=1):
+        y = np.random.normal(i, 0.06, size=len(d))
+        ax1.scatter(
+            d,
+            y,
+            alpha=0.35,
+            color=c,
+            edgecolors="none",
+            s=15,
+            zorder=3,
+        )
 
-    ax_a_hist.set_yscale("log")
-    ax_a_hist.set_ylim(1e-4, 1.0)
-    ax_a_hist.set_xlim(0, 100)
-    ax_a_hist.set_xlabel("Pairwise Amino Acid Identity (%)", fontsize=10.0, fontweight="bold", color="#1E293B")
-    ax_a_hist.set_ylabel("Density (log scale)", fontsize=10.0, fontweight="bold", color="#1E293B")
+    ax1.set_xlabel(
+        "Pairwise Cross-Strain Sequence Identity (%)",
+        fontsize=10.5,
+        fontweight="bold",
+        labelpad=8,
+    )
+    ax1.set_title(
+        "A  Sequence vs. Structural Divergence (2,592 VIR proteins)",
+        fontsize=11.5,
+        fontweight="bold",
+        loc="left",
+        pad=12,
+        color="#111827",
+    )
+    ax1.set_xlim(15, 104)
+    ax1.set_ylim(0.18, 2.65)
+    ax1.grid(axis="x", linestyle="--", alpha=0.5, color="#cbd5e1")
+    ax1.spines["top"].set_visible(False)
+    ax1.spines["right"].set_visible(False)
+    ax1.tick_params(axis="y", labelsize=9.5)
+    ax1.tick_params(axis="x", labelsize=9.5)
 
-    ax_a_hist.grid(True, which="both", axis="y", linestyle=":", alpha=0.4, color="#94A3B8")
-    ax_a_hist.grid(True, which="major", axis="x", linestyle=":", alpha=0.3, color="#94A3B8")
-    ax_a_hist.legend(frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=8.8, loc="upper left")
+    # Annotate medians and IQRs
+    ax1.annotate(
+        f"VIR FS_001 Median: {vir_med:.1f}% (IQR {vir_iqr:.1f}%)\nWilcoxon p = 1.6 × 10⁻⁶³ vs. Housekeeping",
+        xy=(vir_med, 1.20),
+        xytext=(vir_med - 14, 1.46),
+        arrowprops=dict(arrowstyle="->", color="#1e40af", lw=1.2),
+        fontsize=8.6,
+        fontweight="bold",
+        color="#1e3a8a",
+        bbox=dict(
+            boxstyle="round,pad=0.35",
+            facecolor="#eff6ff",
+            edgecolor="#93c5fd",
+            lw=0.9,
+        ),
+    )
 
-    # Panel b: Tree
-    ax_b_img = fig.add_axes([0.53, 0.16, 0.43, 0.71])
-    ax_b_img.imshow(im_tree_crop)
-    ax_b_img.axis("off")
+    ax1.annotate(
+        f"Housekeeping Median: {hk_med:.1f}% (IQR {hk_iqr:.1f}%)",
+        xy=(hk_med, 2.20),
+        xytext=(48, 2.40),
+        arrowprops=dict(arrowstyle="->", color="#92400e", lw=1.2),
+        fontsize=8.6,
+        fontweight="bold",
+        color="#92400e",
+        bbox=dict(
+            boxstyle="round,pad=0.35",
+            facecolor="#fffbeb",
+            edgecolor="#fcd34d",
+            lw=0.9,
+        ),
+    )
 
-    # Legend below tree
-    ax_leg = fig.add_axes([0.53, 0.07, 0.43, 0.05])
-    ax_leg.axis("off")
-    ax_leg.scatter([0.15], [0.5], color="#EF4444", s=55, clip_on=False)
-    ax_leg.text(0.18, 0.5, "PvP01 (Indonesia)", fontsize=9.2, fontweight="bold", va="center", color="#0F172A")
+    # Explicit structural vs sequence clustering consolidation box
+    consolidation_text = (
+        "Repertoire-Wide Structural Consolidation (2,592 VIR proteins):\n"
+        "• Sequence (MMseqs2/MCL): 203 clusters (146 with ≥3 members)\n"
+        "• Structure (Foldseek 3Di+AA): 73 CPU classes (24 with ≥3; 76 Galaxy)\n"
+        "• Universal core: 21 classes in all 3 strains (97.3%, 2,522/2,592 proteins)"
+    )
+    ax1.text(
+        0.02,
+        0.025,
+        consolidation_text,
+        transform=ax1.transAxes,
+        fontsize=8.1,
+        va="bottom",
+        ha="left",
+        color="#1f2937",
+        linespacing=1.3,
+        bbox=dict(
+            boxstyle="round,pad=0.38",
+            facecolor="#f8fafc",
+            edgecolor="#cbd5e1",
+            lw=0.9,
+        ),
+    )
 
-    ax_leg.scatter([0.48], [0.5], color="#22C55E", s=55, clip_on=False)
-    ax_leg.text(0.51, 0.5, "PvW1 (Thailand)", fontsize=9.2, fontweight="bold", va="center", color="#0F172A")
+    # Panel B: Core-Fold Structural Phylogeny (FS_001, n = 338)
+    ax2 = fig.add_subplot(gs[1])
+    doc = fitz.open(tree_pdf_path)
+    page = doc.load_page(0)
+    pix = page.get_pixmap(dpi=300)
+    img_tree = Image.open(BytesIO(pix.tobytes("png")))
+    w, h = img_tree.size
+    # Tighter crop around the circular phylogeny to maximize tree legibility
+    img_tree_cropped = img_tree.crop(
+        (int(w * 0.14), int(h * 0.14), int(w * 0.88), int(h * 0.86))
+    )
 
-    ax_leg.scatter([0.78], [0.5], color="#3B82F6", s=55, clip_on=False)
-    ax_leg.text(0.81, 0.5, "PvPAM (Peru)", fontsize=9.2, fontweight="bold", va="center", color="#0F172A")
-    ax_leg.set_xlim(0, 1)
-    ax_leg.set_ylim(0, 1)
+    ax2.imshow(np.array(img_tree_cropped))
+    ax2.set_title(
+        "B  Core-Fold Structural Phylogeny (FS_001, n = 338)",
+        fontsize=11.5,
+        fontweight="bold",
+        loc="left",
+        pad=12,
+        color="#111827",
+    )
+    ax2.axis("off")
 
-    fig.savefig(output_png, bbox_inches="tight", dpi=300)
-    fig.savefig(output_pdf, bbox_inches="tight", dpi=300)
-    plt.close(fig)
-    print(f"Generated: {output_png} and {output_pdf}")
+    # Match exact ggtree palette from plot_and_test.R:
+    # scale_color_manual(values=c(PvP01="#E41A1C", PvW1="#377EB8", PvPAM="#4DAF4A"))
+    p_pvp01 = mlines.Line2D(
+        [],
+        [],
+        color="#E41A1C",
+        marker="o",
+        linestyle="None",
+        markersize=6.5,
+        label="PvP01 (Indonesia, n = 118)",
+    )
+    p_pvw1 = mlines.Line2D(
+        [],
+        [],
+        color="#377EB8",
+        marker="o",
+        linestyle="None",
+        markersize=6.5,
+        label="PvW1 (Thailand, n = 110)",
+    )
+    p_pvpam = mlines.Line2D(
+        [],
+        [],
+        color="#4DAF4A",
+        marker="o",
+        linestyle="None",
+        markersize=6.5,
+        label="PvPAM (Peru, n = 110)",
+    )
+    ax2.legend(
+        handles=[p_pvp01, p_pvw1, p_pvpam],
+        loc="upper left",
+        bbox_to_anchor=(0.0, 0.99),
+        title="Geographical Isolate",
+        frameon=True,
+        facecolor="white",
+        edgecolor="#cbd5e1",
+        fontsize=8.2,
+        title_fontsize=8.6,
+    )
+
+    ax2.text(
+        0.99,
+        0.02,
+        "Fitch Parsimony Permutation Test:\nObserved score = 160 vs. null 160\n(mean 159.2 ± 3.8, p = 0.55; pan-mixed)",
+        transform=ax2.transAxes,
+        fontsize=8.2,
+        va="bottom",
+        ha="right",
+        color="#1f2937",
+        linespacing=1.3,
+        bbox=dict(
+            boxstyle="round,pad=0.38",
+            facecolor="#f8fafc",
+            edgecolor="#cbd5e1",
+            lw=0.9,
+        ),
+    )
+
+    fig.subplots_adjust(left=0.06, right=0.98, bottom=0.12, top=0.91, wspace=0.14)
+    out_pdf = HERE / "figure3_vir_reconstruction.pdf"
+    out_png = HERE / "figure3_vir_reconstruction.png"
+    plt.savefig(out_pdf, dpi=300, bbox_inches="tight")
+    plt.savefig(out_png, dpi=300, bbox_inches="tight")
+    print(
+        f"Saved {out_pdf} and {out_png} "
+        f"(VIR median={vir_med:.1f}%, IQR={vir_iqr:.1f}%; HK median={hk_med:.1f}%, IQR={hk_iqr:.1f}%)"
+    )
+
 
 if __name__ == "__main__":
-    make_figure()
+    main()

@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """
 Generate publication-grade Figure 1:
-Combinatorial Divergence in Autonomous Agent Planning and Execution Trajectories.
+Combinatorial Divergence in Autonomous Agent Planning Trajectories.
 Visualizes the alluvial flow of 30 independent LLM agent plans (10 Claude Opus,
-10 OpenAI Codex, 10 Google Gemini) across 8 analytical decisions, with the three
-empirically executed agent workflows highlighted as bold ribbons.
+10 OpenAI Codex, 10 Google Gemini) across 8 analytical decisions, with three
+representative agent planning trajectories (one per model family) highlighted as
+bold ribbons.
 """
 
 import json
 import os
+from pathlib import Path
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-from matplotlib.path import Path
+from matplotlib.path import Path as MplPath
 
 mpl.rcParams["font.sans-serif"] = ["Helvetica", "Arial", "DejaVu Sans"]
 mpl.rcParams["font.family"] = "sans-serif"
@@ -21,13 +23,9 @@ mpl.rcParams["savefig.dpi"] = 300
 mpl.rcParams["pdf.fonttype"] = 42
 
 def make_figure():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    data_path = os.path.expanduser(
-        "~/.gemini/antigravity-cli/brain/ca9cf8af-8540-4356-977f-e501aa2d1a93/scratch/bacillus/choices/artifact_data.json"
-    )
-    if not os.path.exists(data_path):
-        data_path = os.path.abspath(os.path.join(base_dir, "../../../scratch/bacillus/choices/artifact_data.json"))
-    
+    base_dir = Path(__file__).resolve().parent
+    data_path = base_dir / "data" / "bacillus" / "artifact_data.json"
+
     with open(data_path) as f:
         DATA = json.load(f)
 
@@ -134,18 +132,18 @@ def make_figure():
                 (x0, y0)
             ]
             codes = [
-                Path.MOVETO,
-                Path.CURVE4, Path.CURVE4, Path.CURVE4,
-                Path.LINETO,
-                Path.CURVE4, Path.CURVE4, Path.CURVE4,
-                Path.CLOSEPOLY
+                MplPath.MOVETO,
+                MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4,
+                MplPath.LINETO,
+                MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4,
+                MplPath.CLOSEPOLY
             ]
-            path = Path(verts, codes)
+            path = MplPath(verts, codes)
             patch = patches.PathPatch(path, facecolor=fam_col, alpha=0.18, edgecolor="none", zorder=2)
             ax.add_patch(patch)
 
     # 2. Highlighted Representative Planning Trajectories (1 per family, alpha=0.92, bold outline)
-    executed_trajectories = [
+    representative_trajectories = [
         {
             "id": "opus",
             "name": "Claude Opus 5.5",
@@ -174,7 +172,7 @@ def make_figure():
 
     ribbon_h = unit - 2.0
 
-    for traj in executed_trajectories:
+    for traj in representative_trajectories:
         t_col = traj["color"]
         steps = traj["steps"]
         for i in range(len(STAGES) - 1):
@@ -192,13 +190,13 @@ def make_figure():
                 (x0, y0)
             ]
             codes = [
-                Path.MOVETO,
-                Path.CURVE4, Path.CURVE4, Path.CURVE4,
-                Path.LINETO,
-                Path.CURVE4, Path.CURVE4, Path.CURVE4,
-                Path.CLOSEPOLY
+                MplPath.MOVETO,
+                MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4,
+                MplPath.LINETO,
+                MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4,
+                MplPath.CLOSEPOLY
             ]
-            path = Path(verts, codes)
+            path = MplPath(verts, codes)
 
             # White glow outline underneath
             glow = patches.PathPatch(path, facecolor=t_col, alpha=1.0, edgecolor="#ffffff", linewidth=3.6, zorder=5)
@@ -255,14 +253,14 @@ def make_figure():
                     ax.text(tx, ty + 6.0, count_str, fontsize=7.0, color="#64748b", va="center",
                             bbox=dict(facecolor="#ffffff", alpha=0.88, edgecolor="none", boxstyle="round,pad=0.15"), zorder=8)
 
-    # 4. Markers and end badges for the 3 executed trajectories
-    for traj in executed_trajectories:
+    # 4. Markers and end badges for the 3 representative trajectories
+    for traj in representative_trajectories:
         start_y = traj["steps"][0][2] + ribbon_h / 2.0
         start_x = layout[0]["x"] + nodeW / 2.0
         ax.scatter([start_x], [start_y], marker=traj["marker"], s=45, color="#ffffff", edgecolor="#0f172a", linewidth=1.0, zorder=10)
 
     exit_x = layout[8]["x"] + nodeW + 65
-    for traj in executed_trajectories:
+    for traj in representative_trajectories:
         exit_y = traj["steps"][8][2] + ribbon_h / 2.0
         
         # Draw connecting leader line from ribbon exit to badge
@@ -287,12 +285,12 @@ def make_figure():
     cur_lx += 15
     ax.text(cur_lx, leg_y, "Highlighted Plans (n=3):", fontsize=8.2, fontweight="bold", color="#0f172a", va="center")
     cur_lx += 125
-    leg_rect_exec = patches.Rectangle((cur_lx, leg_y - 4), 16, 8, facecolor="#2563eb", alpha=0.92, edgecolor="#0f172a", linewidth=1.0)
-    ax.add_patch(leg_rect_exec)
+    leg_rect_rep = patches.Rectangle((cur_lx, leg_y - 4), 16, 8, facecolor="#2563eb", alpha=0.92, edgecolor="#0f172a", linewidth=1.0)
+    ax.add_patch(leg_rect_rep)
     ax.text(cur_lx + 22, leg_y, "Bold ribbons trace one representative planning trajectory per model family", fontsize=7.8, fontweight="bold", color="#0f172a", va="center")
 
-    output_pdf = os.path.join(base_dir, "figure1_agent_trajectories.pdf")
-    output_png = os.path.join(base_dir, "figure1_agent_trajectories.png")
+    output_pdf = base_dir / "figure1_agent_trajectories.pdf"
+    output_png = base_dir / "figure1_agent_trajectories.png"
     plt.savefig(output_pdf, bbox_inches="tight", pad_inches=0.05)
     plt.savefig(output_png, bbox_inches="tight", pad_inches=0.05, dpi=300)
     plt.close()
