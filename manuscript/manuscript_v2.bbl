@@ -89,13 +89,6 @@ Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
   data analyses: 2024 update.
 \newblock {\em Nucleic Acids Research}, 52(W1):W83--W94, May 2024.
 
-\bibitem{iuc2026}
-{Intergalactic Utilities Commission}.
-\newblock Galaxy {Intergalactic} {Utilities} {Commission} ({IUC}) tool
-  repository.
-\newblock \url{https://github.com/galaxyproject/tools-iuc}, 2026.
-\newblock GitHub repository.
-
 \bibitem{biocontainers2017}
 Felipe da~Veiga~Leprevost, Bj{\"o}rn~A. Gr{\"u}ning, Saulo Alves~Aflitos,
   Hannes~L. R{\"o}st, Julian Uszkoreit, Harald Barsnes, Marc Vaudel, Pablo
@@ -105,6 +98,13 @@ Felipe da~Veiga~Leprevost, Bj{\"o}rn~A. Gr{\"u}ning, Saulo Alves~Aflitos,
 \newblock {BioContainers}: an open-source and community-driven framework for
   software standardization.
 \newblock {\em Bioinformatics}, 33(16):2580--2582, 2017.
+
+\bibitem{iuc2026}
+{Intergalactic Utilities Commission}.
+\newblock Galaxy {Intergalactic} {Utilities} {Commission} ({IUC}) tool
+  repository.
+\newblock \url{https://github.com/galaxyproject/tools-iuc}, 2026.
+\newblock GitHub repository.
 
 \bibitem{iwc2026}
 {Intergalactic Workflow Commission}.
