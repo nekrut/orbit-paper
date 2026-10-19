@@ -101,9 +101,9 @@ def build_flow_figure():
     ax.text(6.65, 4.72, "Procedural domain rules & analysis design", fontsize=7.2, color="#A16207", style="italic", va="center", zorder=4)
 
     skill_lines = [
-        ("• Analysis Standards:", "Enforces QC thresholds & formats"),
-        ("• Decision Briefs:", "Resolves tool suitability (STAR, etc.)"),
-        ("• Reference Data:", "Validates assembly & strandedness"),
+        ("• Analysis Standards:", "Encodes QC thresholds & formats"),
+        ("• Decision Briefs:", "Guides tool selection (STAR, etc.)"),
+        ("• Reference Data:", "Prompts assembly & strand checks"),
         ("• Verification:", "Pre-execution plan sanity checks")
     ]
     for i, (stitle, sdesc) in enumerate(skill_lines):
@@ -122,10 +122,10 @@ def build_flow_figure():
     ax.text(6.65, 2.24, "Structured endpoints & environment APIs", fontsize=7.2, color="#0284C7", style="italic", va="center", zorder=4)
 
     mcp_lines = [
-        ("• Typed Schemas:", "run_tool(), query_history()"),
+        ("• Typed Schemas:", "run_tool(), get_history_contents()"),
         ("• Data Streaming:", "Upload, query & download files"),
         ("• Job Polling:", "Real-time state & resource tracking"),
-        ("• Guardrails:", "Eliminates unconstrained terminal")
+        ("• Guardrails:", "Replaces ad-hoc Galaxy scripting")
     ]
     for i, (mtitle, mdesc) in enumerate(mcp_lines):
         my = 1.90 - i * 0.31
@@ -187,7 +187,7 @@ def build_flow_figure():
     fbadge = FancyBboxPatch((5.30, 0.02), 5.40, 0.20, boxstyle="round,pad=0.004,rounding_size=0.03",
                             facecolor="#FFFFFF", edgecolor="#94A3B8", linewidth=1.0, zorder=5)
     ax.add_patch(fbadge)
-    ax.text(8.00, 0.12, "Living Provenance: execution logs, datasets & immutable DAG record return to Notebook",
+    ax.text(8.00, 0.12, "Living Provenance: the history records the DAG; the notebook ties it to the plan",
             fontsize=7.2, fontweight="bold", color="#334155", ha="center", va="center", zorder=6)
 
     plt.tight_layout()
