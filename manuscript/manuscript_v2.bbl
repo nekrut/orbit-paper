@@ -53,41 +53,52 @@ Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Petar Sirkovic, Artiom
 \newblock {\em Nature}, 655(8122):487--496, May 2026.
 
 \bibitem{galaxy2024}
-{The Galaxy Community}, Linelle Ann~L Abueg, Enis Afgan, Olivier Allart,
-  Ahmed~H Awan, Wendi~A Bacon, Dannon Baker, Madeline Bassetti, B\'er\'enice
-  Batut, Matthias Bernt, Daniel Blankenberg, Aureliano Bombarely, Anthony
-  Bretaudeau, Catherine~J Bromhead, Melissa~L Burke, Patrick~K Capon, Martin
-  \v{C}ech, Mar\'ia Chavero-D\'iez, John~M Chilton, Tyler~J Collins, Frederik
-  Coppens, Nate Coraor, Gianmauro Cuccuru, Fabio Cumbo, John Davis, Paul~F
-  De~Geest, Willem de~Koning, Martin Demko, Assunta DeSanto, Jos\'e
-  Manuel~Dom\'inguez Begines, Maria~A Doyle, Bert Droesbeke, Anika
-  Erxleben-Eggenhofer, Melanie~C F\"oll, Giulio Formenti, Anne Fouilloux,
-  Rendani Gangazhe, Tanguy Genthon, Jeremy Goecks, Alejandra N~Gonzalez
-  Beltran, Nuwan~A Goonasekera, Nadia Gou\'e, Timothy~J Griffin, Bj\"orn~A
-  Gr\"uning, Aysam Guerler, Sveinung Gundersen, Ove Johan~Ragnar Gustafsson,
-  Christina Hall, Thomas~W Harrop, Helge Hecht, Alireza Heidari, Tillman
-  Heisner, Florian Heyl, Saskia Hiltemann, Hans-Rudolf Hotz, Cameron~J Hyde,
-  Pratik~D Jagtap, Julia Jakiela, James~E Johnson, Jayadev Joshi, Marie
-  Joss\'e, Khaled Jum'ah, Mat\'u\v{s} Kala\v{s}, Katarzyna Kamieniecka, Tunc
-  Kayikcioglu, Markus Konkol, Leonid Kostrykin, Natalie Kucher, Anup Kumar,
-  Mira Kuntz, Delphine Lariviere, Ross Lazarus, Yvan~Le Bras, Gildas~Le
-  Corguill\'e, Justin Lee, Simone Leo, Leandro Liborio, Romane Libouban,
-  David~L\'opez Tabernero, Lucille Lopez-Delisle, Laila~S Los, Alexandru
-  Mahmoud, Igor Makunin, Pierre Marin, Subina Mehta, Winnie Mok, Pablo~A
-  Moreno, Fran\c{c}ois Morier-Genoud, Stephen Mosher, Teresa M\"uller, Engy
-  Nasr, Anton Nekrutenko, Tiffanie~M Nelson, Asime~J Oba, Alexander Ostrovsky,
-  Polina~V Polunina, Krzysztof Poterlowicz, Elliott~J Price, Gareth~R Price,
-  Helena Rasche, Bryan Raubenolt, Coline Royaux, Luke Sargent, Michelle~T
-  Savage, Volodymyr Savchenko, Denys Savchenko, Michael~C Schatz, Pauline
-  Seguineau, Beatriz Serrano-Solano, Nicola Soranzo, Sanjay~Kumar Srikakulam,
-  Keith Suderman, Anna~E Syme, Marco~Antonio Tangaro, Jonathan~A Tedds, Mehmet
-  Tekman, Wai Cheng (Mike)~Thang, Anil~S Thanki, Michael Uhl, Marius van~den
-  Beek, Deepti Varshney, Jenn Vessio, Pavankumar Videm, Greg Von~Kuster,
-  Gregory~R Watson, Natalie Whitaker-Allen, Uwe Winter, Martin Wolstencroft,
+{The Galaxy Community}, Enis Afgan, Najat Amoukou, Rafael~Andrade Buono, Mihail
+  Anton, Christophe Antoniewski, Patrick Austin, Ahmed~Hamid Awan, Rolf
+  Backofen, Wendi~Anne Bacon, Dannon Baker, Arthur Barreau, B\'er\'enice Batut,
+  Matthias Bernt, Daniel Blankenberg, Anthony Bretaudeau, Catherine~Joan
+  Bromhead, Richard Burhans, Melissa Burke, Scott Cain, Danielle Callan, Martin
+  \v{C}ech, Mar\'ia Chavero-D\'iez, Haswane Chei, Ying Chen, Diana Chiang,
+  John~M Chilton, Tyler~James Collins, Frederik Coppens, Nate Coraor, Charles
+  Coulombe, Michael~R Crusoe, Fabio Cumbo, Triskell Cumunel, Michael D'Silva,
+  Armin Dadras, C\'eline Dalle, Khai Dang, John~Y Davis, Paul De~Geest, Willem
+  de~Koning, Giuseppe Defazio, Boris Depoortere, Katherine Do, Jos\'e~Manuel
+  Dom\'inguez~Begines, Bert Droesbeke, Erick~Nicolas Duarte, Enol
+  Fern\'andez-del Castillo, Jeremy Fix, Giulio Formenti, Julian Frey,
+  Melanie~Christine F\"oll, Carol Gauthier, Kilian Gerberding, Franck
+  Giacomoni, Jeremy Goecks, Nuwan~A Goonasekera, Nadia Gou\'e, Timothy~J
+  Griffin, Bj\"orn~Andreas Gr\"uning, Aysam Guerler, Yann Guitton, Ove
+  Johan~Ragnar Gustafsson, Krist\'ina G\"om\"oryov\'a, Magdalena Harakalova,
+  Helge Hecht, Alireza Heidari, Florian Heyl, Jennifer Hillman-Jackson, Saskia
+  Hiltemann, Mina~Hojat Ansari, Hans-Rudolf Hotz, Cameron~John Hyde,
+  Pierre-\'Etienne Jacques, Pratik~Dilip Jagtap, Jayadev Joshi, Marie Joss\'e,
+  Khaled Moahmmad~Ahmad Jumah, Arash~Kadkhodaei Elyaderani, Katarzyna
+  Kamieniecka, Teja Kattenborn, Markus Konkol, Leonid Kostrykin, Natalie
+  Kucher, Anup Kumar, Mira Kuntz, Bradley~William Langhorst, Delphine
+  Lariviere, Yvan Le~Bras, Gildas Le~Corguill\'e, Jean Le~Cras, Justin Lee, Jan
+  Leendertse, Hugo Lefeuvre, Brane Lesko\v{s}ek, Leandro~Miguel Liborio, Romane
+  Libouban, Marisa Loach, Jose David~Lopez Tabernero, Lucille Lopez-Delisle,
+  Daniel Lusk, Alexandru Mahmoud, Mol\`ene Mah\'e, Wolfgang Maier, Igor
+  Makunin, Kirsty McCaffrey, Jack~A Medico, Subina Mehta, Hailiang Mei, Mirela
+  Minkova, Saim Momin, Paulo Cilas Morais~Lyra Junior, Teresa M\"uller,
+  Amirhossein~Naghsh Nilchi, Tannistha Nandi, Engy Mohamed~Taha Nasr, Anton
+  Nekrutenko, Tiffanie Nelson, Johannes Nussbaum, Asime~James Oba, \L{}ukasz
+  Opio\l{}a, Kevin Payet, Melanie Petera, Polina~V Polunina, Sergei Pond,
+  Krzysztof Poterlowicz, Gareth~Robert Price, Junhao Qiu, Helena Rasche, Bryan
+  Raubenolt, Tristan~N Reynolds, Dave Rogers, Karl Rohr, Gabriel~Ferreira
+  Saudade, Michelle~Terese Savage, Volodymyr Savchenko, Michael~C Schatz,
+  Isabelle Schmitz, Daniela Schneider, Pauline Seguineau, Beatriz
+  Serrano-Solano, Clea Siguret, Patrik Smeds, Marco Sollitto, Nicola Soranzo,
+  Sanjay~Kumar Srikakulam, Lieven Sterck, Nikolaos Strepis, Andrew Stubbs,
+  Keith Suderman, Anna Syme, Marco~Antonio Tangaro, Reyhaneh~Tavakoli Koopaei,
+  Jonathan~Andrew Tedds, Mehmet Tekman, Wai Cheng~(Mike) Thang, Anil~S Thanki,
+  Michael Uhl, Janusch Vajna-Jehle, Marius van~den Beek, Deepti Varshney,
+  Nikolay~Alexandrov Vazov, Jennifer Vessio, Pavankumar Videm, Tomas Vondrak,
+  Reid Wagner, Gregory~R Watson, Ralf J~M Weber, Natalie Whitaker-Allen,
   Federico Zambelli, Paul Zierep, and Rand Zoabi.
-\newblock The {Galaxy} platform for accessible, reproducible, and collaborative
-  data analyses: 2024 update.
-\newblock {\em Nucleic Acids Research}, 52(W1):W83--W94, May 2024.
+\newblock {Galaxy} for accessible, reproducible, and collaborative data
+  analyses: 2026 update.
+\newblock {\em Nucleic Acids Research}, 54(W1):W105--W116, June 2026.
 
 \bibitem{biocontainers2017}
 Felipe da~Veiga~Leprevost, Bj{\"o}rn~A. Gr{\"u}ning, Saulo Alves~Aflitos,
