@@ -1,0 +1,52 @@
+{
+  "published_reference": {
+    "id": "published_vyklicka2025",
+    "citation": "Vyklicka et al. (2025) Sci. Rep. 16:1917 (PMC12804731)",
+    "ref": "anQ-h4",
+    "ref_provenance": "Inferred from LMD38_* locus tags in Supplement S4 and EnrichmentBrowser getGenesets('bpac','kegg'); assembly accession not named in Methods prose",
+    "wf": "nf-core/rnaseq",
+    "wf_provenance": "Explicitly stated: nf-core/rnaseq v3.14.0 and nf-core/differentialabundance v1.4.0",
+    "trim": "Trim Galore",
+    "trim_provenance": "Default trimmer of nf-core/rnaseq v3.14.0 (no override stated)",
+    "rRNA": "Keep & measure",
+    "rRNA_provenance": "Experimental Ribo-Zero kit; default nf-core/rnaseq v3.14.0 (--remove_ribo_rna false)",
+    "aligner": "STAR",
+    "aligner_provenance": "Default aligner of nf-core/rnaseq v3.14.0 (star_salmon; featureCounts matrix stated)",
+    "feature": "Gene/exon (all)",
+    "feature_provenance": "featureCounts gene-level count matrix across all growth conditions",
+    "model": "All samples (pooled)",
+    "model_provenance": "Inferred from identical per-gene baseMean across all six carbohydrate contrasts in Supplement S4 (19 RNA-seq libraries pooled); unstated in Methods prose",
+    "shrink": "None (unshrunken Wald in Supplement S4; ashr default in nf-core/differentialabundance)",
+    "strand": "Forward / empirical"
+  },
+  "recomputed_counts": {
+    "n_plans": 30,
+    "distinct_8_step_pipelines": 18,
+    "distinct_5_step_result_changing_designs": 11,
+    "modal_5_step_design": {
+      "ref": "ATCC 10987",
+      "rRNA": "Keep & measure",
+      "aligner": "HISAT2",
+      "feature": "CDS only",
+      "model": "5 samples only"
+    },
+    "modal_5_step_count": 7,
+    "plans_diverging_from_modal_5_step": 23,
+    "plans_matching_published_5_step": [
+      "opus_01",
+      "opus_02",
+      "opus_03",
+      "opus_04",
+      "opus_10"
+    ],
+    "plans_diverging_from_published_5_step": 25,
+    "plans_matching_8_step_nfcore_ashr_default": [
+      "opus_02",
+      "opus_03",
+      "opus_04",
+      "opus_10"
+    ],
+    "plans_diverging_from_8_step_nfcore_ashr_default": 26,
+    "plans_diverging_from_unshrunken_supplement_s4": 30
+  }
+}

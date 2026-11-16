@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from PIL import Image
+from scipy.stats import mannwhitneyu
 
 plt.rcParams["font.sans-serif"] = "DejaVu Sans"
 plt.rcParams["axes.edgecolor"] = "#333333"
@@ -43,6 +44,11 @@ def main() -> None:
     hk_iqr = float(np.percentile(hk_pident, 75) - np.percentile(hk_pident, 25))
     vir_med = float(np.median(vir_pident))
     vir_iqr = float(np.percentile(vir_pident, 75) - np.percentile(vir_pident, 25))
+    _, mw_p = mannwhitneyu(vir_pident, hk_pident, alternative="two-sided")
+    mw_exp = int(np.floor(np.log10(mw_p)))
+    mw_mant = mw_p / (10.0 ** mw_exp)
+    sup_map = str.maketrans("-0123456789", "⁻⁰¹²³⁴⁵⁶⁷⁸⁹")
+    mw_p_label = f"{mw_mant:.1f} × 10{str(mw_exp).translate(sup_map)}"
 
     fig = plt.figure(figsize=(13.6, 6.1), dpi=300)
     fig.patch.set_facecolor("white")
@@ -111,7 +117,7 @@ def main() -> None:
 
     # Annotate medians and IQRs
     ax1.annotate(
-        f"VIR FS_001 Median: {vir_med:.1f}% (IQR {vir_iqr:.1f}%)\nWilcoxon p = 1.6 × 10⁻⁶³ vs. Housekeeping",
+        f"VIR FS_001 Median: {vir_med:.1f}% (IQR {vir_iqr:.1f}%)\nMann–Whitney U p = {mw_p_label} vs. Housekeeping",
         xy=(vir_med, 1.20),
         xytext=(vir_med - 14, 1.46),
         arrowprops=dict(arrowstyle="->", color="#1e40af", lw=1.2),
@@ -147,7 +153,7 @@ def main() -> None:
         "Repertoire-Wide Structural Consolidation (2,592 VIR proteins):\n"
         "• Sequence (MMseqs2/MCL): 203 clusters (146 with ≥3 members)\n"
         "• Structure (Foldseek 3Di+AA): 73 CPU classes (24 with ≥3; 76 Galaxy)\n"
-        "• Universal core: 21 classes in all 3 strains (97.3%, 2,522/2,592 proteins)"
+        "• Universal core: 21 classes in all 3 strains (97.3%, 2,523/2,592 proteins)"
     )
     ax1.text(
         0.02,

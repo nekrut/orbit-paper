@@ -291,7 +291,7 @@ def make_figure():
     fig.text(
         0.032,
         0.965,
-        "Target enterotoxin differential expression (1% glucose vs. TSB control)",
+        "Target enterotoxin differential expression (0.5% glucose vs. TSB control)",
         fontsize=8.5,
         fontweight="bold",
         color="#0f172a",
@@ -732,7 +732,7 @@ def make_figure():
     ax_cytk.text(
         3.5,
         1790,
-        "1% Glucose (n=2)",
+        "0.5% Glucose (n=2)",
         fontsize=6.4,
         fontweight="bold",
         color="#92400e",

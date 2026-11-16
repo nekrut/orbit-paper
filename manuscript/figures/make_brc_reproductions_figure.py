@@ -143,7 +143,7 @@ def main() -> None:
     fig.text(
         0.01,
         0.562,
-        "B  A. gambiae ATAC-seq Chromatin Accessibility (Ruiz et al., Unfitted 51% Reciprocal vs. Post-Hoc Fitted Rules)",
+        "B  A. gambiae ATAC-seq Chromatin Accessibility (Ruiz et al., Stated 51% Overlap vs. Fitted Overlap Rules)",
         fontsize=9.5,
         fontweight="bold",
         color="#0f172a",
@@ -158,9 +158,9 @@ def main() -> None:
         ("unique_genes", "Assigned\nGenes"),
     ]
     series_cfg = [
-        ("canonical_ruiz_excel", "Published (Ruiz Table S3)", "#1e293b", None),
-        ("unfitted_macs212_recip0.51", "Unfitted 51% Recip. (MACS2 2.1.2)", "#0284c7", None),
-        ("fitted_macs212_either0.851", "Post-Hoc Fitted either_frac = 0.851", "#d97706", "///"),
+        ("canonical_ruiz_excel", "Ruiz Table S3 (Deposited Rows)", "#1e293b", None),
+        ("unfitted_macs212_recip0.51", "Stated 51% Overlap (MACS2 2.1.2)", "#0284c7", None),
+        ("fitted_macs212_either0.851", "Fitted Overlap (either_frac = 0.851)", "#d97706", "///"),
     ]
 
     tissues = [
@@ -243,7 +243,7 @@ def main() -> None:
         )
 
         prov_text = (
-            f"Unfitted coordinate recovery: {rec_min:.1f}–{rec_max:.1f}%\n"
+            f"Shared-row coordinate recovery: {rec_min:.1f}–{rec_max:.1f}%\n"
             f"MACS2 2.1.1 wrapper (51%): {m211_reg:,} ({m211_pct:.1f}%)"
         )
         ax.text(

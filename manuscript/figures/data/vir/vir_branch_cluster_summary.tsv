@@ -1,0 +1,4 @@
+branch_id	description	total_proteins	total_classes	classes_ge3	proteins_in_classes_ge3	pan_continental_classes	proteins_in_pan_classes	pct_of_all_proteins	pct_of_ge3_proteins	single_genome_classes	proteins_in_single_genome_classes	pct_single_genome	largest_class_size
+local_cpu_reference	Foldseek v10.941cd33 + ProstT5 (local CPU)	2592	73	24	2536	21	2523	97.34	99.49	47	52	2.01	1197
+galaxy_a100_gpu	anton-gpu-xl-foldseek_prostt5_clustering (UseGalaxy.org A100 GPU, HIDs 116 & 121)	2592	76	25	2530	20	2510	96.84	99.21	47	54	2.08	812
+galaxy_32core_cpu	anton-32-foldseek_prostt5_clustering (UseGalaxy.org 32-core CPU)	2592	76	30	2538	21	2501	96.49	98.54	47	59	2.28	766

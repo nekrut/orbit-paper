@@ -13,6 +13,12 @@ __pycache__/
 *.blg
 *.log
 *.out
+*.bbl
+
+# Private submission and correspondence files
+manuscript/cover_letter*
+manuscript/author_submission.tsv
+manuscript/Letter_to_Miao_et_al*
 
 # Local runs and scratch directories
 bacillus-rnaseq-run/
