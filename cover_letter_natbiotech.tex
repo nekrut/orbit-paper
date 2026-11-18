@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.48em}
+\pagestyle{empty}
+
+\begin{document}
+
+November 18, 2026
+
+\vspace{0.2em}
+Editorial Office\\
+\textit{Nature Biotechnology}\\
+Springer Nature\\
+One New York Plaza, Suite 4600\\
+New York, NY 10004
+
+\vspace{0.2em}
+Dear Editors,
+
+We are submitting our manuscript, ``Verifiable Agentic Science on Public Infrastructure,'' for consideration as an Article (or Resource) in \textit{Nature Biotechnology}.
+
+What if a landmark \textit{Nature} paper celebrating reproducible agentic science itself fell prey to an unverified input assumption---running a 1,000-cell tutorial file instead of the cited 5,613-cell mouse cortex atlas---and our agentic harness caught it? Wrapping \textsf{TISSUE} inside a standalone \textsf{Paper2Agent} tool left actual inputs hidden: omitting 82\% of reference cells misplaced vascular marker expression and cut prediction correlation threefold without warning. Nor is that an isolated slip. Autonomous coding agents are rapidly reshaping computational biology, yet local laptop runs invite a reproducibility crisis. Tasked with replicating one bacterial RNA-seq study locally, 30 frontier agents splintered into 18 pipelines (26 departing from the published eight-step configuration), while three live runs left 26 unversioned glue scripts and silently altered which toxin genes were detected.
+
+Today's vision of ``agentic science'' is being built behind closed doors on paid commercial clouds, proprietary platforms, and private clusters. We took the opposite path. We wired general-purpose coding agents---and \textbf{\textsf{Orbit}}, our open-source desktop workbench---into public Galaxy servers and free national supercomputers (ACCESS-CI) via domain skills, the Galaxy MCP server, and containerized User-Defined Tools. Any researcher or student can run large-scale multi-omic and GPU analyses at zero compute cost using commercial or free open-weight models, under one non-negotiable rule: the agent cannot hide its tracks. Every container, parameter, and intermediate file lives on public infrastructure verified in code by our harness and inspectable by any reviewer.
+
+Across 48 datasets spanning seven transcriptomic, chromatin, single-cell, spatial, structural, and epidemic studies on national supercomputers, this public glass box acted as an automated forensic auditor. Because every intermediate table stayed open, our agents caught silent input and annotation traps (the 1,000-cell spatial subset and mosquito mitochondrial naming), untangled undocumented 30-sample pooling and unmerged ATAC-seq tables, and replaced defunct web services with containerized tools. Moving from auditing to discovery, \textsf{Orbit} drove GPU protein-structure models to place $>96\%$ of hypervariable \textit{Plasmodium vivax} malaria antigens across three continents into 20--21 conserved folds, and dated 42 pathogen epidemics in seconds per cohort while showing how resolving hidden clock and clade defaults lifts Bayesian concordance from 46\% to 64\%.
+
+Autonomous agents will soon generate a large share of computational biology claims, and \textit{Nature Biotechnology}'s readership sits at the front line of that shift. Anchoring agents to open-source software and free public supercomputing (\url{https://galaxyproject.org/agents/}) turns a looming reproducibility crisis into an open, checkable engine for discovery.
+
+All authors have approved this submission, and the manuscript is not under consideration elsewhere.
+
+\vspace{0.2em}
+Sincerely,
+
+\vspace{0.45em}
+\begin{tabular}[t]{@{}p{0.48\textwidth}@{\hspace{0.04\textwidth}}p{0.48\textwidth}@{}}
+\textbf{Anton Nekrutenko}\newline
+Professor of Biochemistry \& Molecular Biology\newline
+Penn State University\newline
+\texttt{anton@nekrut.org}
+&
+\textbf{Sergei L. Kosakovsky Pond}\newline
+Professor of Biology, iGEM\newline
+Temple University\newline
+\texttt{spond@temple.edu}
+\end{tabular}
+
+\end{document}
