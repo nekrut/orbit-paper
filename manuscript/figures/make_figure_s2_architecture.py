@@ -4,6 +4,7 @@ Generate Supplementary Figure S2 (figure_s2_architecture.{pdf,png}) as a crisp
 vector PDF matching the four-part Galactic plane schematic (Agent, MCP Server
 & Skills, UI: Validation and Provenance, Public cyberinfrastructure & Tools/Data).
 """
+from __future__ import annotations
 from pathlib import Path
 
 import matplotlib.patches as mpatches
@@ -102,10 +103,10 @@ def draw_cylinder(ax, cx: float, cy: float, w: float, h: float, zorder: int = 4)
     ax.text(
         cx,
         (y_bot + y_top) / 2 - top_h * 0.08,
-        "storage",
+        "Storage",
         ha="center",
         va="center",
-        fontsize=6.6,
+        fontsize=7.0,
         color="#111827",
         zorder=zorder + 3,
     )
@@ -138,7 +139,7 @@ def main() -> None:
     ax.axis("off")
 
     # 1. Agent (top-left)
-    draw_shadow_box(ax, 0.02, 0.70, 0.48, 0.25, facecolor="#dcead3", rounding=0.024)
+    draw_shadow_box(ax, 0.02, 0.72, 0.48, 0.22, facecolor="#dcead3", rounding=0.024)
     ax.text(
         0.26,
         0.855,
@@ -153,10 +154,10 @@ def main() -> None:
     ax.text(
         0.26,
         0.785,
-        "(Orbit, OpenCode, Claude Code, Codex, Agy, ...)",
+        "(Orbit, OpenCode, Claude Code, Codex, Antigravity CLI, ...)",
         ha="center",
         va="center",
-        fontsize=11.0,
+        fontsize=10.6,
         color="#111827",
         zorder=4,
     )
@@ -331,8 +332,8 @@ def main() -> None:
         )
 
     # 6. Connectors
-    curved_double_arrow(ax, (0.26, 0.70), (0.134, 0.575), rad=0.14)
-    curved_double_arrow(ax, (0.26, 0.70), (0.386, 0.575), rad=-0.14)
+    curved_double_arrow(ax, (0.26, 0.72), (0.134, 0.575), rad=0.14)
+    curved_double_arrow(ax, (0.26, 0.72), (0.386, 0.575), rad=-0.14)
     curved_double_arrow(ax, (0.134, 0.41), (0.265, 0.270), rad=-0.16)
     curved_double_arrow(ax, (0.386, 0.41), (0.265, 0.270), rad=0.16)
     curved_double_arrow(ax, (0.265, 0.270), (0.775, 0.41), rad=-0.06)

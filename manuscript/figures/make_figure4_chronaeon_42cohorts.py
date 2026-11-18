@@ -120,9 +120,11 @@ def clean_panel_image(panel_path):
     arr[:, :x_clear] = 255.0
 
     # 5. Crop out the repeated bottom raster "Calendar Time (Years CE)" (y=489..515)
-    #    while preserving all x-axis tick numbers (y=470..486)
-    cropped = arr[:488, :, :]
-    return Image.fromarray(cropped.clip(0, 255).astype(np.uint8))
+    #    while preserving all x-axis tick numbers (y=470..486), and pad outer edges
+    #    slightly with white so extreme right x-tick digits (e.g., 2020) never clip.
+    cropped = arr[:488, :, :].clip(0, 255).astype(np.uint8)
+    padded = np.pad(cropped, ((2, 2), (6, 8), (0, 0)), mode="constant", constant_values=255)
+    return Image.fromarray(padded)
 
 
 def load_chronaeon_data(data_dir):
@@ -296,7 +298,7 @@ def make_compound_figure():
     ax.text(
         margin_x,
         fig_h - 0.68,
-        "Transverse divergence manifolds (y-axis: y_i) fanning out from founder roots (t_MRCA, diamonds) across calendar time (x-axis: Years CE), color-coded by AutoClock communities with 95% Fieller CI (blue) and BEAST 95% HPD (gold).",
+        r"Transverse divergence manifolds ($y$-axis: $y_i$) fanning out from founder roots ($t_{\mathrm{MRCA}}$, diamonds) across calendar time ($x$-axis: Years CE), color-coded by AutoClock communities with 95% Fieller CI (blue) and BEAST 95% HPD (gold).",
         fontsize=11.2,
         color="#475569",
         ha="left",

@@ -7,6 +7,8 @@ Compares Paper2Agent Extended Data Fig. 1c (run on the 1,000-cell tutorial
 subset, 96 KB, r = 0.0861) against the full 5,613-cell Zenodo Dataset 15
 reference archive cited in Data Availability (405 MB, r = 0.2553).
 """
+from __future__ import annotations
+
 import csv
 import json
 from pathlib import Path
@@ -125,7 +127,7 @@ def main() -> None:
     crop_box = (int(w * 0.575), int(h * 0.325), int(w * 0.998), int(h * 0.72))
     img_pap_cropped = np.array(img_pap_full.crop(crop_box))
 
-    fig = plt.figure(figsize=(16.0, 9.2), dpi=300, facecolor="white")
+    fig = plt.figure(figsize=(17.2, 9.4), dpi=300, facecolor="white")
     outer_gs = gridspec.GridSpec(
         2,
         1,
@@ -138,7 +140,7 @@ def main() -> None:
     # ROW 1: Published Paper2Agent vs 1,000-cell Unit-Test vs 5,613-cell Full
     # =========================================================================
     gs_top = gridspec.GridSpecFromSubplotSpec(
-        1, 3, subplot_spec=outer_gs[0], width_ratios=[1.05, 1.0, 1.0], wspace=0.18
+        1, 3, subplot_spec=outer_gs[0], width_ratios=[1.05, 1.0, 1.0], wspace=0.24
     )
 
     axA = fig.add_subplot(gs_top[0, 0])
@@ -146,10 +148,10 @@ def main() -> None:
     axA.axis("off")
     axA.set_title(
         "A  Published Paper2Agent Example",
-        fontsize=10.5,
+        fontsize=10.2,
         fontweight="bold",
         loc="left",
-        pad=16,
+        pad=17,
         color="#991b1b",
     )
     axA.text(
@@ -157,7 +159,7 @@ def main() -> None:
         1.015,
         "Miao et al. Ext. Data Fig. 1c (colorbar cap = 2.36)",
         transform=axA.transAxes,
-        fontsize=8.5,
+        fontsize=8.3,
         color="#4b5563",
         ha="left",
         va="bottom",
@@ -170,8 +172,8 @@ def main() -> None:
         x_t,
         y_t,
         pi_t,
-        title="B  PI Width: 1,000-Cell Tutorial Subset",
-        subtitle=f"96 KB tutorial subset (1,000 × 33) • P95 = {gal_tut['p95_pi_width_log1p']:.2f}, Cov = {gal_tut['empirical_coverage']*100:.1f}%",
+        title="B  PI Width: 1,000-Cell Subset",
+        subtitle=f"96 KB tutorial (1,000 × 33) • P95 = {gal_tut['p95_pi_width_log1p']:.2f}, Cov = {gal_tut['empirical_coverage']*100:.1f}%",
         cbar_label="log(1 + PI Width)",
         title_color="#991b1b",
     )
@@ -183,10 +185,10 @@ def main() -> None:
         x_f,
         y_f,
         pi_f,
-        title="C  PI Width: Cited 5,613-Cell Reference",
+        title="C  PI Width: 5,613-Cell Reference",
         subtitle=f"405 MB Dataset 15 (5,613 × 30,527) • P95 = {gal_full['p95_pi_width_log1p']:.2f}, Cov = {gal_full['empirical_coverage']*100:.1f}%",
         cbar_label="log(1 + PI Width)",
-        title_color="#065f46",
+        title_color="#0f766e",
     )
 
     # =========================================================================
@@ -196,8 +198,8 @@ def main() -> None:
         1,
         5,
         subplot_spec=outer_gs[1],
-        width_ratios=[1.0, 1.0, 1.0, 0.16, 1.12],
-        wspace=0.14,
+        width_ratios=[1.0, 1.0, 1.0, 0.22, 1.15],
+        wspace=0.22,
     )
 
     axD = fig.add_subplot(gs_bot[0, 0])
@@ -220,8 +222,8 @@ def main() -> None:
         x_t,
         y_t,
         np.log1p(np.maximum(0, pred_t)),
-        title="E  Imputed: 1,000-Cell Tutorial Subset",
-        subtitle=f"Tutorial subset (1,000 / 5,613 cells) • r = {gal_tut['pearson_r']:.4f}",
+        title="E  Imputed: 1,000-Cell Subset",
+        subtitle=f"96 KB tutorial (1,000 / 5,613 cells) • r = {gal_tut['pearson_r']:.4f}",
         cbar_label=None,
         title_color="#991b1b",
     )
@@ -234,9 +236,9 @@ def main() -> None:
         y_f,
         np.log1p(np.maximum(0, pred_f)),
         title="F  Imputed: 5,613-Cell Reference",
-        subtitle=f"Full Dataset 15 reference • r = {gal_full['pearson_r']:.4f} (3.0×)",
+        subtitle=f"Full Dataset 15 • r = {gal_full['pearson_r']:.4f} (3.0×)",
         cbar_label="log(1 + Expression)",
-        title_color="#065f46",
+        title_color="#0f766e",
     )
 
     # Panel G: Dumbbell / delta plot of key cortical markers & 33-gene summary
@@ -275,7 +277,7 @@ def main() -> None:
     axG.scatter(
         full_vals,
         y_pos,
-        color="#059669",
+        color="#0d9488",
         s=38,
         zorder=4,
         label="5,613-cell Dataset 15",

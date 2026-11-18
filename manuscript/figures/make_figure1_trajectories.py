@@ -104,7 +104,7 @@ def make_figure():
             nd["members"].append(idx)
 
     max_h = max(L["h"] for L in layout)
-    total_w = left + (len(STAGES) - 1) * colW + nodeW + 185
+    total_w = left + (len(STAGES) - 1) * colW + nodeW + 215
     total_h = max_h + 46
 
     fig = plt.figure(figsize=(16.2, 6.8), dpi=300)
@@ -274,17 +274,17 @@ def make_figure():
     leg_y = total_h - 20
 
     ax.text(leg_x, leg_y, "Planning Cohort (n=30):", fontsize=8.2, fontweight="bold", color="#334155", va="center")
-    cur_lx = leg_x + 135
+    cur_lx = leg_x + 140
     for f_key in FAMS:
         f_info = FAM_INFO[f_key]
         leg_rect = patches.Rectangle((cur_lx, leg_y - 4), 12, 8, facecolor=f_info["color"], alpha=0.25, edgecolor="none")
         ax.add_patch(leg_rect)
         ax.text(cur_lx + 16, leg_y, f"{f_info['name']} (10 plans)", fontsize=7.8, color="#475569", va="center")
-        cur_lx += 165
+        cur_lx += 172
 
-    cur_lx += 15
+    cur_lx += 16
     ax.text(cur_lx, leg_y, "Highlighted Plans (n=3):", fontsize=8.2, fontweight="bold", color="#0f172a", va="center")
-    cur_lx += 125
+    cur_lx += 130
     leg_rect_rep = patches.Rectangle((cur_lx, leg_y - 4), 16, 8, facecolor="#2563eb", alpha=0.92, edgecolor="#0f172a", linewidth=1.0)
     ax.add_patch(leg_rect_rep)
     ax.text(cur_lx + 22, leg_y, "Bold ribbons trace one representative planning trajectory per model family", fontsize=7.8, fontweight="bold", color="#0f172a", va="center")
